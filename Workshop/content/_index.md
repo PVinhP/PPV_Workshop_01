@@ -1,5 +1,5 @@
 ---
-title : "Session Management"
+title : "Create a Serverless Chatbot Using Amazon Bedrock, Amazon Kendra, and Your Own Data"
 date :  2025-06-17
 weight : 1 
 chapter : false
@@ -11,9 +11,11 @@ In this workshop, you will embark on a comprehensive journey to create a serverl
 
 You'll learn how to solve challenges such as enterprise knowledge discovery, customer support automation, and information retrieval across complex document repositories. The solution you'll build can be applied in numerous business scenarios, including technical support systems, HR knowledge management, compliance document querying, and research information synthesis. By mastering these techniques, you'll be equipped to create AI-powered solutions that can transform how businesses interact with their data, providing faster, more accurate, and context-aware responses to complex queries.
 
-![ConnectPrivate](\static\images\1.architecture\000-architecture.png)
+You will create the following architecture for this workshop:
 
-![ConnectPrivate](/images/arc-log.png) 
+![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/anh/000-architecture.png?raw=true)
+
+ 
 
 ### Content
  1. [Introduction ](1-introduce/)
