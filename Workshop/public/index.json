@@ -81,7 +81,7 @@
 	"title": "Launch VSCode on AWS, and Set Up the Environment",
 	"tags": [],
 	"description": "",
-	"content": "Launch VSCode on AWS To set up your environment, open the VSCode environment (a replacement for AWS Cloud9) which is hosted on Amazon EC2.\nOpen AWS CloudFormation console. Open chatbot-startup-stack stack. Open Outputs, Copy VSCodeWorkspaceURL and VSCodeWorkspacePassword password in a notepad. 4. Open a new browser window or tab, enter the VSCode workspace url, and enter password to launch the VSCode editor.\n"
+	"content": "Launch VSCode on AWS To set up your environment, open the VSCode environment (a replacement for AWS Cloud9) which is hosted on Amazon EC2.\nOpen AWS CloudFormation console. Open chatbot-startup-stack stack. Open Outputs, Copy VSCodeWorkspaceURL and VSCodeWorkspacePassword password in a notepad. 4. Open a new browser window or tab, enter the VSCode workspace url, and enter password to launch the VSCode editor.\nAfter it is successfully launched, the default theme is white, optionally you can change to different color themes. For example, Settings Icon -\u0026gt; Themes -\u0026gt; Color Theme -\u0026gt; Dark (Visual Studio)\nYour VSCode editor is ready. Congratulations! You can now proceed to next task.\n"
 },
 {
 	"uri": "//localhost:1313/2-prerequiste/",
