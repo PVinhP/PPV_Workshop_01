@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Session Management :: AWS System Manager</title>
+    <title>Tạo IAM Role :: AWS System Manager</title>
 
     
     <link href="/css/nucleus.css?1753104086" rel="stylesheet">
@@ -36,7 +36,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/vi/">
+  <body class="" data-url="/vi/2-prerequiste/2.2-launchvscode/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -109,7 +109,7 @@
   
     
     <li data-nav-id="/vi/2-prerequiste/" title="Các bước chuẩn bị" class="dd-item 
-        
+        parent
         
         
         ">
@@ -169,7 +169,7 @@
     
     <li data-nav-id="/vi/2-prerequiste/2.2-launchvscode/" title="Tạo IAM Role" class="dd-item 
         
-        
+        active
         
         ">
       <a href="/vi/2-prerequiste/2.2-launchvscode/">
@@ -717,7 +717,7 @@
                   
                     
                     
-                      <option id="en" value="//localhost:1313/">English</option>
+                      <option id="en" value="//localhost:1313/2-prerequiste/2.2-launchvscode/">English</option>
                     
                   
               
@@ -731,7 +731,7 @@
                   
                     
                     
-                      <option id="vi" value="//localhost:1313/vi/" selected>Tiếng Việt</option>
+                      <option id="vi" value="//localhost:1313/vi/2-prerequiste/2.2-launchvscode/" selected>Tiếng Việt</option>
                     
                   
               
@@ -796,35 +796,122 @@
         <div id="overlay"></div>
         <div class="padding highlightable">
               
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/vi/'>Session Management</a> > <a href='/vi/2-prerequiste/'>Các bước chuẩn bị</a> > Tạo IAM Role
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#tao-iam-role">Tạo IAM Role</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
         <div id="head-tags">
         
         </div>
         
         <div id="body-inner">
           
+            <h1>
+              
+              Tạo IAM Role
+            </h1>
+          
 
         
 
-<span id="sidebar-toggle-span">
-<a href="#" id="sidebar-toggle" data-sidebar-toggle=""><i class="fas fa-bars"></i> navigation</a>
-</span>
 
- 
-<h1 id="lam-viêc-vơi-amazon-system-manager---session-manager">Làm việc với Amazon System Manager - Session Manager</h1>
-<h3 id="tổng-quan">Tổng quan</h3>
-<p>Trong bài lab này, bạn sẽ tìm hiểu các khái niệm cơ bản và thực hành về Amazon System Manager - Session Management. Thực hành tạo kết nối đến máy chủ public và máy chủ private trong VPC.</p>
-<p><img src="/images/arc-log.png" alt="ConnectPrivate"></p>
-<h3 id="nội-dung">Nội dung</h3>
+
+	<h3 id="tao-iam-role">Tạo IAM Role</h3>
+<p>Trong bước này chúng ta sẽ tiến hành tạo IAM Role. Trong IAM Role này sẽ được gán policy <strong>AmazonSSMManagedInstanceCore</strong>, đây là policy cho phép máy chủ EC2 có thể giao tiếp với Session Manager.</p>
 <ol>
-<li><a href="/vi/1-introduce/">Giới thiệu</a></li>
-<li><a href="/vi/2-prerequiste/">Các bước chuẩn bị</a></li>
-<li><a href="3-Accessibilitytoinstance/">Tạo kết nối đến máy chủ EC2</a></li>
-<li><a href="/vi/4-s3log/">Quản lý session logs</a></li>
-<li><a href="/vi/5-portfwd/">Port Forwarding</a></li>
-<li><a href="/vi/6-cleanup/">Dọn dẹp tài nguyên</a></li>
+<li>Truy cập vào <a href="https://console.aws.amazon.com/iamv2/">giao diện quản trị dịch vụ IAM</a></li>
+<li>Ở thanh điều hướng bên trái, click  <strong>Roles</strong>.</li>
 </ol>
+<p><img src="/images/2.prerequisite/038-iamrole.png" alt="role"></p>
+<ol start="3">
+<li>Click <strong>Create role</strong>.</li>
+</ol>
+<p><img src="/images/2.prerequisite/039-iamrole.png" alt="role1"></p>
+<ol start="4">
+<li>Click <strong>AWS service</strong> và click <strong>EC2</strong>.</li>
+</ol>
+<ul>
+<li>Click <strong>Next: Permissions</strong>.</li>
+</ul>
+<p><img src="/images/2.prerequisite/040-iamrole.png" alt="role1"></p>
+<ol start="5">
+<li>Trong ô Search, điền <strong>AmazonSSMManagedInstanceCore</strong> và ấn phím Enter để tìm kiếm policy này.</li>
+</ol>
+<ul>
+<li>Click chọn policy <strong>AmazonSSMManagedInstanceCore</strong>.</li>
+<li>Click <strong>Next: Tags.</strong></li>
+</ul>
+<p><img src="/images/2.prerequisite/041-iamrole.png" alt="createpolicy"></p>
+<ol start="6">
+<li>Click <strong>Next: Review</strong>.</li>
+<li>Đặt tên cho Role là <strong>SSM-Role</strong> ở Role Name</li>
+</ol>
+<ul>
+<li>Click <strong>Create Role</strong> .</li>
+</ul>
+<p><img src="/images/2.prerequisite/042-iamrole.png" alt="namerole"></p>
+<p>Tiếp theo chúng ta sẽ thực hiện kết nối đến các máy chủ EC2 chúng ta đã tạo bằng <strong>Session Manager</strong>.</p>
+
+
+
+
+
+<footer class=" footline" >
 	
-  
+</footer>
+
         
         </div> 
         
@@ -875,6 +962,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -889,6 +977,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -906,6 +997,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -924,6 +1016,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1193,10 +1288,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/vi/6-cleanup/" title="Dọn dẹp tài nguyên  "> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/vi/2-prerequiste/2.1-launchastack/" title="Chuẩn bị VPC và EC2"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/vi/1-introduce/" title="Giới thiệu" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/vi/3-accessibilitytoinstances/" title="Tạo kết nối đến máy chủ EC2" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1234,4 +1329,3 @@
 </script>
   </body>
 </html>
-

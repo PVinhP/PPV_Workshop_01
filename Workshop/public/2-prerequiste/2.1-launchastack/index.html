@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="vi" class="js csstransforms3d">
+<html lang="en" class="js csstransforms3d">
   <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Session Management :: AWS System Manager</title>
+    <title>Launch a CloudFormation stack :: AWS System Manager</title>
 
     
     <link href="/css/nucleus.css?1753104086" rel="stylesheet">
@@ -36,7 +36,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/vi/">
+  <body class="" data-url="/2-prerequiste/2.1-launchastack/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -61,7 +61,7 @@
 <script type="text/javascript" src="/js/auto-complete.js?1753104086"></script>
 <script type="text/javascript">
     
-        var baseurl = "\/\/localhost:1313\/\/vi";
+        var baseurl = "\/\/localhost:1313\/";
     
 </script>
 <script type="text/javascript" src="/js/search.js?1753104086"></script>
@@ -82,13 +82,13 @@
  
   
     
-    <li data-nav-id="/vi/1-introduce/" title="Giới thiệu" class="dd-item 
+    <li data-nav-id="/1-introduce/" title="Introduction" class="dd-item 
         
         
         
         ">
-      <a href="/vi/1-introduce/">
-           <b> 1. </b> Giới thiệu
+      <a href="/1-introduce/">
+           <b> 1. </b> Introduction
           
             <i class="fas fa-check read-icon"></i>
           
@@ -108,13 +108,13 @@
  
   
     
-    <li data-nav-id="/vi/2-prerequiste/" title="Các bước chuẩn bị" class="dd-item 
-        
+    <li data-nav-id="/2-prerequiste/" title="Preparation " class="dd-item 
+        parent
         
         
         ">
-      <a href="/vi/2-prerequiste/">
-           <b> 2. </b> Các bước chuẩn bị
+      <a href="/2-prerequiste/">
+           <b> 2. </b> Preparation 
           
             <i class="fas fa-check read-icon"></i>
           
@@ -139,13 +139,13 @@
  
   
     
-    <li data-nav-id="/vi/2-prerequiste/2.1-launchastack/" title="Chuẩn bị VPC và EC2" class="dd-item 
+    <li data-nav-id="/2-prerequiste/2.1-launchastack/" title="Launch a CloudFormation stack" class="dd-item 
         
-        
+        active
         
         ">
-      <a href="/vi/2-prerequiste/2.1-launchastack/">
-           <b> 2.1 </b> Chuẩn bị VPC và EC2
+      <a href="/2-prerequiste/2.1-launchastack/">
+           <b> 2.1 </b> Launch a CloudFormation stack
           
             <i class="fas fa-check read-icon"></i>
           
@@ -167,13 +167,13 @@
  
   
     
-    <li data-nav-id="/vi/2-prerequiste/2.2-launchvscode/" title="Tạo IAM Role" class="dd-item 
+    <li data-nav-id="/2-prerequiste/2.2-launchvscode/" title="Launch VSCode on AWS, and Set Up the Environment" class="dd-item 
         
         
         
         ">
-      <a href="/vi/2-prerequiste/2.2-launchvscode/">
-           <b> 2.2 </b> Tạo IAM Role
+      <a href="/2-prerequiste/2.2-launchvscode/">
+           <b> 2.2 </b> Launch VSCode on AWS, and Set Up the Environment
           
             <i class="fas fa-check read-icon"></i>
           
@@ -202,13 +202,13 @@
  
   
     
-    <li data-nav-id="/vi/3-accessibilitytoinstances/" title="Tạo kết nối đến máy chủ EC2" class="dd-item 
+    <li data-nav-id="/3-accessibilitytoinstances/" title="Connect to EC2 servers" class="dd-item 
         
         
         
         ">
-      <a href="/vi/3-accessibilitytoinstances/">
-           <b> 3. </b> Tạo kết nối đến máy chủ EC2
+      <a href="/3-accessibilitytoinstances/">
+           <b> 3. </b> Connect to EC2 servers
           
             <i class="fas fa-check read-icon"></i>
           
@@ -233,13 +233,13 @@
  
   
     
-    <li data-nav-id="/vi/3-accessibilitytoinstances/3.1-public-instance/" title="Kết nối đến máy chủ Public" class="dd-item 
+    <li data-nav-id="/3-accessibilitytoinstances/3.1-public-instance/" title="Connect to Public Instance" class="dd-item 
         
         
         
         ">
-      <a href="/vi/3-accessibilitytoinstances/3.1-public-instance/">
-           <b> 3.1. </b> Kết nối đến máy chủ Public
+      <a href="/3-accessibilitytoinstances/3.1-public-instance/">
+           <b> 3.1. </b> Connect to Public Instance
           
             <i class="fas fa-check read-icon"></i>
           
@@ -261,13 +261,13 @@
  
   
     
-    <li data-nav-id="/vi/3-accessibilitytoinstances/3.2-private-instance/" title="Tạo kết nối đến máy chủ EC2 Private" class="dd-item 
+    <li data-nav-id="/3-accessibilitytoinstances/3.2-private-instance/" title="Connect to Private instance" class="dd-item 
         
         
         
         ">
-      <a href="/vi/3-accessibilitytoinstances/3.2-private-instance/">
-           <b> 3.2. </b> Tạo kết nối đến máy chủ EC2 Private
+      <a href="/3-accessibilitytoinstances/3.2-private-instance/">
+           <b> 3.2. </b> Connect to Private instance
           
             <i class="fas fa-check read-icon"></i>
           
@@ -292,13 +292,13 @@
  
   
     
-    <li data-nav-id="/vi/3-accessibilitytoinstances/3.2-private-instance/3.2.1-enablevpcdns/" title="Kích hoạt DNS hostnames" class="dd-item 
+    <li data-nav-id="/3-accessibilitytoinstances/3.2-private-instance/3.2.1-enablevpcdns/" title="Enable DNS hostnames" class="dd-item 
         
         
         
         ">
-      <a href="/vi/3-accessibilitytoinstances/3.2-private-instance/3.2.1-enablevpcdns/">
-           <b> 3.2.1 </b> Kích hoạt DNS hostnames
+      <a href="/3-accessibilitytoinstances/3.2-private-instance/3.2.1-enablevpcdns/">
+           <b> 3.2.1 </b> Enable DNS hostnames
           
             <i class="fas fa-check read-icon"></i>
           
@@ -320,13 +320,13 @@
  
   
     
-    <li data-nav-id="/vi/3-accessibilitytoinstances/3.2-private-instance/3.2.2-createvpcendpoint/" title="Tạo VPC Endpoint" class="dd-item 
+    <li data-nav-id="/3-accessibilitytoinstances/3.2-private-instance/3.2.2-createvpcendpoint/" title="Create VPC Endpoint" class="dd-item 
         
         
         
         ">
-      <a href="/vi/3-accessibilitytoinstances/3.2-private-instance/3.2.2-createvpcendpoint/">
-           <b> 3.2.2 </b> Tạo VPC Endpoint
+      <a href="/3-accessibilitytoinstances/3.2-private-instance/3.2.2-createvpcendpoint/">
+           <b> 3.2.2 </b> Create VPC Endpoint
           
             <i class="fas fa-check read-icon"></i>
           
@@ -351,13 +351,13 @@
  
   
     
-    <li data-nav-id="/vi/3-accessibilitytoinstances/3.2-private-instance/3.2.2-createvpcendpoint/3.2.2.1-endpointssm/" title="Tạo Endpoint ssm" class="dd-item 
+    <li data-nav-id="/3-accessibilitytoinstances/3.2-private-instance/3.2.2-createvpcendpoint/3.2.2.1-endpointssm/" title="Create Endpoint ssm" class="dd-item 
         
         
         
         ">
-      <a href="/vi/3-accessibilitytoinstances/3.2-private-instance/3.2.2-createvpcendpoint/3.2.2.1-endpointssm/">
-           <b> 3.2.2.1 </b> Tạo Endpoint ssm
+      <a href="/3-accessibilitytoinstances/3.2-private-instance/3.2.2-createvpcendpoint/3.2.2.1-endpointssm/">
+           <b> 3.2.2.1 </b> Create Endpoint ssm
           
             <i class="fas fa-check read-icon"></i>
           
@@ -379,13 +379,13 @@
  
   
     
-    <li data-nav-id="/vi/3-accessibilitytoinstances/3.2-private-instance/3.2.2-createvpcendpoint/3.2.2.2-endpointssmmessages/" title="Tạo Endpoint ssmmessages" class="dd-item 
+    <li data-nav-id="/3-accessibilitytoinstances/3.2-private-instance/3.2.2-createvpcendpoint/3.2.2.2-endpointssmmessages/" title="Create Endpoint ssmmessages" class="dd-item 
         
         
         
         ">
-      <a href="/vi/3-accessibilitytoinstances/3.2-private-instance/3.2.2-createvpcendpoint/3.2.2.2-endpointssmmessages/">
-           <b> 3.2.2.2 </b> Tạo Endpoint ssmmessages
+      <a href="/3-accessibilitytoinstances/3.2-private-instance/3.2.2-createvpcendpoint/3.2.2.2-endpointssmmessages/">
+           <b> 3.2.2.2 </b> Create Endpoint ssmmessages
           
             <i class="fas fa-check read-icon"></i>
           
@@ -407,13 +407,13 @@
  
   
     
-    <li data-nav-id="/vi/3-accessibilitytoinstances/3.2-private-instance/3.2.2-createvpcendpoint/3.2.2.3-endpointec2messages/" title="Tạo Endpoint ec2messages" class="dd-item 
+    <li data-nav-id="/3-accessibilitytoinstances/3.2-private-instance/3.2.2-createvpcendpoint/3.2.2.3-endpointec2messages/" title="Create Endpoint ec2messages" class="dd-item 
         
         
         
         ">
-      <a href="/vi/3-accessibilitytoinstances/3.2-private-instance/3.2.2-createvpcendpoint/3.2.2.3-endpointec2messages/">
-           <b> 3.2.2.3 </b> Tạo Endpoint ec2messages
+      <a href="/3-accessibilitytoinstances/3.2-private-instance/3.2.2-createvpcendpoint/3.2.2.3-endpointec2messages/">
+           <b> 3.2.2.3 </b> Create Endpoint ec2messages
           
             <i class="fas fa-check read-icon"></i>
           
@@ -444,13 +444,13 @@
  
   
     
-    <li data-nav-id="/vi/3-accessibilitytoinstances/3.2-private-instance/3.2.3-connectec2/" title="Kết nối EC2 Private" class="dd-item 
+    <li data-nav-id="/3-accessibilitytoinstances/3.2-private-instance/3.2.3-connectec2/" title="Connect to instance" class="dd-item 
         
         
         
         ">
-      <a href="/vi/3-accessibilitytoinstances/3.2-private-instance/3.2.3-connectec2/">
-           <b> 3.2.3 </b> Kết nối EC2 Private
+      <a href="/3-accessibilitytoinstances/3.2-private-instance/3.2.3-connectec2/">
+           <b> 3.2.3 </b> Connect to instance
           
             <i class="fas fa-check read-icon"></i>
           
@@ -488,13 +488,13 @@
  
   
     
-    <li data-nav-id="/vi/4-s3log/" title="Quản lý session logs" class="dd-item 
+    <li data-nav-id="/4-s3log/" title="Manage session logs" class="dd-item 
         
         
         
         ">
-      <a href="/vi/4-s3log/">
-           <b> 4. </b> Quản lý session logs
+      <a href="/4-s3log/">
+           <b> 4. </b> Manage session logs
           
             <i class="fas fa-check read-icon"></i>
           
@@ -519,13 +519,13 @@
  
   
     
-    <li data-nav-id="/vi/4-s3log/4.1-updateiamrole/" title="Cập nhật IAM Role" class="dd-item 
+    <li data-nav-id="/4-s3log/4.1-updateiamrole/" title="Update IAM Role" class="dd-item 
         
         
         
         ">
-      <a href="/vi/4-s3log/4.1-updateiamrole/">
-           <b> 4.1 </b> Cập nhật IAM Role
+      <a href="/4-s3log/4.1-updateiamrole/">
+           <b> 4.1 </b> Update IAM Role
           
             <i class="fas fa-check read-icon"></i>
           
@@ -547,13 +547,13 @@
  
   
     
-    <li data-nav-id="/vi/4-s3log/4.2-creates3bucket/" title="Tạo S3 Bucket" class="dd-item 
+    <li data-nav-id="/4-s3log/4.2-creates3bucket/" title="Create S3 Bucket" class="dd-item 
         
         
         
         ">
-      <a href="/vi/4-s3log/4.2-creates3bucket/">
-           <b> 4.2 </b> Tạo S3 Bucket
+      <a href="/4-s3log/4.2-creates3bucket/">
+           <b> 4.2 </b> Create S3 Bucket
           
             <i class="fas fa-check read-icon"></i>
           
@@ -575,13 +575,13 @@
  
   
     
-    <li data-nav-id="/vi/4-s3log/4.3-creategwes3/" title="Tạo S3 Gateway endpoint" class="dd-item 
+    <li data-nav-id="/4-s3log/4.3-creategwes3/" title="Create S3 Gateway endpoint" class="dd-item 
         
         
         
         ">
-      <a href="/vi/4-s3log/4.3-creategwes3/">
-           <b> 4.3 </b> Tạo S3 Gateway endpoint
+      <a href="/4-s3log/4.3-creategwes3/">
+           <b> 4.3 </b> Create S3 Gateway endpoint
           
             <i class="fas fa-check read-icon"></i>
           
@@ -603,13 +603,13 @@
  
   
     
-    <li data-nav-id="/vi/4-s3log/4.4-configsessionlogs/" title="Theo dõi session logs" class="dd-item 
+    <li data-nav-id="/4-s3log/4.4-configsessionlogs/" title="Monitor session logs" class="dd-item 
         
         
         
         ">
-      <a href="/vi/4-s3log/4.4-configsessionlogs/">
-           <b> 4.4 </b> Theo dõi session logs
+      <a href="/4-s3log/4.4-configsessionlogs/">
+           <b> 4.4 </b> Monitor session logs
           
             <i class="fas fa-check read-icon"></i>
           
@@ -638,12 +638,12 @@
  
   
     
-    <li data-nav-id="/vi/5-portfwd/" title="Port Forwarding" class="dd-item 
+    <li data-nav-id="/5-portfwd/" title="Port Forwarding" class="dd-item 
         
         
         
         ">
-      <a href="/vi/5-portfwd/">
+      <a href="/5-portfwd/">
            <b> 5. </b> Port Forwarding
           
             <i class="fas fa-check read-icon"></i>
@@ -664,13 +664,13 @@
  
   
     
-    <li data-nav-id="/vi/6-cleanup/" title="Dọn dẹp tài nguyên  " class="dd-item 
+    <li data-nav-id="/6-cleanup/" title="Clean up resources" class="dd-item 
         
         
         
         ">
-      <a href="/vi/6-cleanup/">
-          <b>6. </b>Dọn dẹp tài nguyên  
+      <a href="/6-cleanup/">
+          <b>6. </b>Clean up resources
           
             <i class="fas fa-check read-icon"></i>
           
@@ -717,7 +717,7 @@
                   
                     
                     
-                      <option id="en" value="//localhost:1313/">English</option>
+                      <option id="en" value="//localhost:1313/2-prerequiste/2.1-launchastack/" selected>English</option>
                     
                   
               
@@ -731,7 +731,7 @@
                   
                     
                     
-                      <option id="vi" value="//localhost:1313/vi/" selected>Tiếng Việt</option>
+                      <option id="vi" value="//localhost:1313/vi/2-prerequiste/2.1-launchastack/">Tiếng Việt</option>
                     
                   
               
@@ -796,35 +796,121 @@
         <div id="overlay"></div>
         <div class="padding highlightable">
               
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'>Create a Serverless Chatbot Using Amazon Bedrock, Amazon Kendra, and Your Own Data</a> > <a href='/2-prerequiste/'>Preparation </a> > Launch a CloudFormation stack
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents"></nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
         <div id="head-tags">
         
         </div>
         
         <div id="body-inner">
           
+            <h1>
+              
+              Launch a CloudFormation stack
+            </h1>
+          
 
         
 
-<span id="sidebar-toggle-span">
-<a href="#" id="sidebar-toggle" data-sidebar-toggle=""><i class="fas fa-bars"></i> navigation</a>
-</span>
 
- 
-<h1 id="lam-viêc-vơi-amazon-system-manager---session-manager">Làm việc với Amazon System Manager - Session Manager</h1>
-<h3 id="tổng-quan">Tổng quan</h3>
-<p>Trong bài lab này, bạn sẽ tìm hiểu các khái niệm cơ bản và thực hành về Amazon System Manager - Session Management. Thực hành tạo kết nối đến máy chủ public và máy chủ private trong VPC.</p>
-<p><img src="/images/arc-log.png" alt="ConnectPrivate"></p>
-<h3 id="nội-dung">Nội dung</h3>
+
+	<p>An AWS CloudFormation template is used to set up lab resources in the AWS Region that you choose. This step is required because later instructions are based on these resources. The CloudFormation template creates the following AWS resources:</p>
+<ul>
+<li><strong>VSCode</strong>: VSCode on Amazon EC2 is a cloud-based integrated development environment (IDE) that you can use to write, run, and debug your code with just a browser. It includes a code editor, debugger, and terminal. In this workshop, you use VSCode editor to deploy a backend application, which is built by using AWS Serverless Application Model (AWS SAM), and also deploy AWS Amplify frontend.</li>
+<li><strong>Amazon S3</strong>: Amazon Simple Storage Service (Amazon S3) is an object storage service offering industry-leading scalability, data availability, security, and performance. Customers of all sizes and industries can store and protect any amount of data for virtually any use case, such as data lakes, cloud-centered applications, and mobile apps. In this workshop, you use an S3 bucket to upload your use case-centric documents. Amazon Kendra indexes these documents to provide Retrieval-Augmented Generation (RAG) answers to questions that you ask.</li>
+<li><strong>Amazon Kendra</strong>: Amazon Kendra is an intelligent enterprise search service that helps you search across different content repositories with built-in connectors.
+Download the CloudFormation template:</li>
+</ul>
 <ol>
-<li><a href="/vi/1-introduce/">Giới thiệu</a></li>
-<li><a href="/vi/2-prerequiste/">Các bước chuẩn bị</a></li>
-<li><a href="3-Accessibilitytoinstance/">Tạo kết nối đến máy chủ EC2</a></li>
-<li><a href="/vi/4-s3log/">Quản lý session logs</a></li>
-<li><a href="/vi/5-portfwd/">Port Forwarding</a></li>
-<li><a href="/vi/6-cleanup/">Dọn dẹp tài nguyên</a></li>
+<li>Download the CloudFormation template: <a href="https://static.us-east-1.prod.workshops.aws/public/c5c516a7-10ce-444b-a0c5-1e60794fdb7c/static/template/chatbot-startup-stack.yaml"><!-- raw HTML omitted -->Download<!-- raw HTML omitted --></a></li>
+<li>Store the YAML template file in a folder on your local machine.</li>
+<li>Navigate to <a href="https://console.aws.amazon.com/cloudformation/home"><strong>AWS CloudFormation Console</strong></a> 🔗</li>
+<li>On the CloudFormation console, choose <strong>Upload a template file</strong>.</li>
+<li>Select the template that you just downloaded, and then choose <a href=""><!-- raw HTML omitted -->Next<!-- raw HTML omitted --></a></li>
 </ol>
+<p><img src="https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/anh/anh_1.png?raw=true" alt="ConnectPrivate"></p>
+<ol start="6">
+<li>
+<p>Give the stack a name, such as <code>chatbot-startup-stack</code></p>
+</li>
+<li>
+<p>Keep other values unchanged, and choose <strong><code>Next</code></strong></p>
+</li>
+<li>
+<p>For <strong>Configure stack options</strong>, select <em>I acknowledge&hellip;</em> options and choose <strong><code>Next</code></strong></p>
+</li>
+</ol>
+<p><img src="https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/anh/anh_2.png?raw=true" alt="ConnectPrivate">
+<img src="https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/anh/anh_3.png?raw=true" alt="ConnectPrivate"></p>
+<ol start="9">
+<li>
+<p>To deploy the template, choose <strong><code>Submit</code></strong>
+<img src="https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/anh/anh_4.png?raw=true" alt="ConnectPrivate"></p>
+</li>
+<li>
+<p>After the template is deployed, to review the created resources, navigate to <a href="">CloudFormation Resources</a>, and then select the CloudFormation stack that you created.</p>
+</li>
+</ol>
+<blockquote>
+<p>⏳ <em>Template deployment takes 10–15 minutes to complete all AWS resource provisioning.</em></p></blockquote>
+<p><img src="https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/anh/anh5.png?raw=true" alt="ConnectPrivate"></p>
+<p><strong>Congratulations! You can now proceed to the next task.</strong></p>
+<hr>
+
+
+
+
+
+<footer class=" footline" >
 	
-  
+</footer>
+
         
         </div> 
         
@@ -875,6 +961,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -889,6 +976,7 @@
             
             
                 
+                    
                     
                 
                 
@@ -905,6 +993,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1193,10 +1284,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/vi/6-cleanup/" title="Dọn dẹp tài nguyên  "> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/2-prerequiste/" title="Preparation "> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/vi/1-introduce/" title="Giới thiệu" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/2-prerequiste/2.2-launchvscode/" title="Launch VSCode on AWS, and Set Up the Environment" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1234,4 +1325,3 @@
 </script>
   </body>
 </html>
-

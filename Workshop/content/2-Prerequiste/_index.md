@@ -23,4 +23,4 @@ An AWS CloudFormation template is used to set up lab resources in the AWS Region
 {{% /notice %}}
 ### Content
   - [Launch a CloudFormation stack](2.1-launchastack/)
-  - [Create IAM Role](2.2-createiamrole/)
+  - [Create IAM Role](2.2-launchVScode/)

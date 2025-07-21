@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Session Management :: AWS System Manager</title>
+    <title>Chuẩn bị VPC và EC2 :: AWS System Manager</title>
 
     
     <link href="/css/nucleus.css?1753104086" rel="stylesheet">
@@ -36,7 +36,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/vi/">
+  <body class="" data-url="/vi/2-prerequiste/2.1-launchastack/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -109,7 +109,7 @@
   
     
     <li data-nav-id="/vi/2-prerequiste/" title="Các bước chuẩn bị" class="dd-item 
-        
+        parent
         
         
         ">
@@ -141,7 +141,7 @@
     
     <li data-nav-id="/vi/2-prerequiste/2.1-launchastack/" title="Chuẩn bị VPC và EC2" class="dd-item 
         
-        
+        active
         
         ">
       <a href="/vi/2-prerequiste/2.1-launchastack/">
@@ -717,7 +717,7 @@
                   
                     
                     
-                      <option id="en" value="//localhost:1313/">English</option>
+                      <option id="en" value="//localhost:1313/2-prerequiste/2.1-launchastack/">English</option>
                     
                   
               
@@ -731,7 +731,7 @@
                   
                     
                     
-                      <option id="vi" value="//localhost:1313/vi/" selected>Tiếng Việt</option>
+                      <option id="vi" value="//localhost:1313/vi/2-prerequiste/2.1-launchastack/" selected>Tiếng Việt</option>
                     
                   
               
@@ -796,35 +796,104 @@
         <div id="overlay"></div>
         <div class="padding highlightable">
               
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/vi/'>Session Management</a> > <a href='/vi/2-prerequiste/'>Các bước chuẩn bị</a> > Chuẩn bị VPC và EC2
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#nôi-dung">Nội dung</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
         <div id="head-tags">
         
         </div>
         
         <div id="body-inner">
           
+            <h1>
+              
+              Chuẩn bị VPC và EC2
+            </h1>
+          
 
         
 
-<span id="sidebar-toggle-span">
-<a href="#" id="sidebar-toggle" data-sidebar-toggle=""><i class="fas fa-bars"></i> navigation</a>
-</span>
 
- 
-<h1 id="lam-viêc-vơi-amazon-system-manager---session-manager">Làm việc với Amazon System Manager - Session Manager</h1>
-<h3 id="tổng-quan">Tổng quan</h3>
-<p>Trong bài lab này, bạn sẽ tìm hiểu các khái niệm cơ bản và thực hành về Amazon System Manager - Session Management. Thực hành tạo kết nối đến máy chủ public và máy chủ private trong VPC.</p>
-<p><img src="/images/arc-log.png" alt="ConnectPrivate"></p>
-<h3 id="nội-dung">Nội dung</h3>
-<ol>
-<li><a href="/vi/1-introduce/">Giới thiệu</a></li>
-<li><a href="/vi/2-prerequiste/">Các bước chuẩn bị</a></li>
-<li><a href="3-Accessibilitytoinstance/">Tạo kết nối đến máy chủ EC2</a></li>
-<li><a href="/vi/4-s3log/">Quản lý session logs</a></li>
-<li><a href="/vi/5-portfwd/">Port Forwarding</a></li>
-<li><a href="/vi/6-cleanup/">Dọn dẹp tài nguyên</a></li>
-</ol>
+
+	<p>Trong bước này, chúng ta sẽ cần tạo một VPC có 2 subnet public / private. Sau đó tạo 1 EC2 Instance Linux nằm trong public subnet,  1 EC2 Instance Windows nằm trong private subnet.</p>
+<p>Tổng quan kiến trúc sau khi các bạn hoàn tất bước này sẽ như sau:</p>
+<p><img src="/images/arc-01.png" alt="VPC"></p>
+<p>Để tìm hiểu cách tạo các EC2 instance và VPC với public/private subnet các bạn có thể tham khảo bài lab :</p>
+<ul>
+<li><a href="https://000004.awsstudygroup.com/vi/">Giới thiệu về Amazon EC2</a></li>
+<li><a href="https://000003.awsstudygroup.com/vi/">Làm việc với Amazon VPC</a></li>
+</ul>
+<h3 id="nôi-dung">Nội dung</h3>
+<ul>
+<li><a href="2.1.1-createvpc/">Tạo VPC</a></li>
+<li><a href="2.1.2-createpublicsubnet/">Tạo Public subnet</a></li>
+<li><a href="2.1.3-createprivatesubnet/">Tạo Private subnet</a></li>
+<li><a href="2.1.4-createsecgroup/">Tạo security group</a></li>
+<li><a href="2.1.5-createec2linux/">Tạo máy chủ Linux public</a></li>
+<li><a href="2.1.6-createec2windows/">Tạo máy chủ Windows private</a></li>
+</ul>
+
+
+
+
+
+<footer class=" footline" >
 	
-  
+</footer>
+
         
         </div> 
         
@@ -875,6 +944,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -889,6 +959,7 @@
             
             
                 
+                    
                     
                 
                 
@@ -905,6 +976,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1193,10 +1267,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/vi/6-cleanup/" title="Dọn dẹp tài nguyên  "> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/vi/2-prerequiste/" title="Các bước chuẩn bị"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/vi/1-introduce/" title="Giới thiệu" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/vi/2-prerequiste/2.2-launchvscode/" title="Tạo IAM Role" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1234,4 +1308,3 @@
 </script>
   </body>
 </html>
-
