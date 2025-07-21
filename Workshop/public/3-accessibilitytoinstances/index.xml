@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Connect to EC2 servers on AWS System Manager</title>
+    <title>Deploy Amazon Bedrock Serverless Application on AWS System Manager</title>
     <link>//localhost:1313/3-accessibilitytoinstances/</link>
-    <description>Recent content in Connect to EC2 servers on AWS System Manager</description>
+    <description>Recent content in Deploy Amazon Bedrock Serverless Application on AWS System Manager</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate></lastBuildDate>
