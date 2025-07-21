@@ -17,5 +17,5 @@ To set up your environment, open the VSCode environment (a replacement for AWS C
 ![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/anh/anh6.png?raw=true)
 4. Open a new browser window or tab, enter the VSCode workspace url, and enter password to launch the VSCode editor.
 
-![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/anh/anh7_1.png?raw=true)
+
 ![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/anh/anh7.png?raw=true)
