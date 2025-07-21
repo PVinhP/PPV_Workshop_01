@@ -11,7 +11,7 @@ In this workshop, you will embark on a comprehensive journey to create a serverl
 
 You'll learn how to solve challenges such as enterprise knowledge discovery, customer support automation, and information retrieval across complex document repositories. The solution you'll build can be applied in numerous business scenarios, including technical support systems, HR knowledge management, compliance document querying, and research information synthesis. By mastering these techniques, you'll be equipped to create AI-powered solutions that can transform how businesses interact with their data, providing faster, more accurate, and context-aware responses to complex queries.
 
-![alt text](image.png)
+![ConnectPrivate](\static\images\1.architecture\000-architecture.png)
 
 ![ConnectPrivate](/images/arc-log.png) 
 
