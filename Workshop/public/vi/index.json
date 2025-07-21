@@ -7,13 +7,6 @@
 	"content": "Để các EC2 instance của chúng ta có thể gửi session log tới S3 bucket , chúng ta sẽ cần cập nhật IAM Role đã gán vào EC2 instance bằng cách thêm vào policy cho phép quyền truy cập vào S3.\nCập nhật IAM Role Truy cập vào giao diện quản trị dịch vụ IAM Click Roles. Tại ô tìm kiếm , điền SSM. Click vào role SSM-Role. Click Attach policies. Tại ô Search điền S3. Click chọn policy AmazonS3FullAccess. Click Attach policy. Trong thực tế chúng ta sẽ cấp quyền chặt chẽ hơn tới S3 bucket chỉ định. Trong khuôn khổ bài lab này chúng ta sử dụng policy AmazonS3FullAccess cho tiện dụng.\nTiếp theo chúng ta sẽ tiến hành tạo S3 bucket để lưu trữ session logs.\n"
 },
 {
-	"uri": "//localhost:1313/vi/2-prerequiste/2.1-createec2/",
-	"title": "Chuẩn bị VPC và EC2",
-	"tags": [],
-	"description": "",
-	"content": "Trong bước này, chúng ta sẽ cần tạo một VPC có 2 subnet public / private. Sau đó tạo 1 EC2 Instance Linux nằm trong public subnet, 1 EC2 Instance Windows nằm trong private subnet.\nTổng quan kiến trúc sau khi các bạn hoàn tất bước này sẽ như sau:\nĐể tìm hiểu cách tạo các EC2 instance và VPC với public/private subnet các bạn có thể tham khảo bài lab :\nGiới thiệu về Amazon EC2 Làm việc với Amazon VPC Nội dung Tạo VPC Tạo Public subnet Tạo Private subnet Tạo security group Tạo máy chủ Linux public Tạo máy chủ Windows private "
-},
-{
 	"uri": "//localhost:1313/vi/1-introduce/",
 	"title": "Giới thiệu",
 	"tags": [],
@@ -49,13 +42,6 @@
 	"content": "Tạo VPC Endpoint SSM Truy cập đến giao diện quản trị của dịch vụ VPC Click Endpoints. Click Create endpoint. Tại trang Create endpoint. Tại mục Name tag điền SSM. Tại mục Service Category chọn AWS Services. Tại mục Service Name, Tại mục Service category chọn: AWS services Tại mục Service Name nhập: SSM sau đó chọn Service Name: com.amazonaws.ap-southeast-1.ssm. Tại cột Service Name, click chọn com.amazonaws.ap-southeast-1.ssm. Tại mục VPC, chọn Lab VPC. Chọn AZ đầu tiên, sau đó chọn subnet Lab Private Subnet. Kéo chuột xuống dưới. Tại mục Security Group, chọn Security group SG VPC Endpoint mà chúng ta đã tạo trước đó. Tại mục Policy, chọn Full access Kéo chuột xuống dưới cùng. Click Create endpoint. Chúng ta đã tạo xong VPC Interface Endpoint cho SSM. "
 },
 {
-	"uri": "//localhost:1313/vi/2-prerequiste/2.1-createec2/2.1.1-createvpc/",
-	"title": "Tạo VPC ",
-	"tags": [],
-	"description": "",
-	"content": "Tạo VPC Lab VPC Truy cập giao diện quản trị dịch vụ VPC Click Your VPC. Click Create VPC. Tại trang Create VPC. Tại mục Name tag điền Lab VPC. Tại mục IPv4 CIDR điền : 10.10.0.0/16. Click Create VPC. "
-},
-{
 	"uri": "//localhost:1313/vi/2-prerequiste/",
 	"title": "Các bước chuẩn bị",
 	"tags": [],
@@ -82,13 +68,6 @@
 	"tags": [],
 	"description": "",
 	"content": "Đối với Windows instance nằm trong private subnet, không có public IP, không có internet gateway nên không thể đi ra ngoài internet.\nVới loại instance này, cách làm truyền thống là ta sẽ sử dụng kỹ thuật Bastion host tốn nhiều chi phí và công sức, nhưng ở đây chúng ta sẽ sử dụng Session Manager với loại này.\nCơ bản là private instance vẫn phải mở cổng TCP 443 tới System Manager, nhưng không cho kết nối đó đi ra ngoài internet mà chỉ cho đi trong chính VPC của mình, nên đảm bảo được vấn đề bảo mật.\nĐể làm được điều đó, ta phải đưa endpoint của System Manager vào trong VPC, nghĩa là sử dụng VPC interface endpoint:\nVPC interface endpoint được gắn với subnet nên cách làm này không những với private subnet mà còn có thể làm với public subnet, nghĩa là với public subnet, bạn hoàn toàn có thể không cho TCP 443 đi ra ngoài internet.\nNội dung: Kích hoạt DNS hostnames Tạo VPC Endpoint Kết nối Private Instance "
-},
-{
-	"uri": "//localhost:1313/vi/2-prerequiste/2.1-createec2/2.1.2-createpublicsubnet/",
-	"title": "Tạo Public subnet",
-	"tags": [],
-	"description": "",
-	"content": "Tạo Public subnet Click Subnets. Click Create subnet. Tại trang Create subnet. Tại mục VPC ID click chọn Lab VPC. Tại mục Subnet name điền Lab Public Subnet. Tại mục Availability Zone chọn Availability zone đầu tiên. Tại mục IPv4 CIRD block điền 10.10.1.0/24. Kéo xuống cuối trang , click Create subnet.\nClick chọn Lab Public Subnet.\nClick Actions. Click Edit subnet settings. Click chọn Enable auto-assign public IPv4 address. Click Save. Click Internet Gateways. Click Create internet gateway. Tại trang Create internet gateway. Tại mục Name tag điền Lab IGW. Click Create internet gateway. Sau khi tạo thành công, click Actions. Click Attach to VPC. Tại trang Attach to VPC. Tại mục Available VPCs chọn Lab VPC. Click Attach internet gateway. Kiểm tra quá trình attach thành công như hình dưới. Tiếp theo chúng ta sẽ tạo một custom route table để gán vào Lab Public Subnet. Click Route Tables. Click Create route table. Tại trang Create route table. Tại mục Name, điền Lab Publicrtb. Tại mục VPC, chọn Lab VPC. Click Create route table. Sau khi tạo route table thành công. Click Edit routes. Tại trang Edit routes. Click Add route. Tại mục Destination điền 0.0.0.0/0 Tại mục Target chọn Internet Gateway sau đó chọn Lab IGW. Click Save changes. Click tab Subnet associations. Click Edit subnet associations để tiến hành associate custom routable chúng ta vừa tạo vào Lab Public Subnet. Tại trang Edit subnet associations. Click chọn Lab Public Subnet. Click Save associations. Kiểm tra thông tin route table đã được associate với Lab Public Subnet và thông tin route đi internet đã được trỏ đến Internet Gateway như hình dưới. "
 },
 {
 	"uri": "//localhost:1313/vi/4-s3log/4.2-creates3bucket/",
@@ -126,13 +105,6 @@
 	"content": "Trong bước này, chúng ta sẽ thực hiện tạo kết nối đến các máy chủ EC2 của chúng ta, nằm trong cả public và private subnet.\nNội dung 3.1. Tạo Kết nối đến máy chủ EC2 Public 3.2. Tạo Kết nối đến máy chủ EC2 Private\n"
 },
 {
-	"uri": "//localhost:1313/vi/2-prerequiste/2.1-createec2/2.1.3-createprivatesubnet/",
-	"title": "Tạo Private subnet",
-	"tags": [],
-	"description": "",
-	"content": "Tạo Private subnet Click Subnets. Click Create subnet. Tại trang Create subnet. Tại mục VPC ID click chọn Lab VPC. Tại mục Subnet name điền Lab Private Subnet. Tại mục Availability Zone chọn Availability zone đầu tiên. Tại mục IPv4 CIRD block điền 10.10.2.0/24. Kéo xuống cuối trang , click Create subnet. Bước tiếp theo chúng ta sẽ tạo các security group cần thiết cho bài lab.\n"
-},
-{
 	"uri": "//localhost:1313/vi/4-s3log/4.3-creategwes3/",
 	"title": "Tạo S3 Gateway endpoint",
 	"tags": [],
@@ -147,13 +119,6 @@
 	"content": "Với Session Manager chúng ta có thể xem được lịch sử các kết nối tới các instance thông qua Session history. Tuy nhiên chúng ta chưa xem được chi tiết các câu lệnh được sử dụng.\nTrong phần này chúng ta sẽ tiến hành tạo S3 bucket và thực hiện cấu hình lưu trữ các session logs để xem được chi tiết các câu lệnh được sử dụng trong session.\nNội dung: Cập nhật IAM Role Tạo S3 Bucket Tạo S3 Gateway endpoint Cấu hình Session logs "
 },
 {
-	"uri": "//localhost:1313/vi/2-prerequiste/2.1-createec2/2.1.4-createsecgroup/",
-	"title": "Tạo các security group",
-	"tags": [],
-	"description": "",
-	"content": "Tạo các security group Trong bước này chúng ta sẽ tiến hành tạo các security group được sử dụng cho các instance của chúng ta. Các bạn có thể thấy, các securiy group này sẽ không cần phải mở các port truyền thống để ssh như port 22 hoặc remote desktop thông qua port 3389.\nTạo security group cho Linux instance nằm trong public subnet Truy cập giao diện quản trị dịch vụ VPC Click Security Group. Click Create security group. Tại mục Security group name, điền SG Public Linux Instance. Tại mục Description, điền SG Public Linux Instance. Tại mục VPC, click dấu X để chọn lại Lab VPC bạn đã tạo cho bài lab này. Giữ nguyên Outbound rule, kéo chuột xuống phía dưới. Click Create security group. Các bạn có thể thấy, security group chúng ta tạo sử dụng cho Linux public instance sẽ không cần phải mở các port truyền thống để ssh như port 22.\nTạo security group cho Windows instance nằm trong private subnet Sau khi tạo thành công security group cho Linux instance nằm trong public subnet, click vào link Security Groups để quay trở lại danh sách Security groups. Click Create security group.\nTại mục Security group name, điền SG Private Windows Instance.\nTại mục Description, điền SG Private Windows Instance. Tại mục VPC, click dấu X để chọn lại Lab VPC bạn đã tạo cho bài lab này. Kéo chuột xuống phía dưới. Thêm Outbound rule cho phép kết nối TCP 443 tới 10.10.0.0/16 ( CIDR của Lab VPC chúng ta đã tạo) Click Create security group. Đối với Instance trong private subnet, chúng ta sẽ kết nối tới endpoint của Session Manager qua kết nối đã được mã hóa TLS. vì thế chúng ta cần cho phép kết nối chiều ra từ instance của mình tới VPC CIDR thông qua port 443.\nTạo security group cho VPC Endpoint Trong bước này, chúng ta sẽ tạo security group cho VPC Endpoint của Session Manager. Sau khi tạo thành công security group cho Windows instance trong private subnet, click vào link Security Groups để quay trở lại danh sách Security groups. Click Create security group. Tại mục Security group name, điền SG VPC Endpoint. Tại mục Description, điền SG VPC Endpoint. Tại mục VPC, click dấu X để chọn lại Lab VPC bạn đã tạo cho bài lab này. Kéo chuột xuống phía dưới. Xóa Outbound rule. Thêm Inbound rule cho phép TCP 443 đến từ 10.10.0.0/16 ( CIDR của Lab VPC chúng ta đã tạo ). Click Create security group. Như vậy chúng ta đã tiến hành xong việc tạo các security group cần thiết cho các EC2 instance và VPC Endpoint.\n"
-},
-{
 	"uri": "//localhost:1313/vi/4-s3log/4.4-configsessionlogs/",
 	"title": "Theo dõi session logs",
 	"tags": [],
@@ -166,20 +131,6 @@
 	"tags": [],
 	"description": "",
 	"content": "\rPort Forwarding là mốt cách thức hữu ích để chuyển hướng lưu lượng mạng từ 1 địa chỉ IP - Port này sang 1 địa chỉ IP - Port khác. Với Port Forwarding chúng ta có thể truy cập một EC2 instance nằm trong private subnet từ máy trạm của chúng ta.\nChúng ta sẽ cấu hình Port Forwarding cho kết nối RDP giữa máy của mình với Private Windows Instance nằm trong private subnet mà chúng ta đã tạo cho bài thực hành này.\nTạo IAM User có quyền kết nối SSM Truy cập vào giao diện quản trị dịch vụ IAM Click Users , sau đó click Add users. Tại trang Add user. Tại mục User name, điền Portfwd. Click chọn Access key - Programmatic access. Click Next: Permissions. Click Attach existing policies directly. Tại ô tìm kiếm , điền ssm. Click chọn AmazonSSMFullAccess. Click Next: Tags, click Next: Reviews. Click Create user. Lưu lại thông tin Access key ID và Secret access key để thực hiện cấu hình AWS CLI. Cài đặt và cấu hình AWS CLI và Session Manager Plugin Để thực hiện phần thực hành này, đảm bảo máy trạm của bạn đã cài AWS CLI và Session Manager Plugin\nBạn có thể tham khảo thêm bài thực hành về cài đặt và cấu hình AWS CLI tại đây.\nVới Windows thì khi giải nén thư mục cài đặt Session Manager Plugin bạn hãy chạy file install.bat với quyền Administrator để thực hiện cài đặt.\nThực hiện Portforwarding Chạy command dưới đây trong Command Prompt trên máy của bạn để cấu hình Port Forwarding. aws ssm start-session --target (your ID windows instance) --document-name AWS-StartPortForwardingSession --parameters portNumber=\u0026#34;3389\u0026#34;,localPortNumber=\u0026#34;9999\u0026#34; --region (your region) Thông tin Instance ID của Windows Private Instance có thể tìm được khi bạn xem chi tiết máy chủ EC2 Windows Private Instance.\nCâu lệnh ví dụ C:\\Windows\\system32\u0026gt;aws ssm start-session --target i-06343d7377486760c --document-name AWS-StartPortForwardingSession --parameters portNumber=\u0026#34;3389\u0026#34;,localPortNumber=\u0026#34;9999\u0026#34; --region ap-southeast-1 Nếu câu lệnh của bạn báo lỗi như dưới đây : SessionManagerPlugin is not found. Please refer to SessionManager Documentation here: http://docs.aws.amazon.com/console/systems-manager/session-manager-plugin-not-found\nChứng tỏ bạn chưa cài Session Manager Plugin thành công. Bạn có thể cần khởi chạy lại Command Prompt sau khi cài Session Manager Plugin.\nKết nối tới Private Windows Instance bạn đã tạo bằng công cụ Remote Desktop trên máy trạm của bạn. Tại mục Computer: điền localhost:9999. Quay trở lại giao diện quản trị của dịch vụ System Manager - Session Manager. Click tab Session history. Chúng ta sẽ thấy các session logs với tên Document là AWS-StartPortForwardingSession. Chúc mừng bạn đã hoàn tất bài thực hành hướng dẫn cách sử dụng Session Manager để kết nối cũng như lưu trữ các session logs trong S3 bucket. Hãy nhớ thực hiện bước dọn dẹp tài nguyên để tránh sinh chi phí ngoài ý muốn nhé.\n"
-},
-{
-	"uri": "//localhost:1313/vi/2-prerequiste/2.1-createec2/2.1.5-createec2linux/",
-	"title": "Tạo Public Linux EC2",
-	"tags": [],
-	"description": "",
-	"content": " Truy cập giao diện quản trị dịch vụ EC2 Click Instances. Click Launch instances. Tại trang Step 1: Choose an Amazon Machine Image (AMI). Click Select để lựa chọn AMI Amazon Linux 2 AMI. Tại trang Step 2: Choose an Instance Type. Click chọn Instance type t2.micro. Click Next: Configure Instance Details. Tại trang Step 3: Configure Instance Details Tại mục Network chọn Lab VPC. Tại mục Subnet chọn Lab Public Subnet. Tại mục Auto-assign Public IP chọn Use subnet setting (Enable) Click Next: Add Storage. Click Next: Add Tags để chuyển sang bước kế tiếp. Click Next: Configure Security Group để chuyển sang bước kế tiếp. Tại trang Step 6: Configure Security Group. Chọn Select an existing security group. Chọn security group SG Public Linux Instance. Click Review and Launch. Hộp thoại cảnh báo hiện lên vì chúng ta không cấu hình tường lửa cho phép kết nối vào port 22, Click Continue để tiếp tục.\nTại trang Step 7: Review Instance Launch.\nClick Launch. Tại hộp thoại Select an existing key pair or create a new key pair. Click chọn Create a new key pair. Tại mục Key pair name điền LabKeypair. Click Download Key Pair và lưu xuống máy tính của bạn. Click Launch Instances để tạo máy chủ EC2. Click View Instances để quay lại danh mục EC2 instances.\nClick vào biểu tượng edit dưới cột Name.\nTại hộp thoại Edit Name điền Public Linux Instance. Click Save. Tiếp theo chúng ta sẽ thực hiện tương tự để tạo 1 EC2 Instance Windows chạy trong Private subnet.\n"
-},
-{
-	"uri": "//localhost:1313/vi/2-prerequiste/2.1-createec2/2.1.6-createec2windows/",
-	"title": "Tạo Private Windows EC2",
-	"tags": [],
-	"description": "",
-	"content": " Truy cập giao diện quản trị dịch vụ EC2 Click Instances. Click Launch instances. Tại trang Step 1: Choose an Amazon Machine Image (AMI). Kéo chuột xuống phía dưới. Click Select để lựa chọn AMI Microsoft Windows Server 2019 Base. Tại trang Step 2: Choose an Instance Type. Click chọn Instance type t2.micro. Click Next: Configure Instance Details. Tại trang Step 3: Configure Instance Details Tại mục Network chọn Lab VPC. Tại mục Subnet chọn Lab Private Subnet. Tại mục Auto-assign Public IP chọn Use subnet setting (Disable) Click Next: Add Storage. Click Next: Add Tags để chuyển sang bước kế tiếp. Click Next: Configure Security Group để chuyển sang bước kế tiếp. Tại trang Step 6: Configure Security Group. Chọn Select an existing security group. Chọn security group SG Private Windows Instance. Click Review and Launch. Hộp thoại cảnh báo hiện lên vì chúng ta không cấu hình tường lửa cho phép kết nối vào port 22, Click Continue để tiếp tục.\nTại trang Step 7: Review Instance Launch.\nClick Launch. Tại hộp thoại Select an existing key pair or create a new key pair. Click chọn Choose an existing key pair. Tại mục Key pair name chọn LabKeypair. Click chọn I acknowledge that I have access to the corresponding private key file, and that without this file, I won\u0026rsquo;t be able to log into my instance.. Click Launch Instances để tạo máy chủ EC2. Click View Instances để quay lại danh mục EC2 instances.\nClick vào biểu tượng edit dưới cột Name.\nTại hộp thoại Edit Name điền Private Windows Instance. Click Save. Tiếp theo chúng ta sẽ tiến hành tạo các IAM Role để phục vụ cho Session Manager.\n"
 },
 {
 	"uri": "//localhost:1313/vi/6-cleanup/",

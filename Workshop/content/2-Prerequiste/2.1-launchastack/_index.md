@@ -1,5 +1,5 @@
 ---
-title : "Preparing VPC and EC2"
+title : "Launch a CloudFormation stack"
 date : 2025-06-17
 weight : 1
 chapter : false
