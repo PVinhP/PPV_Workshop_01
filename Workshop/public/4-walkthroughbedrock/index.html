@@ -12,21 +12,21 @@
     <title>Walkthrough Amazon Bedrock Console :: AWS System Manager</title>
 
     
-    <link href="/css/nucleus.css?1753108297" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1753108297" rel="stylesheet">
-    <link href="/css/hybrid.css?1753108297" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1753108297" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1753108297" rel="stylesheet">
-    <link href="/css/auto-complete.css?1753108297" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1753108297" rel="stylesheet">
-    <link href="/css/theme.css?1753108297" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1753108297" rel="stylesheet">
+    <link href="/css/nucleus.css?1753108892" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1753108892" rel="stylesheet">
+    <link href="/css/hybrid.css?1753108892" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1753108892" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1753108892" rel="stylesheet">
+    <link href="/css/auto-complete.css?1753108892" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1753108892" rel="stylesheet">
+    <link href="/css/theme.css?1753108892" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1753108892" rel="stylesheet">
     
-    <link href="/css/theme-workshop.css?1753108297" rel="stylesheet">
+    <link href="/css/theme-workshop.css?1753108892" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1753108297"></script>
+    <script src="/js/jquery-3.3.1.min.js?1753108892"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1753108297"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1753108297"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1753108892"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1753108892"></script>
 <script type="text/javascript">
     
         var baseurl = "\/\/localhost:1313\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1753108297"></script>
+<script type="text/javascript" src="/js/search.js?1753108892"></script>
 
     
   </div>
@@ -446,7 +446,15 @@
                 
                     <div class="progress">
     <div class="wrapper">
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
     </div>
 </div>
 
@@ -470,10 +478,33 @@
 
 
 
-	<p>With Session Manager, we can view the history of connections to instances through <strong>Session history</strong>. However, we have not seen the details of the commands used in a session.</p>
-<p><img src="/images/4.s3/001-s3.png" alt="S3"></p>
-<p>In this section, we will proceed to create an S3 bucket and configure the session logs feature to see the details of the commands used in the session.</p>
-<p><img src="/images/arc-log.png" alt="port-fwd"></p>
+	<p>Use Amazon Bedrock to build and scale generative AI applications with FMs. Amazon Bedrock is a fully managed service that makes FMs, from leading AI startups and Amazon, available through an API. You can choose from a wide range of FMs to find the model that is best suited for your use case. With the Amazon Bedrock serverless experience, you can get started quickly, privately customize FMs with your own data, and quickly integrate and deploy them into your applications by using AWS tools without having to manage any infrastructure.</p>
+<ol>
+<li>Open <a href="https://console.aws.amazon.com/bedrock/home">Amazon Bedrock console</a>
+<img src="https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/anh/anh19.png?raw=true" alt="ConnectPrivate"></li>
+</ol>
+<h4 id="activate-model-access">Activate model access</h4>
+<p>To complete this workshop, you need to enable access to Claude3, Mistral, and Llama models. Additionally, verify that the <strong>Titan Text Embeddings V2</strong> model is enabled; this model is typically available by default, but confirm its status and enable it if necessary. Please ensure you have access to all these required models before proceeding with the workshop.</p>
+<ol>
+<li>At the upper-left of the Amazon Bedrock console, choose the menu (hamburger) icon. In the navigation pane, choose <strong>Model access</strong>, and then select <strong>Enable specific models</strong>.</li>
+<li>Select the following LLMs:
+<ul>
+<li>Titan Text Embeddings V2</li>
+<li>Claude 3.5 Sonnet</li>
+<li>Claude 3 Haiku</li>
+<li>Claude 3 Opus</li>
+<li>Llama 3.1 8B Instruct 8B</li>
+<li>Mistral 7B Instruct</li>
+</ul>
+</li>
+<li>Choose <code>Next</code></li>
+<li>Choose <code>Submit</code></li>
+</ol>
+<p><img src="https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/anh/anh20.png?raw=true" alt="ConnectPrivate"></p>
+
+<div class="notices note" ><p>In the current version of this workshop environment, the use of the Claude 3 Opus model is not supported. If you encounter any errors related to Opus, you can safely ignore them and proceed without testing the Opus model. However, if you choose to deploy this application in your own AWS account, you will be able to enable the Opus model without any issues.</p>
+</div>
+
 
 
 
@@ -668,19 +699,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1753108297"></script>
-    <script src="/js/perfect-scrollbar.min.js?1753108297"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1753108297"></script>
-    <script src="/js/jquery.sticky.js?1753108297"></script>
-    <script src="/js/featherlight.min.js?1753108297"></script>
-    <script src="/js/highlight.pack.js?1753108297"></script>
+    <script src="/js/clipboard.min.js?1753108892"></script>
+    <script src="/js/perfect-scrollbar.min.js?1753108892"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1753108892"></script>
+    <script src="/js/jquery.sticky.js?1753108892"></script>
+    <script src="/js/featherlight.min.js?1753108892"></script>
+    <script src="/js/highlight.pack.js?1753108892"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1753108297"></script>
-    <script src="/js/learn.js?1753108297"></script>
-    <script src="/js/hugo-learn.js?1753108297"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1753108892"></script>
+    <script src="/js/learn.js?1753108892"></script>
+    <script src="/js/hugo-learn.js?1753108892"></script>
 
-    <link href="/mermaid/mermaid.css?1753108297" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1753108297"></script>
+    <link href="/mermaid/mermaid.css?1753108892" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1753108892"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

@@ -74,6 +74,12 @@ Copy and store the value for amplifyapp url, user_id, and password in a text edi
 
 Launch the amplifyapp url from the web browser, login using above credentials. After a successful login you see the the below home screen. Note, it is not yet ready with source documents, and the chat is not yet functional. In the next task you complete indexing your source documents and test with sample questions.
 ![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/anh/anh15.png?raw=true)
+
+---
+![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/anh/anh16.png?raw=true)
+
+---
+![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/anh/anh17.png?raw=true)
 Before you move to next task, run below commands, these are the environment variables required for SAM and Amplify build commands for rest of the lab.
 
 ````bash
