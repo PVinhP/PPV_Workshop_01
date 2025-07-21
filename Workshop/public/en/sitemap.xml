@@ -41,32 +41,6 @@
                 href="//localhost:1313/2-prerequiste/2.1-launchastack/"
                 />
   </url><url>
-    <loc>//localhost:1313/4-s3log/4.1-updateiamrole/</loc>
-    <lastmod>2025-06-17T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="//localhost:1313/vi/4-s3log/4.1-updateiamrole/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="//localhost:1313/4-s3log/4.1-updateiamrole/"
-                />
-  </url><url>
-    <loc>//localhost:1313/4-s3log/4.2-creates3bucket/</loc>
-    <lastmod>2025-06-17T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="//localhost:1313/vi/4-s3log/4.2-creates3bucket/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="//localhost:1313/4-s3log/4.2-creates3bucket/"
-                />
-  </url><url>
     <loc>//localhost:1313/2-prerequiste/2.2-launchvscode/</loc>
     <lastmod>2025-06-17T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -106,43 +80,17 @@
                 href="//localhost:1313/3-accessibilitytoinstances/"
                 />
   </url><url>
-    <loc>//localhost:1313/4-s3log/4.3-creategwes3/</loc>
+    <loc>//localhost:1313/4-walkthroughbedrock/</loc>
     <lastmod>2025-06-17T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="//localhost:1313/vi/4-s3log/4.3-creategwes3/"
+                href="//localhost:1313/vi/4-walkthroughbedrock/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//localhost:1313/4-s3log/4.3-creategwes3/"
-                />
-  </url><url>
-    <loc>//localhost:1313/4-s3log/</loc>
-    <lastmod>2025-06-17T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="//localhost:1313/vi/4-s3log/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="//localhost:1313/4-s3log/"
-                />
-  </url><url>
-    <loc>//localhost:1313/4-s3log/4.4-configsessionlogs/</loc>
-    <lastmod>2025-06-17T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="//localhost:1313/vi/4-s3log/4.4-configsessionlogs/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="//localhost:1313/4-s3log/4.4-configsessionlogs/"
+                href="//localhost:1313/4-walkthroughbedrock/"
                 />
   </url><url>
     <loc>//localhost:1313/5-portfwd/</loc>
