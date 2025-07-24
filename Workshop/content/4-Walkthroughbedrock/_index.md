@@ -26,8 +26,21 @@ To complete this workshop, you need to enable access to Claude3, Mistral, and Ll
 
 ![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/anh/anh20.png?raw=true)
 
+
 {{% notice note %}}
 
 In the current version of this workshop environment, the use of the Claude 3 Opus model is not supported. If you encounter any errors related to Opus, you can safely ignore them and proceed without testing the Opus model. However, if you choose to deploy this application in your own AWS account, you will be able to enable the Opus model without any issues.
 
 {{% /notice %}}
+
+### Ask a question
+
+1. At the upper-left of the Amazon Bedrock console, choose the menu (hamburger) icon.  
+   Under **Playgrounds**, choose **Chat**.
+
+   You can also take this time, on the left menu, to navigate around the different options.
+
+1. On the **Chat playground**, choose **`Select model`**.
+2. In the *Select model* popup, choose **Anthropic** and select **Claude 3 Haiku**.
+
+
