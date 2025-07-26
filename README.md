@@ -23,4 +23,5 @@ Bạn sẽ tạo ra kiến trúc sau đây cho workshop này:
 9. [RAG Chat với Bedrock Knowledge Bases](9-KnowledgeBases/)
 10. [Dọn dẹp Tài nguyên](10-cleanup/)
 
-# Nguồn tham khảo: https://catalog.us-east-1.prod.workshops.aws/workshops/27eb3134-4f33-4689-bb73-269e4273947a/en-US 
+# Nguồn tham khảo: 
+https://catalog.us-east-1.prod.workshops.aws/workshops/27eb3134-4f33-4689-bb73-269e4273947a/en-US 
