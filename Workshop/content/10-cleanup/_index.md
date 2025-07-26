@@ -12,7 +12,7 @@ After you've completed the workshop, to stop incurring costs, you should remove 
 
 ### Remove the AWS SAM application and startup CloudFormation stack
 
-Navigate to the AWS Cloud9 terminal, and then run the following commands:
+Navigate to the AWS VScode terminal, and then run the following commands:
 
  1. To delete SAM stack, run the following command.
 ```bash
