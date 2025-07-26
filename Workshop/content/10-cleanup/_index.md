@@ -8,9 +8,7 @@ pre : " <b> 10. </b> "
 
 After you've completed the workshop, to stop incurring costs, you should remove the resources that you created in your AWS account.
 
-Use AWS CLI to delete resources
-
-### Remove the AWS SAM application and startup CloudFormation stack
+## Remove the AWS SAM application and startup CloudFormation stack
 
 Navigate to the AWS Cloud9 terminal, and then run the following commands:
 
@@ -22,4 +20,4 @@ sam delete
 2. To delete startup stack, run the following command.
 ```bash
 aws cloudformation delete-stack --stack-name $CFNStackName
-``` 
+```
