@@ -172,3 +172,12 @@ In this task, you have the opportunity to work with following LLM models, each o
 
 ## Test using UI
 1. Return to the browser and open the chatbot webpage. If you are not signed in, use the credentials that you retrieved earlier to sign in. The webpage is displayed as follows:
+
+![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/5.fwd/001.png?raw=true)
+2. Ask any question by typing in the Query text box and click Ask Question button. You can try with a sample question from the right side panel. Here is a sample question and the response from Claude 3 Haiku. You can try with other LLMs and compare the results.
+````bash
+List top 10 cities of VietNam by population?
+````
+---
+### Task Complete
+You can now proceed to next task.
