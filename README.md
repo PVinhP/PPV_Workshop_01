@@ -1,4 +1,4 @@
-# Tạo Chatbot Serverless Sử Dụng Amazon Bedrock, Amazon Kendra và Dữ Liệu Của Riêng Bạn
+# Tạo Chatbot Serverless Sử Dụng Amazon Bedrock, Amazon Kendra và Dữ Liệu riêng
 
 ### Tổng quan
 Trong workshop này, chúng ta sẽ bắt đầu một hành trình toàn diện để tạo ra một chatbot serverless sử dụng các công nghệ AI tổng hợp tiên tiến. chúng ta sẽ tận dụng Amazon Bedrock, Amazon Kendra và dữ liệu của riêng mình để xây dựng một giao diện đối thoại thông minh có thể truy xuất và tạo ra các phản hồi phù hợp theo ngữ cảnh. Workshop sẽ hướng dẫn bạn cấu hình nhiều dịch vụ bao gồm AWS Lambda, API Gateway và AWS Amplify, đồng thời bạn sẽ làm việc với các mô hình ngôn ngữ lớn khác nhau như Claude 3, Mistral và Llama. Khi kết thúc workshop, chúng ta sẽ có một chatbot hoàn chỉnh có thể tương tác với cơ sở tri thức doanh nghiệp sử dụng các kỹ thuật Retrieval-Augmented Generation (RAG). Workshop này giải quyết các trường hợp sử dụng thực tế nơi các tổ chức cần giao diện đối thoại thông minh, dựa trên dữ liệu.
