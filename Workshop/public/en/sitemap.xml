@@ -119,6 +119,45 @@
                 href="//localhost:1313/6-usingamazonkendra/"
                 />
   </url><url>
+    <loc>//localhost:1313/7-rag/</loc>
+    <lastmod>2025-07-17T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/7-rag/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/7-rag/"
+                />
+  </url><url>
+    <loc>//localhost:1313/8-promptengineering/</loc>
+    <lastmod>2025-07-17T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/8-promptengineering/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/8-promptengineering/"
+                />
+  </url><url>
+    <loc>//localhost:1313/9-knowledgebases/</loc>
+    <lastmod>2025-07-17T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/9-knowledgebases/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/9-knowledgebases/"
+                />
+  </url><url>
     <loc>//localhost:1313/10-cleanup/</loc>
     <lastmod>1970-01-01T07:33:42+07:00</lastmod>
     <xhtml:link

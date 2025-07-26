@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="vi" class="js csstransforms3d">
+<html lang="en" class="js csstransforms3d">
   <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,24 +9,24 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Dọn dẹp tài nguyên   :: AWS System Manager</title>
+    <title>Prompt Engineering :: AWS System Manager</title>
 
     
-    <link href="/css/nucleus.css?1753498411" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1753498411" rel="stylesheet">
-    <link href="/css/hybrid.css?1753498411" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1753498411" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1753498411" rel="stylesheet">
-    <link href="/css/auto-complete.css?1753498411" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1753498411" rel="stylesheet">
-    <link href="/css/theme.css?1753498411" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1753498411" rel="stylesheet">
+    <link href="/css/nucleus.css?1753500837" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1753500837" rel="stylesheet">
+    <link href="/css/hybrid.css?1753500837" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1753500837" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1753500837" rel="stylesheet">
+    <link href="/css/auto-complete.css?1753500837" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1753500837" rel="stylesheet">
+    <link href="/css/theme.css?1753500837" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1753500837" rel="stylesheet">
     
-    <link href="/css/theme-workshop.css?1753498411" rel="stylesheet">
+    <link href="/css/theme-workshop.css?1753500837" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1753498411"></script>
+    <script src="/js/jquery-3.3.1.min.js?1753500837"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -36,7 +36,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/vi/10-cleanup/">
+  <body class="" data-url="/8-promptengineering/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1753498411"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1753498411"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1753500837"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1753500837"></script>
 <script type="text/javascript">
     
-        var baseurl = "\/\/localhost:1313\/\/vi";
+        var baseurl = "\/\/localhost:1313\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1753498411"></script>
+<script type="text/javascript" src="/js/search.js?1753500837"></script>
 
     
   </div>
@@ -82,13 +82,13 @@
  
   
     
-    <li data-nav-id="/vi/1-introduce/" title="Giới thiệu" class="dd-item 
+    <li data-nav-id="/1-introduce/" title="Introduction" class="dd-item 
         
         
         
         ">
-      <a href="/vi/1-introduce/">
-           <b> 1. </b> Giới thiệu
+      <a href="/1-introduce/">
+           <b> 1. </b> Introduction
           
             <i class="fas fa-check read-icon"></i>
           
@@ -108,13 +108,13 @@
  
   
     
-    <li data-nav-id="/vi/2-prerequiste/" title="Các bước chuẩn bị" class="dd-item 
+    <li data-nav-id="/2-prerequiste/" title="Preparation " class="dd-item 
         
         
         
         ">
-      <a href="/vi/2-prerequiste/">
-           <b> 2. </b> Các bước chuẩn bị
+      <a href="/2-prerequiste/">
+           <b> 2. </b> Preparation 
           
             <i class="fas fa-check read-icon"></i>
           
@@ -139,13 +139,13 @@
  
   
     
-    <li data-nav-id="/vi/2-prerequiste/2.1-launchastack/" title="Chuẩn bị VPC và EC2" class="dd-item 
+    <li data-nav-id="/2-prerequiste/2.1-launchastack/" title="Launch a CloudFormation stack" class="dd-item 
         
         
         
         ">
-      <a href="/vi/2-prerequiste/2.1-launchastack/">
-           <b> 2.1 </b> Chuẩn bị VPC và EC2
+      <a href="/2-prerequiste/2.1-launchastack/">
+           <b> 2.1 </b> Launch a CloudFormation stack
           
             <i class="fas fa-check read-icon"></i>
           
@@ -167,13 +167,13 @@
  
   
     
-    <li data-nav-id="/vi/2-prerequiste/2.2-launchvscode/" title="Tạo IAM Role" class="dd-item 
+    <li data-nav-id="/2-prerequiste/2.2-launchvscode/" title="Launch VSCode on AWS, and Set Up the Environment" class="dd-item 
         
         
         
         ">
-      <a href="/vi/2-prerequiste/2.2-launchvscode/">
-           <b> 2.2 </b> Tạo IAM Role
+      <a href="/2-prerequiste/2.2-launchvscode/">
+           <b> 2.2 </b> Launch VSCode on AWS, and Set Up the Environment
           
             <i class="fas fa-check read-icon"></i>
           
@@ -202,13 +202,13 @@
  
   
     
-    <li data-nav-id="/vi/3-accessibilitytoinstances/" title="Tạo kết nối đến máy chủ EC2" class="dd-item 
+    <li data-nav-id="/3-accessibilitytoinstances/" title="Deploy Amazon Bedrock Serverless Application" class="dd-item 
         
         
         
         ">
-      <a href="/vi/3-accessibilitytoinstances/">
-           <b> 3. </b> Tạo kết nối đến máy chủ EC2
+      <a href="/3-accessibilitytoinstances/">
+           <b> 3. </b> Deploy Amazon Bedrock Serverless Application
           
             <i class="fas fa-check read-icon"></i>
           
@@ -228,13 +228,13 @@
  
   
     
-    <li data-nav-id="/vi/4-walkthroughbedrock/" title="Quản lý session logs" class="dd-item 
+    <li data-nav-id="/4-walkthroughbedrock/" title="Walkthrough Amazon Bedrock Console" class="dd-item 
         
         
         
         ">
-      <a href="/vi/4-walkthroughbedrock/">
-           <b> 4. </b> Quản lý session logs
+      <a href="/4-walkthroughbedrock/">
+           <b> 4. </b> Walkthrough Amazon Bedrock Console
           
             <i class="fas fa-check read-icon"></i>
           
@@ -254,13 +254,13 @@
  
   
     
-    <li data-nav-id="/vi/5-multiplellms/" title="Port Forwarding" class="dd-item 
+    <li data-nav-id="/5-multiplellms/" title="General Chat with Multiple LLMs" class="dd-item 
         
         
         
         ">
-      <a href="/vi/5-multiplellms/">
-           <b> 5. </b> Port Forwarding
+      <a href="/5-multiplellms/">
+           <b> 5. </b> General Chat with Multiple LLMs
           
             <i class="fas fa-check read-icon"></i>
           
@@ -280,13 +280,13 @@
  
   
     
-    <li data-nav-id="/vi/6-usingamazonkendra/" title="Port Forwarding" class="dd-item 
+    <li data-nav-id="/6-usingamazonkendra/" title="Index the Source Data by Using Amazon Kendra" class="dd-item 
         
         
         
         ">
-      <a href="/vi/6-usingamazonkendra/">
-           <b> 5. </b> Port Forwarding
+      <a href="/6-usingamazonkendra/">
+           <b> 6. </b> Index the Source Data by Using Amazon Kendra
           
             <i class="fas fa-check read-icon"></i>
           
@@ -306,13 +306,13 @@
  
   
     
-    <li data-nav-id="/vi/7-rag/" title="Port Forwarding" class="dd-item 
+    <li data-nav-id="/7-rag/" title="RAG Chat with Multiple LLMs" class="dd-item 
         
         
         
         ">
-      <a href="/vi/7-rag/">
-           <b> 5. </b> Port Forwarding
+      <a href="/7-rag/">
+           <b> 7. </b> RAG Chat with Multiple LLMs
           
             <i class="fas fa-check read-icon"></i>
           
@@ -332,65 +332,65 @@
  
   
     
-    <li data-nav-id="/vi/8-promptengineering/" title="Port Forwarding" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/vi/8-promptengineering/">
-           <b> 5. </b> Port Forwarding
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-          
-          
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/vi/9-knowledgebases/" title="Port Forwarding" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/vi/9-knowledgebases/">
-           <b> 5. </b> Port Forwarding
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-          
-          
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/vi/10-cleanup/" title="Dọn dẹp tài nguyên  " class="dd-item 
+    <li data-nav-id="/8-promptengineering/" title="Prompt Engineering" class="dd-item 
         
         active
         
         ">
-      <a href="/vi/10-cleanup/">
-          <b>6. </b>Dọn dẹp tài nguyên  
+      <a href="/8-promptengineering/">
+           <b> 8. </b> Prompt Engineering
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/9-knowledgebases/" title="Rag Chat with Bedrock Knowledge Bases" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/9-knowledgebases/">
+           <b> 9. </b> Rag Chat with Bedrock Knowledge Bases
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/10-cleanup/" title="Clean up resources" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/10-cleanup/">
+           <b> 10. </b> Clean up resources
           
             <i class="fas fa-check read-icon"></i>
           
@@ -437,7 +437,7 @@
                   
                     
                     
-                      <option id="en" value="//localhost:1313/10-cleanup/">English</option>
+                      <option id="en" value="//localhost:1313/8-promptengineering/" selected>English</option>
                     
                   
               
@@ -451,7 +451,7 @@
                   
                     
                     
-                      <option id="vi" value="//localhost:1313/vi/10-cleanup/" selected>Tiếng Việt</option>
+                      <option id="vi" value="//localhost:1313/vi/8-promptengineering/">Tiếng Việt</option>
                     
                   
               
@@ -539,7 +539,7 @@
             
           
           
-            <a href='/vi/'>Session Management</a> > Dọn dẹp tài nguyên  
+            <a href='/'>Create a Serverless Chatbot Using Amazon Bedrock, Amazon Kendra, and Your Own Data</a> > Prompt Engineering
           
         
           
@@ -550,15 +550,7 @@
                 
                     <div class="progress">
     <div class="wrapper">
-<nav id="TableOfContents">
-  <ul>
-    <li>
-      <ul>
-        <li></li>
-      </ul>
-    </li>
-  </ul>
-</nav>
+<nav id="TableOfContents"></nav>
     </div>
 </div>
 
@@ -574,7 +566,7 @@
           
             <h1>
               
-              Dọn dẹp tài nguyên  
+              Prompt Engineering
             </h1>
           
 
@@ -582,99 +574,23 @@
 
 
 
-	<p>Chúng ta sẽ tiến hành các bước sau để xóa các tài nguyên chúng ta đã tạo trong bài thực hành này.</p>
-<h4 id="xóa-ec2-instance">Xóa EC2 instance</h4>
+	<p>Prompt engineering is a crucial aspect of the Retrieval-Augmented Generation (RAG) architecture, as it plays a vital role in each stage of the process. In the Retrieval stage, prompt engineering is employed to craft effective queries that retrieve the most relevant information from data sources, such as Amazon S3 documents indexed with Amazon Kendra, accurately capturing the user&rsquo;s intent. During the Analysis stage, prompts guide the processing and extraction of insights from the retrieved data, specifying the type of analysis, level of detail, and desired output format. Finally, in the Generation stage, prompt engineering is essential for leveraging large language models like Claude 3 Sonnet to produce coherent, relevant, and task-specific responses, providing the necessary context, instructions, and guidelines. By mastering prompt engineering, users can optimize the performance of the RAG architecture, ensuring that the retrieved information is relevant, the analysis is insightful, and the generated responses effectively address the user&rsquo;s needs.</p>
+<p>In this task, you will work on fine-tuning the prompt for the Claude 3 Sonnet large language model. You will experiment with how the response behavior changes based on the prompt template you provide. Initially, you will ask a question with a loosely structured prompt, which may cause the LLM to deviate from the context and provide undesirable output. As you refine the prompt, the response will become more closely aligned with the expected outcome and exhibit less hallucination. This section is still part of the RAG architecture and will utilize the same data sources you employed in the previous task.</p>
 <ol>
-<li>Truy cập <a href="https://console.aws.amazon.com/ec2/v2/home">giao diện quản trị dịch vụ EC2</a></li>
+<li>Return to the browser and open the chatbot webpage. Click on <strong>Prompt Engineering</strong> link. The webpage is displayed as follows:
+<img src="https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/5.fwd/task5/010.png?raw=true" alt="ConnectPrivate"></li>
+<li>Try a below question which is not relevant to the source documents you so far indexed.</li>
 </ol>
-<ul>
-<li>Click <strong>Instances</strong>.</li>
-<li>Click chọn cả 2 instance <strong>Public Linux Instance</strong> và <strong>Private Windows Instance</strong>.</li>
-<li>Click <strong>Instance state</strong>.</li>
-<li>Click <strong>Terminate instance</strong>, sau đó click <strong>Terminate</strong> để xác nhận.</li>
-</ul>
-<ol start="2">
-<li>Truy cập <a href="https://console.aws.amazon.com/iamv2/home#/home">giao diện quản trị dịch vụ IAM</a></li>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Tell me a story about a fox and tiger, the story must be <span style="color:#66d9ef">for</span> a <span style="color:#ae81ff">5</span> year old and under <span style="color:#ae81ff">100</span> words.
+</span></span></code></pre></div><ol start="3">
+<li>For the prompt template, copy the following prompt and paste it into the <strong>Prompt Template</strong> text box. This is a loosely structured prompt without any specific direction or guidance provided to the Claude 3.5 Sonnet model.</li>
 </ol>
-<ul>
-<li>Click <strong>Roles</strong>.</li>
-<li>Tại ô tìm kiếm , điền <strong>SSM</strong>.</li>
-<li>Click chọn <strong>SSM-Role</strong>.</li>
-<li>Click <strong>Delete</strong>, sau đó điền tên role <strong>SSM-Role</strong> và click <strong>Delete</strong> để xóa role.</li>
-</ul>
-<p><img src="/images/6.clean/001-clean.png" alt="Clean"></p>
-<ol start="3">
-<li>Click <strong>Users</strong>.</li>
-</ol>
-<ul>
-<li>Click chọn user <strong>Portfwd</strong>.</li>
-<li>Click <strong>Delete</strong>, sau đó điền tên user <strong>Portfwd</strong> và click <strong>Delete</strong> để xóa user.</li>
-</ul>
-<h4 id="xóa-s3-bucket">Xóa S3 bucket</h4>
-<ol>
-<li>Truy cập <a href="https://console.aws.amazon.com/systems-manager/session-manager">giao diện quản trị dịch vụ System Manager - Session Manager</a>.</li>
-</ol>
-<ul>
-<li>Click tab <strong>Preferences</strong>.</li>
-<li>Click <strong>Edit</strong>.</li>
-<li>Kéo chuột xuống dưới.</li>
-<li>Tại mục <strong>S3 logging</strong>.</li>
-<li>Bỏ chọn <strong>Enable</strong> để tắt tính năng logging.</li>
-<li>Kéo chuột xuống dưới.</li>
-<li>Click <strong>Save</strong>.</li>
-</ul>
-<ol start="2">
-<li>Truy cập <a href="https://s3.console.aws.amazon.com/s3/home">giao diện quản trị dịch vụ S3</a></li>
-</ol>
-<ul>
-<li>Click chọn S3 bucket chúng ta đã tạo cho bài thực hành. ( Ví dụ : lab-fcj-bucket-0001 )</li>
-<li>Click <strong>Empty</strong>.</li>
-<li>Điền <strong>permanently delete</strong>, sau đó click <strong>Empty</strong> để tiến hành xóa object trong bucket.</li>
-<li>Click <strong>Exit</strong>.</li>
-</ul>
-<ol start="3">
-<li>Sau khi xóa hết object trong bucket, click <strong>Delete</strong></li>
-</ol>
-<p><img src="/images/6.clean/002-clean.png" alt="Clean"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#f92672">{</span>context<span style="color:#f92672">}</span> and <span style="color:#f92672">{</span>question<span style="color:#f92672">}</span>
+</span></span></code></pre></div><p><img src="https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/5.fwd/task5/011.png?raw=true" alt="ConnectPrivate"></p>
 <ol start="4">
-<li>Điền tên S3 bucket, sau đó click <strong>Delete bucket</strong> để tiến hành xóa S3 bucket.</li>
+<li>You will most likely receive a response similar to the one shown below. However, this response does not exist in any of the source documents. Due to the weak prompt structure, the model has hallucinated the response, providing an output that is not grounded in the given context or information.</li>
 </ol>
-<p><img src="/images/6.clean/003-clean.png" alt="Clean"></p>
-<h4 id="xóa-các-vpc-endpoint">Xóa các VPC Endpoint</h4>
-<ol>
-<li>Truy cập vào <a href="https://console.aws.amazon.com/vpc/home">giao diện quản trị dịch vụ VPC</a></li>
-</ol>
-<ul>
-<li>Click <strong>Endpoints</strong>.</li>
-<li>Chọn 4 endpoints chúng ta đã tạo cho bài thực hành bao gồm <strong>SSM</strong>, <strong>SSMMESSAGES</strong>, <strong>EC2MESSAGES</strong>, <strong>S3GW</strong>.</li>
-<li>Click <strong>Actions</strong>.</li>
-<li>Click <strong>Delete VPC endpoints</strong>.</li>
-</ul>
-<p><img src="/images/6.clean/004-clean.png" alt="Clean"></p>
-<ol start="2">
-<li>Tại ô confirm , điền <strong>delete</strong>.</li>
-</ol>
-<ul>
-<li>Click <strong>Delete</strong> để tiến hành xóa các endpoints.</li>
-</ul>
-<ol start="3">
-<li>Click biểu tượng refresh, kiểm tra tất cả các endpoints đã bị xóa trước khi làm bước tiếp theo.</li>
-</ol>
-<p><img src="/images/6.clean/005-clean.png" alt="Clean"></p>
-<h4 id="xóa-vpc">Xóa VPC</h4>
-<ol>
-<li>Truy cập vào <a href="https://console.aws.amazon.com/vpc/home">giao diện quản trị dịch vụ VPC</a></li>
-</ol>
-<ul>
-<li>Click <strong>Your VPCs</strong>.</li>
-<li>Click chọn <strong>Lab VPC</strong>.</li>
-<li>Click <strong>Actions</strong>.</li>
-<li>Click <strong>Delete VPC</strong>.</li>
-</ul>
-<ol start="2">
-<li>Tại ô confirm, điền <strong>delete</strong> để xác nhận, click <strong>Delete</strong> để thực hiện xóa <strong>Lab VPC</strong> và các tài nguyên liên quan.</li>
-</ol>
-<p><img src="/images/6.clean/006-clean.png" alt="Clean"></p>
+<p><img src="https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/5.fwd/task5/015.png?raw=true" alt="ConnectPrivate"></p>
 
 
 
@@ -864,6 +780,26 @@
             
                 
                     
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
                 
                 
 
@@ -891,23 +827,6 @@
             
         
                     
-                        
-            
-            
-                
-                    
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
             
         
         
@@ -917,10 +836,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/vi/9-knowledgebases/" title="Port Forwarding"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/7-rag/" title="RAG Chat with Multiple LLMs"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/vi/1-introduce/" title="Giới thiệu" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/9-knowledgebases/" title="Rag Chat with Bedrock Knowledge Bases" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -930,19 +849,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1753498411"></script>
-    <script src="/js/perfect-scrollbar.min.js?1753498411"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1753498411"></script>
-    <script src="/js/jquery.sticky.js?1753498411"></script>
-    <script src="/js/featherlight.min.js?1753498411"></script>
-    <script src="/js/highlight.pack.js?1753498411"></script>
+    <script src="/js/clipboard.min.js?1753500837"></script>
+    <script src="/js/perfect-scrollbar.min.js?1753500837"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1753500837"></script>
+    <script src="/js/jquery.sticky.js?1753500837"></script>
+    <script src="/js/featherlight.min.js?1753500837"></script>
+    <script src="/js/highlight.pack.js?1753500837"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1753498411"></script>
-    <script src="/js/learn.js?1753498411"></script>
-    <script src="/js/hugo-learn.js?1753498411"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1753500837"></script>
+    <script src="/js/learn.js?1753500837"></script>
+    <script src="/js/hugo-learn.js?1753500837"></script>
 
-    <link href="/mermaid/mermaid.css?1753498411" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1753498411"></script>
+    <link href="/mermaid/mermaid.css?1753500837" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1753500837"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

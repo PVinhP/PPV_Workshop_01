@@ -1,10 +1,10 @@
-+++
-title = "Clean up resources"
-date = 2022
-weight = 6
-chapter = false
-pre = "<b>6. </b>"
-+++
+---
+title : "Clean up resources"
+date :  2025-07-17
+weight : 10
+chapter : false
+pre : " <b> 10. </b> "
+---
 
 We will take the following steps to delete the resources we created in this exercise.
 

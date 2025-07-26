@@ -9,24 +9,24 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Dọn dẹp tài nguyên   :: AWS System Manager</title>
+    <title>Port Forwarding :: AWS System Manager</title>
 
     
-    <link href="/css/nucleus.css?1753498411" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1753498411" rel="stylesheet">
-    <link href="/css/hybrid.css?1753498411" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1753498411" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1753498411" rel="stylesheet">
-    <link href="/css/auto-complete.css?1753498411" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1753498411" rel="stylesheet">
-    <link href="/css/theme.css?1753498411" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1753498411" rel="stylesheet">
+    <link href="/css/nucleus.css?1753500837" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1753500837" rel="stylesheet">
+    <link href="/css/hybrid.css?1753500837" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1753500837" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1753500837" rel="stylesheet">
+    <link href="/css/auto-complete.css?1753500837" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1753500837" rel="stylesheet">
+    <link href="/css/theme.css?1753500837" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1753500837" rel="stylesheet">
     
-    <link href="/css/theme-workshop.css?1753498411" rel="stylesheet">
+    <link href="/css/theme-workshop.css?1753500837" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1753498411"></script>
+    <script src="/js/jquery-3.3.1.min.js?1753500837"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -36,7 +36,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/vi/10-cleanup/">
+  <body class="" data-url="/vi/8-promptengineering/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1753498411"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1753498411"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1753500837"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1753500837"></script>
 <script type="text/javascript">
     
         var baseurl = "\/\/localhost:1313\/\/vi";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1753498411"></script>
+<script type="text/javascript" src="/js/search.js?1753500837"></script>
 
     
   </div>
@@ -334,7 +334,7 @@
     
     <li data-nav-id="/vi/8-promptengineering/" title="Port Forwarding" class="dd-item 
         
-        
+        active
         
         ">
       <a href="/vi/8-promptengineering/">
@@ -386,7 +386,7 @@
     
     <li data-nav-id="/vi/10-cleanup/" title="Dọn dẹp tài nguyên  " class="dd-item 
         
-        active
+        
         
         ">
       <a href="/vi/10-cleanup/">
@@ -437,7 +437,7 @@
                   
                     
                     
-                      <option id="en" value="//localhost:1313/10-cleanup/">English</option>
+                      <option id="en" value="//localhost:1313/8-promptengineering/">English</option>
                     
                   
               
@@ -451,7 +451,7 @@
                   
                     
                     
-                      <option id="vi" value="//localhost:1313/vi/10-cleanup/" selected>Tiếng Việt</option>
+                      <option id="vi" value="//localhost:1313/vi/8-promptengineering/" selected>Tiếng Việt</option>
                     
                   
               
@@ -539,7 +539,7 @@
             
           
           
-            <a href='/vi/'>Session Management</a> > Dọn dẹp tài nguyên  
+            <a href='/vi/'>Session Management</a> > Port Forwarding
           
         
           
@@ -574,7 +574,7 @@
           
             <h1>
               
-              Dọn dẹp tài nguyên  
+              Port Forwarding
             </h1>
           
 
@@ -582,99 +582,83 @@
 
 
 
-	<p>Chúng ta sẽ tiến hành các bước sau để xóa các tài nguyên chúng ta đã tạo trong bài thực hành này.</p>
-<h4 id="xóa-ec2-instance">Xóa EC2 instance</h4>
+	
+<div class="notices info" ><p><strong>Port Forwarding</strong> là mốt cách thức hữu ích để chuyển hướng lưu lượng mạng từ 1 địa chỉ IP - Port này sang 1 địa chỉ IP - Port khác. Với <strong>Port Forwarding</strong> chúng ta có thể truy cập một EC2 instance nằm trong private subnet từ máy trạm của chúng ta.</p>
+</div>
+
+<p>Chúng ta sẽ cấu hình <strong>Port Forwarding</strong> cho kết nối RDP giữa máy của mình với <strong>Private Windows Instance</strong> nằm trong private subnet mà chúng ta đã tạo cho bài thực hành này.</p>
+<p><img src="/images/arc-04.png" alt="port-fwd"></p>
+<h4 id="tạo-iam-user-có-quyền-kết-nối-ssm">Tạo IAM User có quyền kết nối SSM</h4>
 <ol>
-<li>Truy cập <a href="https://console.aws.amazon.com/ec2/v2/home">giao diện quản trị dịch vụ EC2</a></li>
+<li>Truy cập vào <a href="https://console.aws.amazon.com/iamv2/home">giao diện quản trị dịch vụ IAM</a></li>
 </ol>
 <ul>
-<li>Click <strong>Instances</strong>.</li>
-<li>Click chọn cả 2 instance <strong>Public Linux Instance</strong> và <strong>Private Windows Instance</strong>.</li>
-<li>Click <strong>Instance state</strong>.</li>
-<li>Click <strong>Terminate instance</strong>, sau đó click <strong>Terminate</strong> để xác nhận.</li>
+<li>Click <strong>Users</strong> , sau đó click <strong>Add users</strong>.</li>
 </ul>
+<p><img src="/images/5.fwd/001-fwd.png" alt="FWD"></p>
 <ol start="2">
-<li>Truy cập <a href="https://console.aws.amazon.com/iamv2/home#/home">giao diện quản trị dịch vụ IAM</a></li>
+<li>Tại trang <strong>Add user</strong>.</li>
 </ol>
 <ul>
-<li>Click <strong>Roles</strong>.</li>
-<li>Tại ô tìm kiếm , điền <strong>SSM</strong>.</li>
-<li>Click chọn <strong>SSM-Role</strong>.</li>
-<li>Click <strong>Delete</strong>, sau đó điền tên role <strong>SSM-Role</strong> và click <strong>Delete</strong> để xóa role.</li>
+<li>Tại mục <strong>User name</strong>, điền <strong>Portfwd</strong>.</li>
+<li>Click chọn <strong>Access key - Programmatic access</strong>.</li>
+<li>Click <strong>Next: Permissions</strong>.</li>
 </ul>
-<p><img src="/images/6.clean/001-clean.png" alt="Clean"></p>
+<p><img src="/images/5.fwd/002-fwd.png" alt="FWD"></p>
 <ol start="3">
-<li>Click <strong>Users</strong>.</li>
+<li>Click <strong>Attach existing policies directly</strong>.</li>
 </ol>
 <ul>
-<li>Click chọn user <strong>Portfwd</strong>.</li>
-<li>Click <strong>Delete</strong>, sau đó điền tên user <strong>Portfwd</strong> và click <strong>Delete</strong> để xóa user.</li>
+<li>Tại ô tìm kiếm , điền <strong>ssm</strong>.</li>
+<li>Click chọn <strong>AmazonSSMFullAccess</strong>.</li>
+<li>Click <strong>Next: Tags</strong>, click <strong>Next: Reviews</strong>.</li>
+<li>Click <strong>Create user</strong>.</li>
 </ul>
-<h4 id="xóa-s3-bucket">Xóa S3 bucket</h4>
-<ol>
-<li>Truy cập <a href="https://console.aws.amazon.com/systems-manager/session-manager">giao diện quản trị dịch vụ System Manager - Session Manager</a>.</li>
-</ol>
-<ul>
-<li>Click tab <strong>Preferences</strong>.</li>
-<li>Click <strong>Edit</strong>.</li>
-<li>Kéo chuột xuống dưới.</li>
-<li>Tại mục <strong>S3 logging</strong>.</li>
-<li>Bỏ chọn <strong>Enable</strong> để tắt tính năng logging.</li>
-<li>Kéo chuột xuống dưới.</li>
-<li>Click <strong>Save</strong>.</li>
-</ul>
-<ol start="2">
-<li>Truy cập <a href="https://s3.console.aws.amazon.com/s3/home">giao diện quản trị dịch vụ S3</a></li>
-</ol>
-<ul>
-<li>Click chọn S3 bucket chúng ta đã tạo cho bài thực hành. ( Ví dụ : lab-fcj-bucket-0001 )</li>
-<li>Click <strong>Empty</strong>.</li>
-<li>Điền <strong>permanently delete</strong>, sau đó click <strong>Empty</strong> để tiến hành xóa object trong bucket.</li>
-<li>Click <strong>Exit</strong>.</li>
-</ul>
-<ol start="3">
-<li>Sau khi xóa hết object trong bucket, click <strong>Delete</strong></li>
-</ol>
-<p><img src="/images/6.clean/002-clean.png" alt="Clean"></p>
 <ol start="4">
-<li>Điền tên S3 bucket, sau đó click <strong>Delete bucket</strong> để tiến hành xóa S3 bucket.</li>
+<li>Lưu lại thông tin <strong>Access key ID</strong> và <strong>Secret access key</strong> để thực hiện cấu hình AWS CLI.</li>
 </ol>
-<p><img src="/images/6.clean/003-clean.png" alt="Clean"></p>
-<h4 id="xóa-các-vpc-endpoint">Xóa các VPC Endpoint</h4>
+<h4 id="cài-đặt-và-cấu-hình-aws-cli-và-session-manager-plugin">Cài đặt và cấu hình AWS CLI và Session Manager Plugin</h4>
+<p>Để thực hiện phần thực hành này, đảm bảo máy trạm của bạn đã cài <a href="">AWS CLI</a> và <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-working-with-install-plugin.html">Session Manager Plugin</a></p>
+<p>Bạn có thể tham khảo thêm bài thực hành về cài đặt và cấu hình AWS CLI <a href="https://000011.awsstudygroup.com/">tại đây</a>.</p>
+
+<div class="notices tip" ><p>Với Windows thì khi giải nén thư mục cài đặt <strong>Session Manager Plugin</strong> bạn hãy chạy file <strong>install.bat</strong> với quyền Administrator để thực hiện cài đặt.</p>
+</div>
+
+<h4 id="thực-hiện-portforwarding">Thực hiện Portforwarding</h4>
 <ol>
-<li>Truy cập vào <a href="https://console.aws.amazon.com/vpc/home">giao diện quản trị dịch vụ VPC</a></li>
+<li>Chạy command dưới đây trong <strong>Command Prompt</strong> trên máy của bạn để cấu hình <strong>Port Forwarding</strong>.</li>
 </ol>
+<pre tabindex="0"><code>  aws ssm start-session --target (your ID windows instance) --document-name AWS-StartPortForwardingSession --parameters portNumber=&#34;3389&#34;,localPortNumber=&#34;9999&#34; --region (your region) 
+</code></pre>
+<div class="notices tip" ><p>Thông tin <strong>Instance ID</strong> của <strong>Windows Private Instance</strong> có thể tìm được khi bạn xem chi tiết máy chủ EC2 Windows Private Instance.</p>
+</div>
+
 <ul>
-<li>Click <strong>Endpoints</strong>.</li>
-<li>Chọn 4 endpoints chúng ta đã tạo cho bài thực hành bao gồm <strong>SSM</strong>, <strong>SSMMESSAGES</strong>, <strong>EC2MESSAGES</strong>, <strong>S3GW</strong>.</li>
-<li>Click <strong>Actions</strong>.</li>
-<li>Click <strong>Delete VPC endpoints</strong>.</li>
+<li>Câu lệnh ví dụ</li>
 </ul>
-<p><img src="/images/6.clean/004-clean.png" alt="Clean"></p>
+<pre tabindex="0"><code>C:\Windows\system32&gt;aws ssm start-session --target i-06343d7377486760c --document-name AWS-StartPortForwardingSession --parameters portNumber=&#34;3389&#34;,localPortNumber=&#34;9999&#34; --region ap-southeast-1
+</code></pre>
+<div class="notices warning" ><p>Nếu câu lệnh của bạn báo lỗi như dưới đây : <br>
+SessionManagerPlugin is not found. Please refer to SessionManager Documentation here: <a href="http://docs.aws.amazon.com/console/systems-manager/session-manager-plugin-not-found">http://docs.aws.amazon.com/console/systems-manager/session-manager-plugin-not-found</a><br>
+Chứng tỏ bạn chưa cài Session Manager Plugin thành công. Bạn có thể cần khởi chạy lại <strong>Command Prompt</strong> sau khi cài <strong>Session Manager Plugin</strong>.</p>
+</div>
+
 <ol start="2">
-<li>Tại ô confirm , điền <strong>delete</strong>.</li>
+<li>Kết nối tới <strong>Private Windows Instance</strong> bạn đã tạo bằng công cụ <strong>Remote Desktop</strong> trên máy trạm của bạn.</li>
 </ol>
 <ul>
-<li>Click <strong>Delete</strong> để tiến hành xóa các endpoints.</li>
+<li>Tại mục Computer: điền <strong>localhost:9999</strong>.</li>
 </ul>
+<p><img src="/images/5.fwd/003-fwd.png" alt="FWD"></p>
 <ol start="3">
-<li>Click biểu tượng refresh, kiểm tra tất cả các endpoints đã bị xóa trước khi làm bước tiếp theo.</li>
-</ol>
-<p><img src="/images/6.clean/005-clean.png" alt="Clean"></p>
-<h4 id="xóa-vpc">Xóa VPC</h4>
-<ol>
-<li>Truy cập vào <a href="https://console.aws.amazon.com/vpc/home">giao diện quản trị dịch vụ VPC</a></li>
+<li>Quay trở lại giao diện quản trị của dịch vụ System Manager - Session Manager.</li>
 </ol>
 <ul>
-<li>Click <strong>Your VPCs</strong>.</li>
-<li>Click chọn <strong>Lab VPC</strong>.</li>
-<li>Click <strong>Actions</strong>.</li>
-<li>Click <strong>Delete VPC</strong>.</li>
+<li>Click tab <strong>Session history</strong>.</li>
+<li>Chúng ta sẽ thấy các session logs với tên Document là <strong>AWS-StartPortForwardingSession</strong>.</li>
 </ul>
-<ol start="2">
-<li>Tại ô confirm, điền <strong>delete</strong> để xác nhận, click <strong>Delete</strong> để thực hiện xóa <strong>Lab VPC</strong> và các tài nguyên liên quan.</li>
-</ol>
-<p><img src="/images/6.clean/006-clean.png" alt="Clean"></p>
+<p><img src="/images/5.fwd/004-fwd.png" alt="FWD"></p>
+<p>Chúc mừng bạn đã hoàn tất bài thực hành hướng dẫn cách sử dụng Session Manager để kết nối cũng như lưu trữ các session logs trong S3 bucket. Hãy nhớ thực hiện bước dọn dẹp tài nguyên để tránh sinh chi phí ngoài ý muốn nhé.</p>
 
 
 
@@ -864,6 +848,26 @@
             
                 
                     
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
                 
                 
 
@@ -891,23 +895,6 @@
             
         
                     
-                        
-            
-            
-                
-                    
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
             
         
         
@@ -917,10 +904,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/vi/9-knowledgebases/" title="Port Forwarding"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/vi/7-rag/" title="Port Forwarding"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/vi/1-introduce/" title="Giới thiệu" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/vi/9-knowledgebases/" title="Port Forwarding" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -930,19 +917,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1753498411"></script>
-    <script src="/js/perfect-scrollbar.min.js?1753498411"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1753498411"></script>
-    <script src="/js/jquery.sticky.js?1753498411"></script>
-    <script src="/js/featherlight.min.js?1753498411"></script>
-    <script src="/js/highlight.pack.js?1753498411"></script>
+    <script src="/js/clipboard.min.js?1753500837"></script>
+    <script src="/js/perfect-scrollbar.min.js?1753500837"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1753500837"></script>
+    <script src="/js/jquery.sticky.js?1753500837"></script>
+    <script src="/js/featherlight.min.js?1753500837"></script>
+    <script src="/js/highlight.pack.js?1753500837"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1753498411"></script>
-    <script src="/js/learn.js?1753498411"></script>
-    <script src="/js/hugo-learn.js?1753498411"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1753500837"></script>
+    <script src="/js/learn.js?1753500837"></script>
+    <script src="/js/hugo-learn.js?1753500837"></script>
 
-    <link href="/mermaid/mermaid.css?1753498411" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1753498411"></script>
+    <link href="/mermaid/mermaid.css?1753500837" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1753500837"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
