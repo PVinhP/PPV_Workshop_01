@@ -6,6 +6,10 @@ chapter : false
 pre : " <b> 2.1 </b> "
 ---
 
+{{% notice info %}}
+**Supported Regions**: We recommended that you run this workshop in the **us-west-2** AWS Region.
+{{% /notice %}} 
+
 An AWS CloudFormation template is used to set up lab resources in the AWS Region that you choose. This step is required because later instructions are based on these resources. The CloudFormation template creates the following AWS resources:
 
 - **VSCode**: VSCode on Amazon EC2 is a cloud-based integrated development environment (IDE) that you can use to write, run, and debug your code with just a browser. It includes a code editor, debugger, and terminal. In this workshop, you use VSCode editor to deploy a backend application, which is built by using AWS Serverless Application Model (AWS SAM), and also deploy AWS Amplify frontend.

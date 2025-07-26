@@ -16,10 +16,9 @@ This CFNStackName variable will be referenced later when interacting with the re
 
 
 ````bash
-export CFNStackName="chatbot-startup-stack"
-export S3BucketName=$(aws cloudformation describe-stacks --stack-name ${CFNStackName} \
-  --query "Stacks[0].Outputs[?OutputKey=='S3BucketName'].OutputValue" \
-  --output text)
+  export CFNStackName="chatbot-startup-stack"
+  export S3BucketName=$(aws cloudformation describe-stacks --stack-name ${CFNStackName} --query "Stacks[0].Outputs[?OutputKey=='S3BucketName'].OutputValue" --output text)
+  echo "S3 bucket name: $S3BucketName"
 
 ````
 ![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/anh/anh8.png?raw=true)
@@ -82,25 +81,19 @@ Launch the amplifyapp url from the web browser, login using above credentials. A
 ![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/anh/anh17.png?raw=true)
 Before you move to next task, run below commands, these are the environment variables required for SAM and Amplify build commands for rest of the lab.
 
+Run the following commands in the VS Code terminal.
+
 ````bash
-export CFNStackName="chatbot-startup-stack"
-export AWS_REGION=us-east-1
-
-export BedrockApiUrl=$(aws cloudformation describe-stacks --stack-name ${CFNStackName} \
-  --query "Stacks[0].Outputs[?OutputKey=='ApiUrl'].OutputValue" --output text)
-
-export BedrockApiKey=$(aws cloudformation describe-stacks --stack-name ${CFNStackName} \
-  --query "Stacks[0].Outputs[?OutputKey=='ApiKey'].OutputValue" --output text)
-
-export BedrockUserPoolId=$(aws cloudformation describe-stacks --stack-name ${CFNStackName} \
-  --query "Stacks[0].Outputs[?OutputKey=='UserPoolId'].OutputValue" --output text)
-
-export UserPoolClientId=$(aws cloudformation describe-stacks --stack-name ${CFNStackName} \
-  --query "Stacks[0].Outputs[?OutputKey=='UserPoolClientId'].OutputValue" --output text)
-
-export SecretName=$(aws cloudformation describe-stacks --stack-name ${CFNStackName} \
-  --query "Stacks[0].Outputs[?OutputKey=='OpenAISecretName'].OutputValue" --output text)
-
+export SAMStackName="sam-$CFNStackName"
+export AWS_REGION=$(aws configure get region)
+export KendraIndexID=$(aws cloudformation describe-stacks --stack-name ${CFNStackName} --query "Stacks[0].Outputs[?OutputKey=='KendraIndexID'].OutputValue" --output text)
+export BedrockApiUrl=$(aws cloudformation describe-stacks --stack-name ${SAMStackName} --query "Stacks[0].Outputs[?OutputKey=='BedrockApiUrl'].OutputValue" --output text)
+export SecretName=$(aws cloudformation describe-stacks --stack-name ${SAMStackName} --query "Stacks[0].Outputs[?OutputKey=='SecretsName'].OutputValue" --output text)
+export BedrockApiUrl=$(aws cloudformation describe-stacks --stack-name ${SAMStackName} --query "Stacks[0].Outputs[?OutputKey=='BedrockApiUrl'].OutputValue" --output text)
+export UserPoolId=$(aws cloudformation describe-stacks --stack-name ${SAMStackName} --query "Stacks[0].Outputs[?OutputKey=='CognitoUserPool'].OutputValue" --output text)
+export UserPoolClientId=$(aws cloudformation describe-stacks --stack-name ${SAMStackName} --query "Stacks[0].Outputs[?OutputKey=='CongnitoUserPoolClientID'].OutputValue" --output text)
+export SecretName=$(aws cloudformation describe-stacks --stack-name ${SAMStackName} --query "Stacks[0].Outputs[?OutputKey=='SecretsName'].OutputValue" --output text)
 export PATH=~/.npm-global/bin:$PATH
 ````
+
 You have completed the deployment of the backend and frontend of the chatbot using Amazon Bedrock serverless

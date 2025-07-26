@@ -12,21 +12,21 @@
     <title>Launch a CloudFormation stack :: AWS System Manager</title>
 
     
-    <link href="/css/nucleus.css?1753332075" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1753332075" rel="stylesheet">
-    <link href="/css/hybrid.css?1753332075" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1753332075" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1753332075" rel="stylesheet">
-    <link href="/css/auto-complete.css?1753332075" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1753332075" rel="stylesheet">
-    <link href="/css/theme.css?1753332075" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1753332075" rel="stylesheet">
+    <link href="/css/nucleus.css?1753492590" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1753492590" rel="stylesheet">
+    <link href="/css/hybrid.css?1753492590" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1753492590" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1753492590" rel="stylesheet">
+    <link href="/css/auto-complete.css?1753492590" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1753492590" rel="stylesheet">
+    <link href="/css/theme.css?1753492590" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1753492590" rel="stylesheet">
     
-    <link href="/css/theme-workshop.css?1753332075" rel="stylesheet">
+    <link href="/css/theme-workshop.css?1753492590" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1753332075"></script>
+    <script src="/js/jquery-3.3.1.min.js?1753492590"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1753332075"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1753332075"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1753492590"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1753492590"></script>
 <script type="text/javascript">
     
         var baseurl = "\/\/localhost:1313\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1753332075"></script>
+<script type="text/javascript" src="/js/search.js?1753492590"></script>
 
     
   </div>
@@ -476,7 +476,11 @@
 
 
 
-	<p>An AWS CloudFormation template is used to set up lab resources in the AWS Region that you choose. This step is required because later instructions are based on these resources. The CloudFormation template creates the following AWS resources:</p>
+	
+<div class="notices info" ><p><strong>Supported Regions</strong>: We recommended that you run this workshop in the <strong>us-west-2</strong> AWS Region.</p>
+</div>
+
+<p>An AWS CloudFormation template is used to set up lab resources in the AWS Region that you choose. This step is required because later instructions are based on these resources. The CloudFormation template creates the following AWS resources:</p>
 <ul>
 <li><strong>VSCode</strong>: VSCode on Amazon EC2 is a cloud-based integrated development environment (IDE) that you can use to write, run, and debug your code with just a browser. It includes a code editor, debugger, and terminal. In this workshop, you use VSCode editor to deploy a backend application, which is built by using AWS Serverless Application Model (AWS SAM), and also deploy AWS Amplify frontend.</li>
 <li><strong>Amazon S3</strong>: Amazon Simple Storage Service (Amazon S3) is an object storage service offering industry-leading scalability, data availability, security, and performance. Customers of all sizes and industries can store and protect any amount of data for virtually any use case, such as data lakes, cloud-centered applications, and mobile apps. In this workshop, you use an S3 bucket to upload your use case-centric documents. Amazon Kendra indexes these documents to provide Retrieval-Augmented Generation (RAG) answers to questions that you ask.</li>
@@ -713,19 +717,19 @@ Download the CloudFormation template:</li>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1753332075"></script>
-    <script src="/js/perfect-scrollbar.min.js?1753332075"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1753332075"></script>
-    <script src="/js/jquery.sticky.js?1753332075"></script>
-    <script src="/js/featherlight.min.js?1753332075"></script>
-    <script src="/js/highlight.pack.js?1753332075"></script>
+    <script src="/js/clipboard.min.js?1753492590"></script>
+    <script src="/js/perfect-scrollbar.min.js?1753492590"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1753492590"></script>
+    <script src="/js/jquery.sticky.js?1753492590"></script>
+    <script src="/js/featherlight.min.js?1753492590"></script>
+    <script src="/js/highlight.pack.js?1753492590"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1753332075"></script>
-    <script src="/js/learn.js?1753332075"></script>
-    <script src="/js/hugo-learn.js?1753332075"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1753492590"></script>
+    <script src="/js/learn.js?1753492590"></script>
+    <script src="/js/hugo-learn.js?1753492590"></script>
 
-    <link href="/mermaid/mermaid.css?1753332075" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1753332075"></script>
+    <link href="/mermaid/mermaid.css?1753492590" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1753492590"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

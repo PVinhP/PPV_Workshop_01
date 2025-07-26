@@ -12,21 +12,21 @@
     <title>Preparation  :: AWS System Manager</title>
 
     
-    <link href="/css/nucleus.css?1753332075" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1753332075" rel="stylesheet">
-    <link href="/css/hybrid.css?1753332075" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1753332075" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1753332075" rel="stylesheet">
-    <link href="/css/auto-complete.css?1753332075" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1753332075" rel="stylesheet">
-    <link href="/css/theme.css?1753332075" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1753332075" rel="stylesheet">
+    <link href="/css/nucleus.css?1753492590" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1753492590" rel="stylesheet">
+    <link href="/css/hybrid.css?1753492590" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1753492590" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1753492590" rel="stylesheet">
+    <link href="/css/auto-complete.css?1753492590" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1753492590" rel="stylesheet">
+    <link href="/css/theme.css?1753492590" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1753492590" rel="stylesheet">
     
-    <link href="/css/theme-workshop.css?1753332075" rel="stylesheet">
+    <link href="/css/theme-workshop.css?1753492590" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1753332075"></script>
+    <script src="/js/jquery-3.3.1.min.js?1753492590"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1753332075"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1753332075"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1753492590"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1753492590"></script>
 <script type="text/javascript">
     
         var baseurl = "\/\/localhost:1313\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1753332075"></script>
+<script type="text/javascript" src="/js/search.js?1753492590"></script>
 
     
   </div>
@@ -478,27 +478,30 @@
 
 
 
-	
-<div class="notices info" ><p>If you have access to the AWS Management Console with administrative privileges, you can use your AWS account to initiate this workshop.</p>
+	<p>
+<div class="notices info" ><p>It is recommended to use an IAM user account with administrative privileges rather than the root account. Some AWS services, such as Knowledge Bases in Amazon Bedrock or other AI-related services, may be restricted or unavailable when using the root account. For security and compatibility reasons, AWS best practices also advise avoiding the use of the root user for daily tasks.</p>
 </div>
 
-<p>In this workshop, you configure the following AWS services to build a generative AI chatbot.</p>
+
+<div class="notices info" ><p><strong>Supported Regions</strong>: We recommended that you run this workshop in the <strong>us-west-2</strong> AWS Region.</p>
+</div>
+
+In this workshop, you configure the following AWS services to build a generative AI chatbot.</p>
 <ul>
 <li><a href="https://aws.amazon.com/vi/bedrock/">Amazon Bedrock</a></li>
 <li><a href="https://aws.amazon.com/vi/bedrock/knowledge-bases/">Knowledge Bases </a></li>
 <li><a href="https://aws.amazon.com/vi/kendra/">Amazon Kendra</a></li>
 <li><a href="https://aws.amazon.com/vi/lambda/">AWS Lambda</a></li>
 </ul>
-<p>An AWS CloudFormation template is used to set up lab resources in the AWS Region that you choose. This step is required because later instructions are based on these resources
-<strong>Supported Regions</strong>: We recommended that you run this workshop in the <strong>us-west-1</strong> AWS Region.
+<p>An AWS CloudFormation template is used to set up lab resources in the AWS Region that you choose. This step is required because later instructions are based on these resources</p>
 
 <div class="notices warning" ><p><strong>Cost</strong>: Be aware that if you run this workshop in your own AWS account, you will incur costs for resource usage. The Clean Up section in the left navigation pane can help you remove resources from your environment when you are done.</p>
 </div>
-</p>
+
 <h3 id="content">Content</h3>
 <ul>
-<li><a href="/2-prerequiste/2.1-launchastack/">Launch a CloudFormation stack</a></li>
-<li><a href="/2-prerequiste/2.2-launchvscode/">Create IAM Role</a></li>
+<li><a href="/2-prerequiste/2.1-launchastack/">2.1 Launch a CloudFormation stack</a></li>
+<li><a href="/2-prerequiste/2.2-launchvscode/">2.2 Launch VSCode on AWS, and Set Up the Environment</a></li>
 </ul>
 
 
@@ -694,19 +697,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1753332075"></script>
-    <script src="/js/perfect-scrollbar.min.js?1753332075"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1753332075"></script>
-    <script src="/js/jquery.sticky.js?1753332075"></script>
-    <script src="/js/featherlight.min.js?1753332075"></script>
-    <script src="/js/highlight.pack.js?1753332075"></script>
+    <script src="/js/clipboard.min.js?1753492590"></script>
+    <script src="/js/perfect-scrollbar.min.js?1753492590"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1753492590"></script>
+    <script src="/js/jquery.sticky.js?1753492590"></script>
+    <script src="/js/featherlight.min.js?1753492590"></script>
+    <script src="/js/highlight.pack.js?1753492590"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1753332075"></script>
-    <script src="/js/learn.js?1753332075"></script>
-    <script src="/js/hugo-learn.js?1753332075"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1753492590"></script>
+    <script src="/js/learn.js?1753492590"></script>
+    <script src="/js/hugo-learn.js?1753492590"></script>
 
-    <link href="/mermaid/mermaid.css?1753332075" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1753332075"></script>
+    <link href="/mermaid/mermaid.css?1753492590" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1753492590"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
