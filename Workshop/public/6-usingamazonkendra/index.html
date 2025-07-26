@@ -12,21 +12,21 @@
     <title>Index the Source Data by Using Amazon Kendra :: AWS System Manager</title>
 
     
-    <link href="/css/nucleus.css?1753496387" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1753496387" rel="stylesheet">
-    <link href="/css/hybrid.css?1753496387" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1753496387" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1753496387" rel="stylesheet">
-    <link href="/css/auto-complete.css?1753496387" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1753496387" rel="stylesheet">
-    <link href="/css/theme.css?1753496387" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1753496387" rel="stylesheet">
+    <link href="/css/nucleus.css?1753496897" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1753496897" rel="stylesheet">
+    <link href="/css/hybrid.css?1753496897" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1753496897" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1753496897" rel="stylesheet">
+    <link href="/css/auto-complete.css?1753496897" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1753496897" rel="stylesheet">
+    <link href="/css/theme.css?1753496897" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1753496897" rel="stylesheet">
     
-    <link href="/css/theme-workshop.css?1753496387" rel="stylesheet">
+    <link href="/css/theme-workshop.css?1753496897" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1753496387"></script>
+    <script src="/js/jquery-3.3.1.min.js?1753496897"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1753496387"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1753496387"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1753496897"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1753496897"></script>
 <script type="text/javascript">
     
         var baseurl = "\/\/localhost:1313\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1753496387"></script>
+<script type="text/javascript" src="/js/search.js?1753496897"></script>
 
     
   </div>
@@ -286,7 +286,7 @@
         
         ">
       <a href="/6-usingamazonkendra/">
-           <b> 5. </b> Index the Source Data by Using Amazon Kendra
+           <b> 6. </b> Index the Source Data by Using Amazon Kendra
           
             <i class="fas fa-check read-icon"></i>
           
@@ -306,12 +306,12 @@
  
   
     
-    <li data-nav-id="/6-cleanup/" title="Clean up resources" class="dd-item 
+    <li data-nav-id="/10-cleanup/" title="Clean up resources" class="dd-item 
         
         
         
         ">
-      <a href="/6-cleanup/">
+      <a href="/10-cleanup/">
           <b>6. </b>Clean up resources
           
             <i class="fas fa-check read-icon"></i>
@@ -476,6 +476,11 @@
   <ul>
     <li><a href="#download-sample-documents">Download sample documents</a></li>
     <li><a href="#upload-sample-documents-and-prompt-templates">Upload sample documents and prompt templates</a></li>
+    <li><a href="#index-the-sample-documents-by-using-amazon-kendra">Index the sample documents by using Amazon Kendra</a>
+      <ul>
+        <li><a href="#congratulations">Congratulations</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
     </div>
@@ -521,6 +526,37 @@
 </span></span><span style="display:flex;"><span>aws s3 cp sample-documents s3://$S3BucketName/sample-documents/ --recursive
 </span></span><span style="display:flex;"><span>aws s3 cp prompt-engineering s3://$S3BucketName/prompt-engineering/ --recursive
 </span></span></code></pre></div><p>After a successful upload, review the Amazon S3 console and open the bucket. You should see something like this:</p>
+<p><img src="https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/5.fwd/task5/003.png?raw=true" alt="ConnectPrivate"></p>
+<h2 id="index-the-sample-documents-by-using-amazon-kendra">Index the sample documents by using Amazon Kendra</h2>
+<p>The Amazon Kendra index and Amazon S3 data source were created during the initial provisioning for this workshop. In this task, you index all the documents in the S3 data source.</p>
+<ol>
+<li>
+<p><a href="https://console.aws.amazon.com/kendra/">Open Amazon Kendra console</a></p>
+</li>
+<li>
+<p>At the upper-left of the Amazon Kendra console, choose the menu menu ☰ icon, and then, in the navigation pane, choose Indexes.
+<img src="https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/5.fwd/task5/001.png?raw=true" alt="ConnectPrivate"></p>
+</li>
+</ol>
+<p><img src="https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/5.fwd/task5/002.png?raw=true" alt="ConnectPrivate"></p>
+<ol start="3">
+<li>
+<p>Click on the index name to see the left navigation pane.</p>
+</li>
+<li>
+<p>To start indexing all the documents from the sample-documents folder, select the S3DocsDataSource, and then choose Sync now. The indexing might take a couple minutes. Wait for it to be completed.
+<img src="https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/5.fwd/task5/004.png?raw=true" alt="ConnectPrivate"></p>
+</li>
+<li>
+<p>To query the Amazon Kendra index with a few sample questions, in the left navigation pane, choose Search indexed content, and then ask a question.</p>
+</li>
+</ol>
+<p>Sample question:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>What is federal funds rate as of May 2024??
+</span></span></code></pre></div><p><img src="https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/5.fwd/task5/005.png?raw=true" alt="ConnectPrivate"></p>
+<hr>
+<h3 id="congratulations">Congratulations</h3>
+<p>You can now proceed to next task.</p>
 
 
 
@@ -721,7 +757,7 @@
 			<a class="nav nav-prev" href="/5-multiplellms/" title="General Chat with Multiple LLMs"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/6-cleanup/" title="Clean up resources" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/10-cleanup/" title="Clean up resources" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -731,19 +767,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1753496387"></script>
-    <script src="/js/perfect-scrollbar.min.js?1753496387"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1753496387"></script>
-    <script src="/js/jquery.sticky.js?1753496387"></script>
-    <script src="/js/featherlight.min.js?1753496387"></script>
-    <script src="/js/highlight.pack.js?1753496387"></script>
+    <script src="/js/clipboard.min.js?1753496897"></script>
+    <script src="/js/perfect-scrollbar.min.js?1753496897"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1753496897"></script>
+    <script src="/js/jquery.sticky.js?1753496897"></script>
+    <script src="/js/featherlight.min.js?1753496897"></script>
+    <script src="/js/highlight.pack.js?1753496897"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1753496387"></script>
-    <script src="/js/learn.js?1753496387"></script>
-    <script src="/js/hugo-learn.js?1753496387"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1753496897"></script>
+    <script src="/js/learn.js?1753496897"></script>
+    <script src="/js/hugo-learn.js?1753496897"></script>
 
-    <link href="/mermaid/mermaid.css?1753496387" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1753496387"></script>
+    <link href="/mermaid/mermaid.css?1753496897" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1753496897"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

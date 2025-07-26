@@ -1,9 +1,9 @@
 ---
 title : "Index the Source Data by Using Amazon Kendra"
 date :  2025-07-17
-weight : 5 
+weight : 6
 chapter : false
-pre : " <b> 5. </b> "
+pre : " <b> 6. </b> "
 ---
 
 In the RAG architecture, Amazon Kendra can be leveraged to index and search through a collection of sample documents stored in Amazon S3 and other sources. Users can provide a query or question, and Kendra will perform a similarity search across the indexed content to identify the most relevant information.
@@ -38,3 +38,33 @@ aws s3 cp sample-documents s3://$S3BucketName/sample-documents/ --recursive
 aws s3 cp prompt-engineering s3://$S3BucketName/prompt-engineering/ --recursive
 ````
 After a successful upload, review the Amazon S3 console and open the bucket. You should see something like this:
+
+![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/5.fwd/task5/003.png?raw=true)
+
+## Index the sample documents by using Amazon Kendra
+
+The Amazon Kendra index and Amazon S3 data source were created during the initial provisioning for this workshop. In this task, you index all the documents in the S3 data source.
+1. [Open Amazon Kendra console](https://console.aws.amazon.com/kendra/)
+
+2. At the upper-left of the Amazon Kendra console, choose the menu menu ☰ icon, and then, in the navigation pane, choose Indexes.
+![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/5.fwd/task5/001.png?raw=true)
+
+
+
+![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/5.fwd/task5/002.png?raw=true)
+
+3. Click on the index name to see the left navigation pane.
+
+4. To start indexing all the documents from the sample-documents folder, select the S3DocsDataSource, and then choose Sync now. The indexing might take a couple minutes. Wait for it to be completed.
+![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/5.fwd/task5/004.png?raw=true)
+5. To query the Amazon Kendra index with a few sample questions, in the left navigation pane, choose Search indexed content, and then ask a question.
+
+Sample question:
+````bash
+What is federal funds rate as of May 2024??
+````
+![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/5.fwd/task5/005.png?raw=true)
+
+--- 
+### Congratulations
+You can now proceed to next task.

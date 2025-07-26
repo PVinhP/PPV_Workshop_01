@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Tạo kết nối đến máy chủ EC2 :: AWS System Manager</title>
+    <title>Dọn dẹp tài nguyên   :: AWS System Manager</title>
 
     
     <link href="/css/nucleus.css?1753496897" rel="stylesheet">
@@ -36,7 +36,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/vi/3-accessibilitytoinstances/">
+  <body class="" data-url="/vi/10-cleanup/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -204,7 +204,7 @@
     
     <li data-nav-id="/vi/3-accessibilitytoinstances/" title="Tạo kết nối đến máy chủ EC2" class="dd-item 
         
-        active
+        
         
         ">
       <a href="/vi/3-accessibilitytoinstances/">
@@ -308,7 +308,7 @@
     
     <li data-nav-id="/vi/10-cleanup/" title="Dọn dẹp tài nguyên  " class="dd-item 
         
-        
+        active
         
         ">
       <a href="/vi/10-cleanup/">
@@ -359,7 +359,7 @@
                   
                     
                     
-                      <option id="en" value="//localhost:1313/3-accessibilitytoinstances/">English</option>
+                      <option id="en" value="//localhost:1313/10-cleanup/">English</option>
                     
                   
               
@@ -373,7 +373,7 @@
                   
                     
                     
-                      <option id="vi" value="//localhost:1313/vi/3-accessibilitytoinstances/" selected>Tiếng Việt</option>
+                      <option id="vi" value="//localhost:1313/vi/10-cleanup/" selected>Tiếng Việt</option>
                     
                   
               
@@ -461,7 +461,7 @@
             
           
           
-            <a href='/vi/'>Session Management</a> > Tạo kết nối đến máy chủ EC2
+            <a href='/vi/'>Session Management</a> > Dọn dẹp tài nguyên  
           
         
           
@@ -476,7 +476,7 @@
   <ul>
     <li>
       <ul>
-        <li><a href="#nôi-dung">Nội dung</a></li>
+        <li></li>
       </ul>
     </li>
   </ul>
@@ -496,7 +496,7 @@
           
             <h1>
               
-              Tạo kết nối đến máy chủ EC2
+              Dọn dẹp tài nguyên  
             </h1>
           
 
@@ -504,10 +504,99 @@
 
 
 
-	<p>Trong bước này, chúng ta sẽ thực hiện tạo kết nối đến các máy chủ EC2 của chúng ta, nằm trong cả public và private subnet.</p>
-<h3 id="nôi-dung">Nội dung</h3>
-<p>3.1. <a href="3.1-public-instance/">Tạo Kết nối đến máy chủ EC2 Public</a> <br>
-3.2. <a href="3.2-private-instance/">Tạo Kết nối đến máy chủ EC2 Private</a></p>
+	<p>Chúng ta sẽ tiến hành các bước sau để xóa các tài nguyên chúng ta đã tạo trong bài thực hành này.</p>
+<h4 id="xóa-ec2-instance">Xóa EC2 instance</h4>
+<ol>
+<li>Truy cập <a href="https://console.aws.amazon.com/ec2/v2/home">giao diện quản trị dịch vụ EC2</a></li>
+</ol>
+<ul>
+<li>Click <strong>Instances</strong>.</li>
+<li>Click chọn cả 2 instance <strong>Public Linux Instance</strong> và <strong>Private Windows Instance</strong>.</li>
+<li>Click <strong>Instance state</strong>.</li>
+<li>Click <strong>Terminate instance</strong>, sau đó click <strong>Terminate</strong> để xác nhận.</li>
+</ul>
+<ol start="2">
+<li>Truy cập <a href="https://console.aws.amazon.com/iamv2/home#/home">giao diện quản trị dịch vụ IAM</a></li>
+</ol>
+<ul>
+<li>Click <strong>Roles</strong>.</li>
+<li>Tại ô tìm kiếm , điền <strong>SSM</strong>.</li>
+<li>Click chọn <strong>SSM-Role</strong>.</li>
+<li>Click <strong>Delete</strong>, sau đó điền tên role <strong>SSM-Role</strong> và click <strong>Delete</strong> để xóa role.</li>
+</ul>
+<p><img src="/images/6.clean/001-clean.png" alt="Clean"></p>
+<ol start="3">
+<li>Click <strong>Users</strong>.</li>
+</ol>
+<ul>
+<li>Click chọn user <strong>Portfwd</strong>.</li>
+<li>Click <strong>Delete</strong>, sau đó điền tên user <strong>Portfwd</strong> và click <strong>Delete</strong> để xóa user.</li>
+</ul>
+<h4 id="xóa-s3-bucket">Xóa S3 bucket</h4>
+<ol>
+<li>Truy cập <a href="https://console.aws.amazon.com/systems-manager/session-manager">giao diện quản trị dịch vụ System Manager - Session Manager</a>.</li>
+</ol>
+<ul>
+<li>Click tab <strong>Preferences</strong>.</li>
+<li>Click <strong>Edit</strong>.</li>
+<li>Kéo chuột xuống dưới.</li>
+<li>Tại mục <strong>S3 logging</strong>.</li>
+<li>Bỏ chọn <strong>Enable</strong> để tắt tính năng logging.</li>
+<li>Kéo chuột xuống dưới.</li>
+<li>Click <strong>Save</strong>.</li>
+</ul>
+<ol start="2">
+<li>Truy cập <a href="https://s3.console.aws.amazon.com/s3/home">giao diện quản trị dịch vụ S3</a></li>
+</ol>
+<ul>
+<li>Click chọn S3 bucket chúng ta đã tạo cho bài thực hành. ( Ví dụ : lab-fcj-bucket-0001 )</li>
+<li>Click <strong>Empty</strong>.</li>
+<li>Điền <strong>permanently delete</strong>, sau đó click <strong>Empty</strong> để tiến hành xóa object trong bucket.</li>
+<li>Click <strong>Exit</strong>.</li>
+</ul>
+<ol start="3">
+<li>Sau khi xóa hết object trong bucket, click <strong>Delete</strong></li>
+</ol>
+<p><img src="/images/6.clean/002-clean.png" alt="Clean"></p>
+<ol start="4">
+<li>Điền tên S3 bucket, sau đó click <strong>Delete bucket</strong> để tiến hành xóa S3 bucket.</li>
+</ol>
+<p><img src="/images/6.clean/003-clean.png" alt="Clean"></p>
+<h4 id="xóa-các-vpc-endpoint">Xóa các VPC Endpoint</h4>
+<ol>
+<li>Truy cập vào <a href="https://console.aws.amazon.com/vpc/home">giao diện quản trị dịch vụ VPC</a></li>
+</ol>
+<ul>
+<li>Click <strong>Endpoints</strong>.</li>
+<li>Chọn 4 endpoints chúng ta đã tạo cho bài thực hành bao gồm <strong>SSM</strong>, <strong>SSMMESSAGES</strong>, <strong>EC2MESSAGES</strong>, <strong>S3GW</strong>.</li>
+<li>Click <strong>Actions</strong>.</li>
+<li>Click <strong>Delete VPC endpoints</strong>.</li>
+</ul>
+<p><img src="/images/6.clean/004-clean.png" alt="Clean"></p>
+<ol start="2">
+<li>Tại ô confirm , điền <strong>delete</strong>.</li>
+</ol>
+<ul>
+<li>Click <strong>Delete</strong> để tiến hành xóa các endpoints.</li>
+</ul>
+<ol start="3">
+<li>Click biểu tượng refresh, kiểm tra tất cả các endpoints đã bị xóa trước khi làm bước tiếp theo.</li>
+</ol>
+<p><img src="/images/6.clean/005-clean.png" alt="Clean"></p>
+<h4 id="xóa-vpc">Xóa VPC</h4>
+<ol>
+<li>Truy cập vào <a href="https://console.aws.amazon.com/vpc/home">giao diện quản trị dịch vụ VPC</a></li>
+</ol>
+<ul>
+<li>Click <strong>Your VPCs</strong>.</li>
+<li>Click chọn <strong>Lab VPC</strong>.</li>
+<li>Click <strong>Actions</strong>.</li>
+<li>Click <strong>Delete VPC</strong>.</li>
+</ul>
+<ol start="2">
+<li>Tại ô confirm, điền <strong>delete</strong> để xác nhận, click <strong>Delete</strong> để thực hiện xóa <strong>Lab VPC</strong> và các tài nguyên liên quan.</li>
+</ol>
+<p><img src="/images/6.clean/006-clean.png" alt="Clean"></p>
 
 
 
@@ -617,26 +706,6 @@
             
                 
                     
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
-                    
                 
                 
 
@@ -684,6 +753,23 @@
             
             
                 
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
                     
                 
                 
@@ -705,10 +791,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/vi/2-prerequiste/2.2-launchvscode/" title="Tạo IAM Role"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/vi/6-usingamazonkendra/" title="Port Forwarding"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/vi/4-walkthroughbedrock/" title="Quản lý session logs" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/vi/1-introduce/" title="Giới thiệu" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
