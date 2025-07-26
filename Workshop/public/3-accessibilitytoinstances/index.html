@@ -12,21 +12,21 @@
     <title>Deploy Amazon Bedrock Serverless Application :: AWS System Manager</title>
 
     
-    <link href="/css/nucleus.css?1753492590" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1753492590" rel="stylesheet">
-    <link href="/css/hybrid.css?1753492590" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1753492590" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1753492590" rel="stylesheet">
-    <link href="/css/auto-complete.css?1753492590" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1753492590" rel="stylesheet">
-    <link href="/css/theme.css?1753492590" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1753492590" rel="stylesheet">
+    <link href="/css/nucleus.css?1753493308" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1753493308" rel="stylesheet">
+    <link href="/css/hybrid.css?1753493308" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1753493308" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1753493308" rel="stylesheet">
+    <link href="/css/auto-complete.css?1753493308" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1753493308" rel="stylesheet">
+    <link href="/css/theme.css?1753493308" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1753493308" rel="stylesheet">
     
-    <link href="/css/theme-workshop.css?1753492590" rel="stylesheet">
+    <link href="/css/theme-workshop.css?1753493308" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1753492590"></script>
+    <script src="/js/jquery-3.3.1.min.js?1753493308"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1753492590"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1753492590"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1753493308"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1753493308"></script>
 <script type="text/javascript">
     
         var baseurl = "\/\/localhost:1313\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1753492590"></script>
+<script type="text/javascript" src="/js/search.js?1753493308"></script>
 
     
   </div>
@@ -540,7 +540,14 @@ Before you move to next task, run below commands, these are the environment vari
 </span></span><span style="display:flex;"><span>export UserPoolClientId<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>aws cloudformation describe-stacks --stack-name <span style="color:#e6db74">${</span>SAMStackName<span style="color:#e6db74">}</span> --query <span style="color:#e6db74">&#34;Stacks[0].Outputs[?OutputKey==&#39;CongnitoUserPoolClientID&#39;].OutputValue&#34;</span> --output text<span style="color:#66d9ef">)</span>
 </span></span><span style="display:flex;"><span>export SecretName<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>aws cloudformation describe-stacks --stack-name <span style="color:#e6db74">${</span>SAMStackName<span style="color:#e6db74">}</span> --query <span style="color:#e6db74">&#34;Stacks[0].Outputs[?OutputKey==&#39;SecretsName&#39;].OutputValue&#34;</span> --output text<span style="color:#66d9ef">)</span>
 </span></span><span style="display:flex;"><span>export PATH<span style="color:#f92672">=</span>~/.npm-global/bin:$PATH
-</span></span></code></pre></div><p>You have completed the deployment of the backend and frontend of the chatbot using Amazon Bedrock serverless</p>
+</span></span></code></pre></div><p>After running, you can check again by using the export command and verifying whether the above variables(AWS_REGION, KendraIndexID, BedrockApiUrl,&hellip;) have been assigned values.
+
+<div class="notices note" ><p>If the variables do not have values, check your region to ensure it is set to the us-west-2 AWS Region.
+If it&rsquo;s incorrect, delete the stack, select the correct region, and run the steps again.</p>
+</div>
+</p>
+<p><img src="https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/3.connect/001.png?raw=true" alt="ConnectPrivate">
+You have completed the deployment of the backend and frontend of the chatbot using Amazon Bedrock serverless</p>
 
 
 
@@ -735,19 +742,19 @@ Before you move to next task, run below commands, these are the environment vari
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1753492590"></script>
-    <script src="/js/perfect-scrollbar.min.js?1753492590"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1753492590"></script>
-    <script src="/js/jquery.sticky.js?1753492590"></script>
-    <script src="/js/featherlight.min.js?1753492590"></script>
-    <script src="/js/highlight.pack.js?1753492590"></script>
+    <script src="/js/clipboard.min.js?1753493308"></script>
+    <script src="/js/perfect-scrollbar.min.js?1753493308"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1753493308"></script>
+    <script src="/js/jquery.sticky.js?1753493308"></script>
+    <script src="/js/featherlight.min.js?1753493308"></script>
+    <script src="/js/highlight.pack.js?1753493308"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1753492590"></script>
-    <script src="/js/learn.js?1753492590"></script>
-    <script src="/js/hugo-learn.js?1753492590"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1753493308"></script>
+    <script src="/js/learn.js?1753493308"></script>
+    <script src="/js/hugo-learn.js?1753493308"></script>
 
-    <link href="/mermaid/mermaid.css?1753492590" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1753492590"></script>
+    <link href="/mermaid/mermaid.css?1753493308" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1753493308"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

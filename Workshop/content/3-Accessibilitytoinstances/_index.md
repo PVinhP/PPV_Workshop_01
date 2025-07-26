@@ -95,5 +95,11 @@ export UserPoolClientId=$(aws cloudformation describe-stacks --stack-name ${SAMS
 export SecretName=$(aws cloudformation describe-stacks --stack-name ${SAMStackName} --query "Stacks[0].Outputs[?OutputKey=='SecretsName'].OutputValue" --output text)
 export PATH=~/.npm-global/bin:$PATH
 ````
+After running, you can check again by using the export command and verifying whether the above variables(AWS_REGION, KendraIndexID, BedrockApiUrl,...) have been assigned values.
+{{% notice note %}}
+If the variables do not have values, check your region to ensure it is set to the us-west-2 AWS Region.
+If it's incorrect, delete the stack, select the correct region, and run the steps again.
+{{% /notice %}}
 
+![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/3.connect/001.png?raw=true)
 You have completed the deployment of the backend and frontend of the chatbot using Amazon Bedrock serverless
