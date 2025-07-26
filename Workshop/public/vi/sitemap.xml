@@ -93,17 +93,17 @@
                 href="//localhost:1313/vi/4-walkthroughbedrock/"
                 />
   </url><url>
-    <loc>//localhost:1313/vi/5-portfwd/</loc>
+    <loc>//localhost:1313/vi/5-multiplellms/</loc>
     <lastmod>2025-06-17T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//localhost:1313/5-portfwd/"
+                href="//localhost:1313/5-multiplellms/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="//localhost:1313/vi/5-portfwd/"
+                href="//localhost:1313/vi/5-multiplellms/"
                 />
   </url><url>
     <loc>//localhost:1313/vi/6-cleanup/</loc>

@@ -40,6 +40,8 @@ In the current version of this workshop environment, the use of the Claude 3 Opu
 
    You can also take this time, on the left menu, to navigate around the different options.
 
+![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/4.Activatemodelaccess/011.png?raw=true)
+
 2. On the **Chat / Text playground**, choose **`Select model`**.
 3. In the *Select model* popup, choose **Anthropic** and select **Claude 3 Haiku**.
 
