@@ -9,24 +9,24 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Tạo kết nối đến máy chủ EC2 :: AWS System Manager</title>
+    <title>Triển khai Ứng dụng Serverless Amazon Bedrock :: AWS System Manager</title>
 
     
-    <link href="/css/nucleus.css?1753498241" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1753498241" rel="stylesheet">
-    <link href="/css/hybrid.css?1753498241" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1753498241" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1753498241" rel="stylesheet">
-    <link href="/css/auto-complete.css?1753498241" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1753498241" rel="stylesheet">
-    <link href="/css/theme.css?1753498241" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1753498241" rel="stylesheet">
+    <link href="/css/nucleus.css?1753534029" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1753534029" rel="stylesheet">
+    <link href="/css/hybrid.css?1753534029" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1753534029" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1753534029" rel="stylesheet">
+    <link href="/css/auto-complete.css?1753534029" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1753534029" rel="stylesheet">
+    <link href="/css/theme.css?1753534029" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1753534029" rel="stylesheet">
     
-    <link href="/css/theme-workshop.css?1753498241" rel="stylesheet">
+    <link href="/css/theme-workshop.css?1753534029" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1753498241"></script>
+    <script src="/js/jquery-3.3.1.min.js?1753534029"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1753498241"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1753498241"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1753534029"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1753534029"></script>
 <script type="text/javascript">
     
         var baseurl = "\/\/localhost:1313\/\/vi";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1753498241"></script>
+<script type="text/javascript" src="/js/search.js?1753534029"></script>
 
     
   </div>
@@ -82,13 +82,13 @@
  
   
     
-    <li data-nav-id="/vi/1-introduce/" title="Giới thiệu" class="dd-item 
+    <li data-nav-id="/vi/1-introduce/" title="Giới thiệu" class="dd-item 
         
         
         
         ">
       <a href="/vi/1-introduce/">
-           <b> 1. </b> Giới thiệu
+           <b> 1. </b> Giới thiệu
           
             <i class="fas fa-check read-icon"></i>
           
@@ -108,13 +108,13 @@
  
   
     
-    <li data-nav-id="/vi/2-prerequiste/" title="Các bước chuẩn bị" class="dd-item 
+    <li data-nav-id="/vi/2-prerequiste/" title="Chuẩn bị " class="dd-item 
         
         
         
         ">
       <a href="/vi/2-prerequiste/">
-           <b> 2. </b> Các bước chuẩn bị
+           <b> 2. </b> Chuẩn bị 
           
             <i class="fas fa-check read-icon"></i>
           
@@ -139,13 +139,13 @@
  
   
     
-    <li data-nav-id="/vi/2-prerequiste/2.1-launchastack/" title="Chuẩn bị VPC và EC2" class="dd-item 
+    <li data-nav-id="/vi/2-prerequiste/2.1-launchastack/" title="Khởi chạy CloudFormation stack" class="dd-item 
         
         
         
         ">
       <a href="/vi/2-prerequiste/2.1-launchastack/">
-           <b> 2.1 </b> Chuẩn bị VPC và EC2
+           <b> 2.1 </b> Khởi chạy CloudFormation stack
           
             <i class="fas fa-check read-icon"></i>
           
@@ -167,13 +167,13 @@
  
   
     
-    <li data-nav-id="/vi/2-prerequiste/2.2-launchvscode/" title="Tạo IAM Role" class="dd-item 
+    <li data-nav-id="/vi/2-prerequiste/2.2-launchvscode/" title="Khởi chạy VSCode trên AWS và Thiết lập Môi trường" class="dd-item 
         
         
         
         ">
       <a href="/vi/2-prerequiste/2.2-launchvscode/">
-           <b> 2.2 </b> Tạo IAM Role
+           <b> 2.2 </b> Khởi chạy VSCode trên AWS và Thiết lập Môi trường
           
             <i class="fas fa-check read-icon"></i>
           
@@ -202,13 +202,13 @@
  
   
     
-    <li data-nav-id="/vi/3-accessibilitytoinstances/" title="Tạo kết nối đến máy chủ EC2" class="dd-item 
+    <li data-nav-id="/vi/3-accessibilitytoinstances/" title="Triển khai Ứng dụng Serverless Amazon Bedrock" class="dd-item 
         
         active
         
         ">
       <a href="/vi/3-accessibilitytoinstances/">
-           <b> 3. </b> Tạo kết nối đến máy chủ EC2
+           <b> 3. </b> Triển khai Ứng dụng Serverless Amazon Bedrock
           
             <i class="fas fa-check read-icon"></i>
           
@@ -370,6 +370,74 @@
           
       </a>
       
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/9-knowledgebases/9.1-createknowledgebase/" title="Port Forwarding" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/9-knowledgebases/9.1-createknowledgebase/">
+           <b> 5. </b> Port Forwarding
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/9-knowledgebases/9.2-integrateknowledgebase/" title="Port Forwarding" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/9-knowledgebases/9.2-integrateknowledgebase/">
+           <b> 5. </b> Port Forwarding
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
               
     </li>
   
@@ -539,7 +607,7 @@
             
           
           
-            <a href='/vi/'>Session Management</a> > Tạo kết nối đến máy chủ EC2
+            <a href='/vi/'>Tạo Chatbot Serverless Sử Dụng Amazon Bedrock, Amazon Kendra và Dữ Liệu Của Riêng Bạn</a> > Triển khai Ứng dụng Serverless Amazon Bedrock
           
         
           
@@ -554,7 +622,7 @@
   <ul>
     <li>
       <ul>
-        <li><a href="#nôi-dung">Nội dung</a></li>
+        <li><a href="#xây-dựng-và-triển-khai-ứng-dụng-chatbot">Xây dựng và triển khai ứng dụng chatbot</a></li>
       </ul>
     </li>
   </ul>
@@ -574,7 +642,7 @@
           
             <h1>
               
-              Tạo kết nối đến máy chủ EC2
+              Triển khai Ứng dụng Serverless Amazon Bedrock
             </h1>
           
 
@@ -582,10 +650,87 @@
 
 
 
-	<p>Trong bước này, chúng ta sẽ thực hiện tạo kết nối đến các máy chủ EC2 của chúng ta, nằm trong cả public và private subnet.</p>
-<h3 id="nôi-dung">Nội dung</h3>
-<p>3.1. <a href="3.1-public-instance/">Tạo Kết nối đến máy chủ EC2 Public</a> <br>
-3.2. <a href="3.2-private-instance/">Tạo Kết nối đến máy chủ EC2 Private</a></p>
+	<p>Trong nhiệm vụ này, bạn sẽ xây dựng và triển khai cả hai thành phần backend và frontend của ứng dụng. Backend được triển khai dưới dạng ứng dụng serverless bằng AWS SAM, tạo ra một Amazon API Gateway, các hàm AWS Lambda cần thiết, một nhóm người dùng Cognito và lưu trữ thông tin đăng nhập trong AWS Secrets Manager.</p>
+<p>Frontend được xây dựng bằng Vue.js và triển khai bằng AWS Amplify. Giao diện người dùng frontend sẽ gọi các API dựa trên REST được lưu trữ bằng Amazon API Gateway, API Gateway gọi hàm AWS Lambda, hàm này gọi các API Amazon Bedrock. Kiến trúc serverless này cho phép ứng dụng mở rộng hiệu quả và giảm thiểu chi phí vận hành quản lý cơ sở hạ tầng bên dưới. Quá trình triển khai được tự động hóa thông qua một script startup.sh, xử lý toàn bộ việc cung cấp toàn bộ ngăn xếp ứng dụng từ đầu đến cuối.</p>
+<h3 id="xây-dựng-và-triển-khai-ứng-dụng-chatbot">Xây dựng và triển khai ứng dụng chatbot</h3>
+<p>Từ trình chỉnh sửa VSCode, chạy lệnh sau để thiết lập một biến môi trường chính được sử dụng trong suốt hội thảo. Thay thế <code>&lt;chatbot-startup-stack&gt;</code> bằng tên ngăn xếp thực tế từ bảng điều khiển AWS CloudFormation.</p>
+<p>Biến CFNStackName sẽ được tham chiếu sau này khi tương tác với các tài nguyên được cung cấp như một phần của triển khai ứng dụng. Và biến môi trường S3BucketName sẽ được sử dụng trong suốt hội thảo để lưu trữ các nguồn dữ liệu và cơ sở tri thức cần thiết cho ứng dụng. Các dịch vụ backend sẽ tương tác với nội dung của bucket S3 này để truy xuất và xử lý thông tin cần thiết cho chức năng của ứng dụng. Việc đảm bảo biến môi trường S3BucketName được thiết lập đúng sẽ cho phép các nhiệm vụ hội thảo truy cập và sử dụng liền mạch dữ liệu cần thiết được lưu trữ tại vị trí trung tâm này.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>  export CFNStackName<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;chatbot-startup-stack&#34;</span>
+</span></span><span style="display:flex;"><span>  export S3BucketName<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>aws cloudformation describe-stacks --stack-name <span style="color:#e6db74">${</span>CFNStackName<span style="color:#e6db74">}</span> --query <span style="color:#e6db74">&#34;Stacks[0].Outputs[?OutputKey==&#39;S3BucketName&#39;].OutputValue&#34;</span> --output text<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>  echo <span style="color:#e6db74">&#34;S3 bucket name: </span>$S3BucketName<span style="color:#e6db74">&#34;</span>
+</span></span></code></pre></div><p><img src="https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/anh/anh8.png?raw=true" alt="ConnectPrivate"></p>
+<p>Để sao chép source code cho workshop này, chạy lệnh sau. Code ứng dụng được lưu trữ trong kho GitHub aws-samples open-source, chứa nhiều dự án mẫu do AWS cung cấp. Việc sao chép kho sẽ đảm bảo bạn có phiên bản mới nhất của mã và có thể dễ dàng thực hiện bất kỳ sửa đổi nào khi tiến hành các nhiệm vụ workshop.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd ~/environment
+</span></span><span style="display:flex;"><span>git clone https://github.com/aws-samples/bedrock-serverless-workshop.git
+</span></span></code></pre></div><p><img src="https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/anh/anh9.png?raw=true" alt="ConnectPrivate">
+Để build và triển khai backend và frontend của ứng dụng serverless, chạy lệnh sau. Script aws-creds.py được sử dụng để tạo một AWS profile, đây là bước cần thiết cho quá trình triển khai phần frontend sau đó.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd ~/environment/bedrock-serverless-workshop
+</span></span><span style="display:flex;"><span>python3 aws-creds.py
+</span></span><span style="display:flex;"><span>chmod +x startup.sh
+</span></span><span style="display:flex;"><span>./startup.sh
+</span></span></code></pre></div><p><img src="https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/anh/anh11.png?raw=true" alt="ConnectPrivate">
+Script sẽ thực hiện các bước sau:</p>
+<ol>
+<li>
+<p>Nâng cấp hệ điều hành, cài đặt phần mềm jq.</p>
+</li>
+<li>
+<p>Build backend bằng sam build.</p>
+</li>
+<li>
+<p>Triển khai backend bằng sam deploy.</p>
+</li>
+<li>
+<p>Cài đặt Amplify và build frontend.</p>
+</li>
+<li>
+<p>Triển khai ứng dụng frontend thông qua Amplify.</p>
+</li>
+</ol>
+<p>Script sẽ mất từ 2 đến 5 phút để hoàn tất.</p>
+
+<div class="notices note" ><p>Nếu có cửa sổ popup cảnh báo từ git, hãy chọn OK.</p>
+</div>
+
+
+<div class="notices note" ><p>Khi chạy amplify add host, bạn sẽ được yêu cầu chọn <strong>hai lần</strong>. Giữ nguyên các tùy chọn mặc định và nhấn <strong>Enter</strong>:
+Hosting with Amplify Console (Managed hosting with custom domains, Continuous deployment) và Manual deployment</p>
+</div>
+
+<p>Sau khi hoàn tất, bạn sẽ thấy hình ảnh sau:</p>
+<p><img src="https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/anh/anh12.png?raw=true" alt="ConnectPrivate"></p>
+<hr>
+<p><img src="https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/anh/anh13.png?raw=true" alt="ConnectPrivate"></p>
+<hr>
+<p><img src="https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/anh/anh14.png?raw=true" alt="ConnectPrivate"></p>
+<hr>
+<p>Sao chép và lưu lại giá trị của địa chỉ <strong>amplifyapp url</strong>, <strong>user_id</strong> và <strong>password</strong> vào một trình soạn thảo văn bản. Bạn sẽ sử dụng các thông tin này để đăng nhập vào giao diện người dùng.</p>
+<p>Mở địa chỉ <strong>amplifyapp url</strong> trên trình duyệt web và đăng nhập bằng thông tin ở trên. Sau khi đăng nhập thành công, bạn sẽ thấy màn hình chính như bên dưới. Lưu ý, hiện tại hệ thống vẫn chưa sẵn sàng với các tài liệu nguồn và tính năng chat chưa hoạt động. Trong tác vụ tiếp theo, bạn sẽ hoàn tất việc lập chỉ mục tài liệu nguồn và kiểm thử với các câu hỏi mẫu.
+<img src="https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/anh/anh15.png?raw=true" alt="ConnectPrivate"></p>
+<hr>
+<p><img src="https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/anh/anh16.png?raw=true" alt="ConnectPrivate"></p>
+<hr>
+<p><img src="https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/anh/anh17.png?raw=true" alt="ConnectPrivate">
+Trước khi chuyển sang tác vụ tiếp theo, chạy các lệnh bên dưới — đây là các biến môi trường cần thiết cho các lệnh SAM và Amplify build trong phần còn lại của lab.</p>
+<p>Chạy các lệnh sau trong terminal của VS Code:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>export SAMStackName<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;sam-</span>$CFNStackName<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>export AWS_REGION<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>aws configure get region<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>export KendraIndexID<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>aws cloudformation describe-stacks --stack-name <span style="color:#e6db74">${</span>CFNStackName<span style="color:#e6db74">}</span> --query <span style="color:#e6db74">&#34;Stacks[0].Outputs[?OutputKey==&#39;KendraIndexID&#39;].OutputValue&#34;</span> --output text<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>export BedrockApiUrl<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>aws cloudformation describe-stacks --stack-name <span style="color:#e6db74">${</span>SAMStackName<span style="color:#e6db74">}</span> --query <span style="color:#e6db74">&#34;Stacks[0].Outputs[?OutputKey==&#39;BedrockApiUrl&#39;].OutputValue&#34;</span> --output text<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>export SecretName<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>aws cloudformation describe-stacks --stack-name <span style="color:#e6db74">${</span>SAMStackName<span style="color:#e6db74">}</span> --query <span style="color:#e6db74">&#34;Stacks[0].Outputs[?OutputKey==&#39;SecretsName&#39;].OutputValue&#34;</span> --output text<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>export BedrockApiUrl<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>aws cloudformation describe-stacks --stack-name <span style="color:#e6db74">${</span>SAMStackName<span style="color:#e6db74">}</span> --query <span style="color:#e6db74">&#34;Stacks[0].Outputs[?OutputKey==&#39;BedrockApiUrl&#39;].OutputValue&#34;</span> --output text<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>export UserPoolId<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>aws cloudformation describe-stacks --stack-name <span style="color:#e6db74">${</span>SAMStackName<span style="color:#e6db74">}</span> --query <span style="color:#e6db74">&#34;Stacks[0].Outputs[?OutputKey==&#39;CognitoUserPool&#39;].OutputValue&#34;</span> --output text<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>export UserPoolClientId<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>aws cloudformation describe-stacks --stack-name <span style="color:#e6db74">${</span>SAMStackName<span style="color:#e6db74">}</span> --query <span style="color:#e6db74">&#34;Stacks[0].Outputs[?OutputKey==&#39;CongnitoUserPoolClientID&#39;].OutputValue&#34;</span> --output text<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>export SecretName<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>aws cloudformation describe-stacks --stack-name <span style="color:#e6db74">${</span>SAMStackName<span style="color:#e6db74">}</span> --query <span style="color:#e6db74">&#34;Stacks[0].Outputs[?OutputKey==&#39;SecretsName&#39;].OutputValue&#34;</span> --output text<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>export PATH<span style="color:#f92672">=</span>~/.npm-global/bin:$PATH
+</span></span></code></pre></div><p>Sau khi chạy, bạn có thể kiểm tra lại bằng lệnh export và xác minh xem các biến như AWS_REGION, KendraIndexID, BedrockApiUrl, &hellip; đã được gán giá trị chưa.</p>
+
+<div class="notices note" ><p>Nếu các biến chưa có giá trị, hãy kiểm tra lại vùng (region) của bạn để đảm bảo đang đặt là us-west-2.
+Nếu chưa đúng, hãy xóa stack, chọn lại vùng phù hợp và thực hiện lại các bước.</p>
+</div>
+
+<p><img src="https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/3.connect/001.png?raw=true" alt="ConnectPrivate">
+You have completed the deployment of the backend and frontend of the chatbot using Amazon Bedrock serverless</p>
 
 
 
@@ -800,8 +945,42 @@
 
                     
                     
+                        
+                    
                     
 
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
                     
             
         
@@ -831,7 +1010,7 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/vi/2-prerequiste/2.2-launchvscode/" title="Tạo IAM Role"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/vi/2-prerequiste/2.2-launchvscode/" title="Khởi chạy VSCode trên AWS và Thiết lập Môi trường"> <i class="fa fa-chevron-left"></i></a>
 		
 		
 			<a class="nav nav-next" href="/vi/4-walkthroughbedrock/" title="Quản lý session logs" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
@@ -844,19 +1023,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1753498241"></script>
-    <script src="/js/perfect-scrollbar.min.js?1753498241"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1753498241"></script>
-    <script src="/js/jquery.sticky.js?1753498241"></script>
-    <script src="/js/featherlight.min.js?1753498241"></script>
-    <script src="/js/highlight.pack.js?1753498241"></script>
+    <script src="/js/clipboard.min.js?1753534029"></script>
+    <script src="/js/perfect-scrollbar.min.js?1753534029"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1753534029"></script>
+    <script src="/js/jquery.sticky.js?1753534029"></script>
+    <script src="/js/featherlight.min.js?1753534029"></script>
+    <script src="/js/highlight.pack.js?1753534029"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1753498241"></script>
-    <script src="/js/learn.js?1753498241"></script>
-    <script src="/js/hugo-learn.js?1753498241"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1753534029"></script>
+    <script src="/js/learn.js?1753534029"></script>
+    <script src="/js/hugo-learn.js?1753534029"></script>
 
-    <link href="/mermaid/mermaid.css?1753498241" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1753498241"></script>
+    <link href="/mermaid/mermaid.css?1753534029" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1753534029"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

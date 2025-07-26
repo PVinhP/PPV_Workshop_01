@@ -9,24 +9,24 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Tạo IAM Role :: AWS System Manager</title>
+    <title>Khởi chạy VSCode trên AWS và Thiết lập Môi trường :: AWS System Manager</title>
 
     
-    <link href="/css/nucleus.css?1753498241" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1753498241" rel="stylesheet">
-    <link href="/css/hybrid.css?1753498241" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1753498241" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1753498241" rel="stylesheet">
-    <link href="/css/auto-complete.css?1753498241" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1753498241" rel="stylesheet">
-    <link href="/css/theme.css?1753498241" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1753498241" rel="stylesheet">
+    <link href="/css/nucleus.css?1753534029" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1753534029" rel="stylesheet">
+    <link href="/css/hybrid.css?1753534029" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1753534029" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1753534029" rel="stylesheet">
+    <link href="/css/auto-complete.css?1753534029" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1753534029" rel="stylesheet">
+    <link href="/css/theme.css?1753534029" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1753534029" rel="stylesheet">
     
-    <link href="/css/theme-workshop.css?1753498241" rel="stylesheet">
+    <link href="/css/theme-workshop.css?1753534029" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1753498241"></script>
+    <script src="/js/jquery-3.3.1.min.js?1753534029"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1753498241"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1753498241"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1753534029"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1753534029"></script>
 <script type="text/javascript">
     
         var baseurl = "\/\/localhost:1313\/\/vi";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1753498241"></script>
+<script type="text/javascript" src="/js/search.js?1753534029"></script>
 
     
   </div>
@@ -82,13 +82,13 @@
  
   
     
-    <li data-nav-id="/vi/1-introduce/" title="Giới thiệu" class="dd-item 
+    <li data-nav-id="/vi/1-introduce/" title="Giới thiệu" class="dd-item 
         
         
         
         ">
       <a href="/vi/1-introduce/">
-           <b> 1. </b> Giới thiệu
+           <b> 1. </b> Giới thiệu
           
             <i class="fas fa-check read-icon"></i>
           
@@ -108,13 +108,13 @@
  
   
     
-    <li data-nav-id="/vi/2-prerequiste/" title="Các bước chuẩn bị" class="dd-item 
+    <li data-nav-id="/vi/2-prerequiste/" title="Chuẩn bị " class="dd-item 
         parent
         
         
         ">
       <a href="/vi/2-prerequiste/">
-           <b> 2. </b> Các bước chuẩn bị
+           <b> 2. </b> Chuẩn bị 
           
             <i class="fas fa-check read-icon"></i>
           
@@ -139,13 +139,13 @@
  
   
     
-    <li data-nav-id="/vi/2-prerequiste/2.1-launchastack/" title="Chuẩn bị VPC và EC2" class="dd-item 
+    <li data-nav-id="/vi/2-prerequiste/2.1-launchastack/" title="Khởi chạy CloudFormation stack" class="dd-item 
         
         
         
         ">
       <a href="/vi/2-prerequiste/2.1-launchastack/">
-           <b> 2.1 </b> Chuẩn bị VPC và EC2
+           <b> 2.1 </b> Khởi chạy CloudFormation stack
           
             <i class="fas fa-check read-icon"></i>
           
@@ -167,13 +167,13 @@
  
   
     
-    <li data-nav-id="/vi/2-prerequiste/2.2-launchvscode/" title="Tạo IAM Role" class="dd-item 
+    <li data-nav-id="/vi/2-prerequiste/2.2-launchvscode/" title="Khởi chạy VSCode trên AWS và Thiết lập Môi trường" class="dd-item 
         
         active
         
         ">
       <a href="/vi/2-prerequiste/2.2-launchvscode/">
-           <b> 2.2 </b> Tạo IAM Role
+           <b> 2.2 </b> Khởi chạy VSCode trên AWS và Thiết lập Môi trường
           
             <i class="fas fa-check read-icon"></i>
           
@@ -202,13 +202,13 @@
  
   
     
-    <li data-nav-id="/vi/3-accessibilitytoinstances/" title="Tạo kết nối đến máy chủ EC2" class="dd-item 
+    <li data-nav-id="/vi/3-accessibilitytoinstances/" title="Triển khai Ứng dụng Serverless Amazon Bedrock" class="dd-item 
         
         
         
         ">
       <a href="/vi/3-accessibilitytoinstances/">
-           <b> 3. </b> Tạo kết nối đến máy chủ EC2
+           <b> 3. </b> Triển khai Ứng dụng Serverless Amazon Bedrock
           
             <i class="fas fa-check read-icon"></i>
           
@@ -370,6 +370,74 @@
           
       </a>
       
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/9-knowledgebases/9.1-createknowledgebase/" title="Port Forwarding" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/9-knowledgebases/9.1-createknowledgebase/">
+           <b> 5. </b> Port Forwarding
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/9-knowledgebases/9.2-integrateknowledgebase/" title="Port Forwarding" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/9-knowledgebases/9.2-integrateknowledgebase/">
+           <b> 5. </b> Port Forwarding
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
               
     </li>
   
@@ -543,7 +611,7 @@
             
           
           
-            <a href='/vi/'>Session Management</a> > <a href='/vi/2-prerequiste/'>Các bước chuẩn bị</a> > Tạo IAM Role
+            <a href='/vi/'>Tạo Chatbot Serverless Sử Dụng Amazon Bedrock, Amazon Kendra và Dữ Liệu Của Riêng Bạn</a> > <a href='/vi/2-prerequiste/'>Chuẩn bị </a> > Khởi chạy VSCode trên AWS và Thiết lập Môi trường
           
         
           
@@ -560,7 +628,7 @@
   <ul>
     <li>
       <ul>
-        <li><a href="#tao-iam-role">Tạo IAM Role</a></li>
+        <li><a href="#khởi-chạy-vscode-trên-aws">Khởi chạy VSCode trên AWS</a></li>
       </ul>
     </li>
   </ul>
@@ -580,7 +648,7 @@
           
             <h1>
               
-              Tạo IAM Role
+              Khởi chạy VSCode trên AWS và Thiết lập Môi trường
             </h1>
           
 
@@ -588,41 +656,27 @@
 
 
 
-	<h3 id="tao-iam-role">Tạo IAM Role</h3>
-<p>Trong bước này chúng ta sẽ tiến hành tạo IAM Role. Trong IAM Role này sẽ được gán policy <strong>AmazonSSMManagedInstanceCore</strong>, đây là policy cho phép máy chủ EC2 có thể giao tiếp với Session Manager.</p>
+	<h3 id="khởi-chạy-vscode-trên-aws">Khởi chạy VSCode trên AWS</h3>
+<p>Để thiết lập môi trường của bạn, hãy mở môi trường VSCode (thay thế cho AWS Cloud9) được lưu trữ trên Amazon EC2.</p>
 <ol>
-<li>Truy cập vào <a href="https://console.aws.amazon.com/iamv2/">giao diện quản trị dịch vụ IAM</a></li>
-<li>Ở thanh điều hướng bên trái, click  <strong>Roles</strong>.</li>
+<li>Mở <a href="https://console.aws.amazon.com/cloudformation/home">AWS CloudFormation</a> console.</li>
+<li>Mở stack <strong>chatbot-startup-stack</strong>.</li>
+<li>Mở <strong>Outputs</strong>, Sao chép <strong>VSCodeWorkspaceURL</strong> và mật khẩu <strong>VSCodeWorkspacePassword</strong> vào một notepad.</li>
 </ol>
-<p><img src="/images/2.prerequisite/038-iamrole.png" alt="role"></p>
-<ol start="3">
-<li>Click <strong>Create role</strong>.</li>
-</ol>
-<p><img src="/images/2.prerequisite/039-iamrole.png" alt="role1"></p>
-<ol start="4">
-<li>Click <strong>AWS service</strong> và click <strong>EC2</strong>.</li>
-</ol>
-<ul>
-<li>Click <strong>Next: Permissions</strong>.</li>
-</ul>
-<p><img src="/images/2.prerequisite/040-iamrole.png" alt="role1"></p>
+<p><img src="https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/anh/anh6.png?raw=true" alt="ConnectPrivate">
+4. Mở một cửa sổ hoặc tab trình duyệt mới, nhập VSCode workspace url, và nhập mật khẩu để khởi chạy VSCode editor.</p>
+<p><img src="https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/anh/anh7_1.png?raw=true" alt="ConnectPrivate"></p>
 <ol start="5">
-<li>Trong ô Search, điền <strong>AmazonSSMManagedInstanceCore</strong> và ấn phím Enter để tìm kiếm policy này.</li>
+<li>
+<p>Sau khi khởi chạy thành công, theme mặc định là màu trắng, bạn có thể tùy chọn thay đổi sang các color theme khác. Ví dụ: Settings Icon -&gt; Themes -&gt; Color Theme -&gt; Dark (Visual Studio)</p>
+</li>
+<li>
+<p>VSCode editor của bạn đã sẵn sàng.
+<img src="https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/anh/anh7.png?raw=true" alt="ConnectPrivate"></p>
+</li>
 </ol>
-<ul>
-<li>Click chọn policy <strong>AmazonSSMManagedInstanceCore</strong>.</li>
-<li>Click <strong>Next: Tags.</strong></li>
-</ul>
-<p><img src="/images/2.prerequisite/041-iamrole.png" alt="createpolicy"></p>
-<ol start="6">
-<li>Click <strong>Next: Review</strong>.</li>
-<li>Đặt tên cho Role là <strong>SSM-Role</strong> ở Role Name</li>
-</ol>
-<ul>
-<li>Click <strong>Create Role</strong> .</li>
-</ul>
-<p><img src="/images/2.prerequisite/042-iamrole.png" alt="namerole"></p>
-<p>Tiếp theo chúng ta sẽ thực hiện kết nối đến các máy chủ EC2 chúng ta đã tạo bằng <strong>Session Manager</strong>.</p>
+<p><strong>Chúc mừng! Bây giờ bạn có thể tiến hành nhiệm vụ tiếp theo.</strong></p>
+<hr>
 
 
 
@@ -841,8 +895,42 @@
 
                     
                     
+                        
+                    
                     
 
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
                     
             
         
@@ -872,10 +960,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/vi/2-prerequiste/2.1-launchastack/" title="Chuẩn bị VPC và EC2"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/vi/2-prerequiste/2.1-launchastack/" title="Khởi chạy CloudFormation stack"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/vi/3-accessibilitytoinstances/" title="Tạo kết nối đến máy chủ EC2" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/vi/3-accessibilitytoinstances/" title="Triển khai Ứng dụng Serverless Amazon Bedrock" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -885,19 +973,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1753498241"></script>
-    <script src="/js/perfect-scrollbar.min.js?1753498241"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1753498241"></script>
-    <script src="/js/jquery.sticky.js?1753498241"></script>
-    <script src="/js/featherlight.min.js?1753498241"></script>
-    <script src="/js/highlight.pack.js?1753498241"></script>
+    <script src="/js/clipboard.min.js?1753534029"></script>
+    <script src="/js/perfect-scrollbar.min.js?1753534029"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1753534029"></script>
+    <script src="/js/jquery.sticky.js?1753534029"></script>
+    <script src="/js/featherlight.min.js?1753534029"></script>
+    <script src="/js/highlight.pack.js?1753534029"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1753498241"></script>
-    <script src="/js/learn.js?1753498241"></script>
-    <script src="/js/hugo-learn.js?1753498241"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1753534029"></script>
+    <script src="/js/learn.js?1753534029"></script>
+    <script src="/js/hugo-learn.js?1753534029"></script>
 
-    <link href="/mermaid/mermaid.css?1753498241" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1753498241"></script>
+    <link href="/mermaid/mermaid.css?1753534029" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1753534029"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

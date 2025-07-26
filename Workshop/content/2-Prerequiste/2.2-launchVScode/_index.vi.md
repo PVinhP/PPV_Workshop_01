@@ -1,39 +1,30 @@
 ---
-title : "Tạo IAM Role"
-date :  2025-06-17
-weight : 2 
+title : "Khởi chạy VSCode trên AWS và Thiết lập Môi trường"
+date : 2025-06-17
+weight : 2
 chapter : false
 pre : " <b> 2.2 </b> "
 ---
 
-### Tạo IAM Role
+### Khởi chạy VSCode trên AWS
+Để thiết lập môi trường của bạn, hãy mở môi trường VSCode (thay thế cho AWS Cloud9) được lưu trữ trên Amazon EC2.
 
-Trong bước này chúng ta sẽ tiến hành tạo IAM Role. Trong IAM Role này sẽ được gán policy **AmazonSSMManagedInstanceCore**, đây là policy cho phép máy chủ EC2 có thể giao tiếp với Session Manager.
+1. Mở [AWS CloudFormation](https://console.aws.amazon.com/cloudformation/home) console.
+2. Mở stack **chatbot-startup-stack**.
+3. Mở **Outputs**, Sao chép **VSCodeWorkspaceURL** và mật khẩu **VSCodeWorkspacePassword** vào một notepad.
 
-1. Truy cập vào [giao diện quản trị dịch vụ IAM](https://console.aws.amazon.com/iamv2/)
-2. Ở thanh điều hướng bên trái, click  **Roles**.  
 
-![role](/images/2.prerequisite/038-iamrole.png)
+![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/anh/anh6.png?raw=true)
+4. Mở một cửa sổ hoặc tab trình duyệt mới, nhập VSCode workspace url, và nhập mật khẩu để khởi chạy VSCode editor.
 
-3. Click **Create role**.  
 
-![role1](/images/2.prerequisite/039-iamrole.png)
+![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/anh/anh7_1.png?raw=true)
 
-4. Click **AWS service** và click **EC2**. 
-  + Click **Next: Permissions**.  
+5. Sau khi khởi chạy thành công, theme mặc định là màu trắng, bạn có thể tùy chọn thay đổi sang các color theme khác. Ví dụ: Settings Icon -> Themes -> Color Theme -> Dark (Visual Studio)
 
-![role1](/images/2.prerequisite/040-iamrole.png)
+6. VSCode editor của bạn đã sẵn sàng.
+![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/anh/anh7.png?raw=true)
 
-5. Trong ô Search, điền **AmazonSSMManagedInstanceCore** và ấn phím Enter để tìm kiếm policy này.
-  + Click chọn policy **AmazonSSMManagedInstanceCore**.
-  + Click **Next: Tags.**
+**Chúc mừng! Bây giờ bạn có thể tiến hành nhiệm vụ tiếp theo.**
 
-![createpolicy](/images/2.prerequisite/041-iamrole.png)
-
-6. Click **Next: Review**.
-7. Đặt tên cho Role là **SSM-Role** ở Role Name  
-  + Click **Create Role** \.
-
-![namerole](/images/2.prerequisite/042-iamrole.png)
-
-Tiếp theo chúng ta sẽ thực hiện kết nối đến các máy chủ EC2 chúng ta đã tạo bằng **Session Manager**.
+---
