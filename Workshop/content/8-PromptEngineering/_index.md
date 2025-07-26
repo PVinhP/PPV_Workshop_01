@@ -25,3 +25,28 @@ Tell me a story about a fox and tiger, the story must be for a 5 year old and un
 4. You will most likely receive a response similar to the one shown below. However, this response does not exist in any of the source documents. Due to the weak prompt structure, the model has hallucinated the response, providing an output that is not grounded in the given context or information.
 
 ![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/5.fwd/task5/015.png?raw=true)
+5. Now, update the prompt with the following fine-tuned version. With this refined prompt, you can expect to receive the desired output.
+
+````bash
+Human: You are an intelligent AI advisor, and provide answers to questions by using fact based information. 
+Use the following pieces of information to provide a concise answer to the question enclosed in <question> tags. 
+Look for the contextual information enclosed in <context> tags.
+If you don't know the answer, just say that you don't know, don't try to make up an answer.
+<context>{context}</context>
+
+<question>{question}</question>
+
+The response should be specific and use facts only.
+
+Assistant:
+````
+6. Observe the response. This time, instead of hallucinating, the model acknowledges that it does not find any relevant context to provide an answer. This is mainly because the prompt directions are clear and obvious to the model, hence leading to the desired output.
+
+![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/5.fwd/task5/013.png?raw=true)
+7. Lastly, try with a question that is relevant to your knowledge base and observe the response. The response looks more polished and factually correct.
+````bash
+ What is federal funds rate as of May 2024?
+````
+![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/5.fwd/task5/014.png?raw=true)
+
+You can experiment with different questions and different prompts until you see concise and consistent responses. Prompt engineering is an iterative process, and you may need to try various options until the responses meet your desired guidelines.

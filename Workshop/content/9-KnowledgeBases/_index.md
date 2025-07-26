@@ -6,65 +6,52 @@ chapter : false
 pre : " <b> 9. </b> "
 ---
 
-In the RAG architecture, Amazon Kendra can be leveraged to index and search through a collection of sample documents stored in Amazon S3 and other sources. Users can provide a query or question, and Kendra will perform a similarity search across the indexed content to identify the most relevant information.
+Amazon Bedrock Knowledge Bases is a fully managed capability that enables you to implement Retrieval Augmented Generation (RAG) workflows using your organization's proprietary data sources. Amazon Bedrock Knowledge Bases automates the entire RAG workflow, from data ingestion to retrieval and prompt augmentation, without requiring custom integrations or data flow management. This allows you to equip foundation models (FMs) and agents with up-to-date and proprietary information to deliver more relevant and accurate responses.
 
-Kendra's advanced natural language processing capabilities allow it to understand the user's intent and query, and then retrieve the most pertinent content from the indexed data sources. This enables users to quickly find the information they need, without having to manually sift through large volumes of documents.
+Amazon Bedrock Knowledge Bases rely on two key components to enable efficient retrieval of relevant information: embeddings and vector stores. These elements work together to transform text data into a format that can be quickly searched and retrieved based on semantic similarity.
 
-By integrating Kendra into the "Retrieve" phase of the RAG architecture, organizations can enhance their overall search and information discovery capabilities, ultimately supporting more effective analysis and generation of insights and responses. Kendra's seamless integration with Amazon S3 simplifies the process of indexing and managing the underlying content, making it a powerful tool within the RAG framework.
-## Download sample documents
-Download a few sample documents to test this solution. The first document pertains to the May and September 2024 meeting minutes of the Federal Open Market Committee (FOMC). The second document is the 2023 Amazon Sustainability Report. The third document is the 2023 10K report for Henry Schein, a provider of dental services. You can download or use any document to test this solution, or you can bring your own data to conduct tests.
+Embeddings are numerical representations of text that capture semantic meaning. In Amazon Bedrock, embedding models like Amazon Titan Embeddings or Cohere Embed convert text from your documents into dense vectors. This process allows for efficient comparison and retrieval of semantically similar content, forming the foundation of the knowledge base's understanding of your data.
 
-To copy the prompt templates and sample documents that you downloaded to the S3 bucket, run the following command.
+Vector stores are specialized databases designed to index and query these vector embeddings efficiently. Amazon Bedrock offers options like Amazon-managed OpenSearch Serverless or custom solutions such as Amazon Aurora PostgreSQL with pgvector. These stores enable rapid similarity searches, allowing the system to quickly identify and retrieve the most relevant information when responding to queries, thus enhancing the performance of Retrieval Augmented Generation (RAG) workflows.
+## Functionality and Benefits
+Seamless RAG Implementation: Amazon Bedrock Knowledge Bases automates the entire RAG workflow, from data ingestion to retrieval and prompt augmentation, without requiring custom integrations or data flow management. This allows you to equip foundation models (FMs) and agents with up-to-date and proprietary information to deliver more relevant and accurate responses.
 
-Open the VSCode editor, then run the command in the **TERMINAL**.
+Secure Data Connection: The service automatically fetches documents from your specified data sources, including Amazon S3, Web Crawler, Salesforce, and SharePoint. It then processes the content by dividing it into text blocks, converting them into embeddings, and storing them in a vector database.
 
-````bash
-cd ~/environment/bedrock-serverless-workshop
-mkdir sample-documents
+Customization Options: You can fine-tune both retrieval and ingestion processes to improve accuracy across different use cases. Advanced parsing options are available for understanding complex unstructured data, and you can choose from various chunking strategies or even write custom chunking code.
+## Knowledge Bases Architecture
+In the next two tasks, you will build a chatbot using Amazon Bedrock Knowledge Bases. The architecture of the solution is illustrated below:
+![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/anh/000-architecture.png?raw=true)
+## Knowledge Base and Vector Search Components
 
-curl https://www.federalreserve.gov/monetarypolicy/files/monetary20240501a1.pdf --output sample-documents/monetary20240501a1.pdf
-curl https://www.federalreserve.gov/monetarypolicy/files/monetary20240918a1.pdf --output sample-documents/monetary20240918a1.pdf
-curl https://sustainability.aboutamazon.com/content/dam/sustainability-marketing-site/pdfs/reports-docs/2023-amazon-sustainability-report.pdf --output sample-documents/2023-sustainability-report-amazon.pdf
-curl https://investor.henryschein.com/static-files/bcc116aa-a576-4756-a722-90f5e2e22114 --output sample-documents/2023-hs1-10k.pdf
+1. **Knowledge Bases**: Central repository for structured information  
+2. **Amazon S3**: Storage for documents (pdf, csv, txt, etc.)  
+3. **Amazon OpenSearch**: Vector database and search engine for efficient similarity search  
+4. **Amazon Bedrock**: Provides access to embedding models, including Amazon Titan Embeddings  
 
-````
+---
 
-## Upload sample documents and prompt templates
-To copy prompt templates and sample documents you downloaded to the S3 bucket, run the following command.
+## Knowledge Base and Vector Search Workflow
 
-````bash
-cd ~/environment/bedrock-serverless-workshop
-aws s3 cp sample-documents s3://$S3BucketName/sample-documents/ --recursive
-aws s3 cp prompt-engineering s3://$S3BucketName/prompt-engineering/ --recursive
-````
-After a successful upload, review the Amazon S3 console and open the bucket. You should see something like this:
+1. Documents are stored in Amazon S3  
+2. Text is extracted and processed from documents  
+3. Amazon Bedrock's Titan Embeddings model generates vector representations of text  
+4. Vectors are stored in Amazon OpenSearch, functioning as a vector database  
+5. Knowledge Bases ingest and structure information, incorporating vector representations  
+6. AWS Lambda functions (RAG/KB/LLM Functions) interact with Knowledge Bases and vector search  
+7. RAG (Retrieval Augmented Generation) leverages vector similarity search for relevant information retrieval
+## 🔍 Key Features of Knowledge Base and Vector Search Integration
 
-![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/5.fwd/task5/003.png?raw=true)
+- Semantic search capabilities using vector representations of text  
+- Efficient similarity search through Amazon OpenSearch's vector database functionality  
+- Integration of Amazon Titan Embeddings for high-quality text vectorization  
+- Enhanced context and accuracy in chatbot responses using vector-based retrieval  
+- Improved relevance in information retrieval for RAG operations  
+- Ability to handle and search through large volumes of unstructured text data  
+- Seamless combination of traditional keyword search and vector-based semantic search  
 
-## Index the sample documents by using Amazon Kendra
+---
 
-The Amazon Kendra index and Amazon S3 data source were created during the initial provisioning for this workshop. In this task, you index all the documents in the S3 data source.
-1. [Open Amazon Kendra console](https://console.aws.amazon.com/kendra/)
-
-2. At the upper-left of the Amazon Kendra console, choose the menu menu ☰ icon, and then, in the navigation pane, choose Indexes.
-![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/5.fwd/task5/001.png?raw=true)
-
-
-
-![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/5.fwd/task5/002.png?raw=true)
-
-3. Click on the index name to see the left navigation pane.
-
-4. To start indexing all the documents from the sample-documents folder, select the S3DocsDataSource, and then choose Sync now. The indexing might take a couple minutes. Wait for it to be completed.
-![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/5.fwd/task5/004.png?raw=true)
-5. To query the Amazon Kendra index with a few sample questions, in the left navigation pane, choose Search indexed content, and then ask a question.
-
-Sample question:
-````bash
-What is federal funds rate as of May 2024??
-````
-![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/5.fwd/task5/005.png?raw=true)
-
---- 
-### Congratulations
-You can now proceed to next task.
+This setup allows the chatbot to perform advanced semantic searches on enterprise knowledge.  
+By using Amazon Titan Embeddings to create vector representations of text and storing these in Amazon OpenSearch as a vector database, the system can find contextually similar information even when exact keyword matches are not present.  
+This significantly enhances the chatbot's ability to understand and respond to user queries with relevant information from the enterprise's knowledge base.

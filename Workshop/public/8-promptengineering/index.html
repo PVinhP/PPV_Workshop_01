@@ -12,21 +12,21 @@
     <title>Prompt Engineering :: AWS System Manager</title>
 
     
-    <link href="/css/nucleus.css?1753500837" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1753500837" rel="stylesheet">
-    <link href="/css/hybrid.css?1753500837" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1753500837" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1753500837" rel="stylesheet">
-    <link href="/css/auto-complete.css?1753500837" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1753500837" rel="stylesheet">
-    <link href="/css/theme.css?1753500837" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1753500837" rel="stylesheet">
+    <link href="/css/nucleus.css?1753513766" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1753513766" rel="stylesheet">
+    <link href="/css/hybrid.css?1753513766" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1753513766" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1753513766" rel="stylesheet">
+    <link href="/css/auto-complete.css?1753513766" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1753513766" rel="stylesheet">
+    <link href="/css/theme.css?1753513766" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1753513766" rel="stylesheet">
     
-    <link href="/css/theme-workshop.css?1753500837" rel="stylesheet">
+    <link href="/css/theme-workshop.css?1753513766" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1753500837"></script>
+    <script src="/js/jquery-3.3.1.min.js?1753513766"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1753500837"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1753500837"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1753513766"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1753513766"></script>
 <script type="text/javascript">
     
         var baseurl = "\/\/localhost:1313\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1753500837"></script>
+<script type="text/javascript" src="/js/search.js?1753513766"></script>
 
     
   </div>
@@ -370,6 +370,74 @@
           
       </a>
       
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/9-knowledgebases/9.1-createknowledgebase/" title="Create and Test Knowledge Base" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/9-knowledgebases/9.1-createknowledgebase/">
+           <b> 9.1 </b> Create and Test Knowledge Base
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/9-knowledgebases/9.2-integrateknowledgebase/" title="Integrate Knowledge Base with a Lambda Function" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/9-knowledgebases/9.2-integrateknowledgebase/">
+           <b> 9.2 </b> Integrate Knowledge Base with a Lambda Function
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
               
     </li>
   
@@ -590,7 +658,27 @@
 <ol start="4">
 <li>You will most likely receive a response similar to the one shown below. However, this response does not exist in any of the source documents. Due to the weak prompt structure, the model has hallucinated the response, providing an output that is not grounded in the given context or information.</li>
 </ol>
-<p><img src="https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/5.fwd/task5/015.png?raw=true" alt="ConnectPrivate"></p>
+<p><img src="https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/5.fwd/task5/015.png?raw=true" alt="ConnectPrivate">
+5. Now, update the prompt with the following fine-tuned version. With this refined prompt, you can expect to receive the desired output.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Human: You are an intelligent AI advisor, and provide answers to questions by using fact based information. 
+</span></span><span style="display:flex;"><span>Use the following pieces of information to provide a concise answer to the question enclosed in &lt;question&gt; tags. 
+</span></span><span style="display:flex;"><span>Look <span style="color:#66d9ef">for</span> the contextual information enclosed in &lt;context&gt; tags.
+</span></span><span style="display:flex;"><span>If you don<span style="color:#e6db74">&#39;t know the answer, just say that you don&#39;</span>t know, don<span style="color:#960050;background-color:#1e0010">&#39;</span>t try to make up an answer.
+</span></span><span style="display:flex;"><span>&lt;context&gt;<span style="color:#f92672">{</span>context<span style="color:#f92672">}</span>&lt;/context&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;question&gt;<span style="color:#f92672">{</span>question<span style="color:#f92672">}</span>&lt;/question&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>The response should be specific and use facts only.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Assistant:
+</span></span></code></pre></div><ol start="6">
+<li>Observe the response. This time, instead of hallucinating, the model acknowledges that it does not find any relevant context to provide an answer. This is mainly because the prompt directions are clear and obvious to the model, hence leading to the desired output.</li>
+</ol>
+<p><img src="https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/5.fwd/task5/013.png?raw=true" alt="ConnectPrivate">
+7. Lastly, try with a question that is relevant to your knowledge base and observe the response. The response looks more polished and factually correct.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> What is federal funds rate as of May 2024?
+</span></span></code></pre></div><p><img src="https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/5.fwd/task5/014.png?raw=true" alt="ConnectPrivate"></p>
+<p>You can experiment with different questions and different prompts until you see concise and consistent responses. Prompt engineering is an iterative process, and you may need to try various options until the responses meet your desired guidelines.</p>
 
 
 
@@ -805,8 +893,42 @@
 
                     
                     
+                        
+                    
                     
 
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
                     
             
         
@@ -849,19 +971,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1753500837"></script>
-    <script src="/js/perfect-scrollbar.min.js?1753500837"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1753500837"></script>
-    <script src="/js/jquery.sticky.js?1753500837"></script>
-    <script src="/js/featherlight.min.js?1753500837"></script>
-    <script src="/js/highlight.pack.js?1753500837"></script>
+    <script src="/js/clipboard.min.js?1753513766"></script>
+    <script src="/js/perfect-scrollbar.min.js?1753513766"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1753513766"></script>
+    <script src="/js/jquery.sticky.js?1753513766"></script>
+    <script src="/js/featherlight.min.js?1753513766"></script>
+    <script src="/js/highlight.pack.js?1753513766"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1753500837"></script>
-    <script src="/js/learn.js?1753500837"></script>
-    <script src="/js/hugo-learn.js?1753500837"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1753513766"></script>
+    <script src="/js/learn.js?1753513766"></script>
+    <script src="/js/hugo-learn.js?1753513766"></script>
 
-    <link href="/mermaid/mermaid.css?1753500837" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1753500837"></script>
+    <link href="/mermaid/mermaid.css?1753513766" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1753513766"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
