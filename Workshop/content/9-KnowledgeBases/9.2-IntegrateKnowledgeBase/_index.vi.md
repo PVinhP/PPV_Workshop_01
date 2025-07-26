@@ -1,93 +1,142 @@
 ---
-title : "Port Forwarding"
-date :  2025-06-17
-weight : 5 
+title : "Tích hợp Knowledge Base với Lambda Function"
+date : 2025-07-17
+weight : 9
 chapter : false
-pre : " <b> 5. </b> "
+pre : " <b> 9.2 </b> "
 ---
 
-{{% notice info %}}
-**Port Forwarding** là mốt cách thức hữu ích để chuyển hướng lưu lượng mạng từ 1 địa chỉ IP - Port này sang 1 địa chỉ IP - Port khác. Với **Port Forwarding** chúng ta có thể truy cập một EC2 instance nằm trong private subnet từ máy trạm của chúng ta.
-{{% /notice %}}
+Trong tác vụ này, bạn sẽ tích hợp Amazon Bedrock Knowledge Base với một AWS Lambda function, sử dụng thiết lập API Gateway hiện có.  
+Mục tiêu là thiết lập một Lambda function có thể tương tác với Knowledge Base và kết nối tới endpoint API đã được cấu hình trước.  
+Việc tích hợp này cho phép giao diện người dùng (UI) hiện có có thể giao tiếp với Knowledge Base thông qua kiến trúc serverless, giúp truy vấn và lấy thông tin hiệu quả bằng kỹ thuật RAG.  
+Bằng cách tận dụng API Gateway đã được cấu hình và triển khai Lambda function, bạn sẽ hoàn thiện phần backend, cho phép người dùng truy cập vào sức mạnh của Knowledge Base thông qua giao diện web quen thuộc, đồng thời duy trì khả năng mở rộng và tính linh hoạt của giải pháp cloud-native.
 
-Chúng ta sẽ cấu hình **Port Forwarding** cho kết nối RDP giữa máy của mình với **Private Windows Instance** nằm trong private subnet mà chúng ta đã tạo cho bài thực hành này.
+---
 
-![port-fwd](/images/arc-04.png) 
+## ⚙️ Thiết lập AWS Lambda Function
+
+Lambda function đã được triển khai trước đó trong quá trình triển khai SAM ở Bước 2.  
+Trong bước này, bạn sẽ cập nhật mã nguồn cho function và thêm biến môi trường chứa Knowledge Base ID.  
+Các thay đổi này cho phép Lambda function tương tác hiệu quả với Knowledge Base.
+
+> ℹ️ **Note**  
+> Trước khi tiếp tục, đảm bảo rằng quá trình tạo Knowledge Base đã hoàn tất.  
+> Bước này yêu cầu sử dụng Knowledge Base ID như một biến môi trường cho Lambda.  
+> Hãy xác minh trạng thái của Knowledge Base bạn đã tạo ở bước trước và chỉ tiếp tục khi nó đã hoạt động đầy đủ.
+
+---
+
+1. Mở trình soạn thảo **VSCode**.  
+2. Trong thư mục dự án **`bedrock-serverless-workshop`**, mở file **`/lambdas/llmFunctions/kbfunction.py`**, sao chép đoạn mã dưới đây và cập nhật vào file. Function này chứa logic gọi tới Knowledge Base.
+![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/8.KB/018.png?raw=true)
+
+````bash
+import os
+import json
+import boto3
+
+import traceback
 
 
+region = boto3.session.Session().region_name
+KB_ID = os.environ["KB_ID"]
 
-#### Tạo IAM User có quyền kết nối SSM
 
-1. Truy cập vào [giao diện quản trị dịch vụ IAM](https://console.aws.amazon.com/iamv2/home)
-  + Click **Users** , sau đó click **Add users**.
+def lambda_handler(event, context):
+    boto3_version = boto3.__version__
+    print(f"Boto3 version: {boto3_version}")
+    
+    print(f"Event is: {event}")
+    event_body = json.loads(event["body"])
+    prompt = event_body["query"]
+    model_id = event_body["model_id"]
+    
+    response = ''
+    status_code = 200
+    
+    try:
+        model_arn = 'arn:aws:bedrock:'+region+'::foundation-model/'+model_id
+        print(f"Model arn: {model_arn}")
+        
+        response = retrieveAndGenerate(prompt, model_arn)["output"]["text"]
+        return {
+            'statusCode': status_code,
+            'headers': {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+                'Access-Control-Allow-Methods': 'OPTIONS,POST'
+            },
+            'body': json.dumps({'answer': response})
+        }
+            
+    except Exception as e:
+        print(f"An unexpected error occurred: {str(e)}")
+        stack_trace = traceback.format_exc()
+        print(stack_trace)
+        return {
+            'statusCode': status_code,
+            'headers': {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+                'Access-Control-Allow-Methods': 'OPTIONS,POST'
+            },
+            'body': json.dumps({'error': str(e)})
+        }
 
-![FWD](/images/5.fwd/001-fwd.png)
+def retrieveAndGenerate(prompt, model_arn):
+    bedrock_agent_runtime = boto3.client(
+            service_name = "bedrock-agent-runtime")
+    return bedrock_agent_runtime.retrieve_and_generate(
+        input={
+            'text': prompt
+        },
+        retrieveAndGenerateConfiguration={
+            'type': 'KNOWLEDGE_BASE',
+            'knowledgeBaseConfiguration': {
+                'knowledgeBaseId': KB_ID,
+                'modelArn': model_arn
+                }
+            }
+    )
+````
+3. Chạy các lệnh sau để truy xuất Knowledge Base ID và cập nhật biến môi trường của hàm Lambda:
+````bash
+export KB_ID=$(aws bedrock-agent list-knowledge-bases | jq -r '.knowledgeBaseSummaries[0].knowledgeBaseId')
+echo "Knowledge Base ID: $KB_ID"
+sed -Ei "s|copy_kb_id|${KB_ID}|g" ./template.yaml
+````
+4. Mở terminal trong VSCode, chạy lệnh sau để biên dịch và triển khai với mã Lambda đã được cập nhật:
 
-2. Tại trang **Add user**.
-  + Tại mục **User name**, điền **Portfwd**.
-  + Click chọn **Access key - Programmatic access**.
-  + Click **Next: Permissions**.
-  
-![FWD](/images/5.fwd/002-fwd.png)
+````bash
+cd ~/environment/bedrock-serverless-workshop
+sam build && sam deploy
+````
 
-3. Click **Attach existing policies directly**.
-  + Tại ô tìm kiếm , điền **ssm**.
-  + Click chọn **AmazonSSMFullAccess**.
-  + Click **Next: Tags**, click **Next: Reviews**.
-  + Click **Create user**.
+Hàm Lambda đã được tích hợp thành công với Amazon Bedrock Knowledge Base của bạn.
+Việc tích hợp này cho phép hàm Lambda tương tác trực tiếp với Knowledge Base, giúp truy xuất và xử lý thông tin từ dữ liệu độc quyền của bạn.
 
-4. Lưu lại thông tin **Access key ID** và **Secret access key** để thực hiện cấu hình AWS CLI.
+---
 
-#### Cài đặt và cấu hình AWS CLI và Session Manager Plugin 
-  
-Để thực hiện phần thực hành này, đảm bảo máy trạm của bạn đã cài [AWS CLI]() và [Session Manager Plugin](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-working-with-install-plugin.html)
+## 🧪 Kiểm tra Knowledge Base bằng giao diện người dùng
 
-Bạn có thể tham khảo thêm bài thực hành về cài đặt và cấu hình AWS CLI [tại đây](https://000011.awsstudygroup.com/).
+1. Quay lại trình duyệt và mở trang web của chatbot.  
+   Nếu bạn chưa đăng nhập, hãy sử dụng thông tin đăng nhập mà bạn đã lấy trước đó để đăng nhập.
 
-{{%notice tip%}}
-Với Windows thì khi giải nén thư mục cài đặt **Session Manager Plugin** bạn hãy chạy file **install.bat** với quyền Administrator để thực hiện cài đặt.
-{{%/notice%}}
+2. Chọn tùy chọn **RAG with Knowledge Bases** từ menu.
 
-#### Thực hiện Portforwarding 
+3. Đặt một câu hỏi — bạn có thể sử dụng câu hỏi mẫu ở bảng bên phải. Dưới đây là một câu hỏi mẫu và phản hồi từ **Claude 3.5 Sonnet**.  Bạn có thể thử với các mô hình LLM khác và so sánh kết quả.
 
-1. Chạy command dưới đây trong **Command Prompt** trên máy của bạn để cấu hình **Port Forwarding**.
 
+```text
+What are Amazon sustainability goals by year 2040?
 ```
-  aws ssm start-session --target (your ID windows instance) --document-name AWS-StartPortForwardingSession --parameters portNumber="3389",localPortNumber="9999" --region (your region) 
-```
-{{%notice tip%}}
 
-Thông tin **Instance ID** của **Windows Private Instance** có thể tìm được khi bạn xem chi tiết máy chủ EC2 Windows Private Instance.
+![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/8.KB/019.png?raw=true)
 
-{{%/notice%}}
+![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/8.KB/020.png?raw=true)
+Nhiệm vụ này đã hướng dẫn bạn quy trình tạo và tích hợp Amazon Bedrock Knowledge Base với AWS Lambda và API Gateway.  
+Bạn đã thiết lập thành công kiến trúc serverless sử dụng dữ liệu độc quyền của tổ chức để nâng cao các ứng dụng sử dụng trí tuệ nhân tạo.
 
-  + Câu lệnh ví dụ
+Bằng cách kết nối Knowledge Base với Lambda và sử dụng API Gateway hiện có, bạn đã tạo ra một backend mạnh mẽ có khả năng xử lý truy vấn, truy xuất thông tin liên quan và tạo ra phản hồi theo ngữ cảnh.  
 
-```
-C:\Windows\system32>aws ssm start-session --target i-06343d7377486760c --document-name AWS-StartPortForwardingSession --parameters portNumber="3389",localPortNumber="9999" --region ap-southeast-1
-```
-
-{{%notice warning%}}
-
-Nếu câu lệnh của bạn báo lỗi như dưới đây : \
-SessionManagerPlugin is not found. Please refer to SessionManager Documentation here: http://docs.aws.amazon.com/console/systems-manager/session-manager-plugin-not-found\
-Chứng tỏ bạn chưa cài Session Manager Plugin thành công. Bạn có thể cần khởi chạy lại **Command Prompt** sau khi cài **Session Manager Plugin**.
-
-{{%/notice%}}
-
-2. Kết nối tới **Private Windows Instance** bạn đã tạo bằng công cụ **Remote Desktop** trên máy trạm của bạn.
-  + Tại mục Computer: điền **localhost:9999**.
-
-
-![FWD](/images/5.fwd/003-fwd.png)
-
-
-3. Quay trở lại giao diện quản trị của dịch vụ System Manager - Session Manager.
-  + Click tab **Session history**.
-  + Chúng ta sẽ thấy các session logs với tên Document là **AWS-StartPortForwardingSession**.
-
-
-![FWD](/images/5.fwd/004-fwd.png)
-
-
-Chúc mừng bạn đã hoàn tất bài thực hành hướng dẫn cách sử dụng Session Manager để kết nối cũng như lưu trữ các session logs trong S3 bucket. Hãy nhớ thực hiện bước dọn dẹp tài nguyên để tránh sinh chi phí ngoài ý muốn nhé.
+Việc tích hợp này mở ra nhiều khả năng để phát triển các ứng dụng thông minh — từ chatbot nâng cao đến giao diện tìm kiếm tinh vi — đồng thời vẫn đảm bảo **bảo mật dữ liệu** và **khả năng mở rộng**.

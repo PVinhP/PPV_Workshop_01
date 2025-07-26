@@ -1,93 +1,72 @@
 ---
-title : "Port Forwarding"
-date :  2025-06-17
-weight : 5 
+title : "Lập chỉ mục dữ liệu nguồn bằng Amazon Kendra"
+date : 2025-07-17
+weight : 6
 chapter : false
-pre : " <b> 5. </b> "
+pre : " <b> 6. </b> "
 ---
 
-{{% notice info %}}
-**Port Forwarding** là mốt cách thức hữu ích để chuyển hướng lưu lượng mạng từ 1 địa chỉ IP - Port này sang 1 địa chỉ IP - Port khác. Với **Port Forwarding** chúng ta có thể truy cập một EC2 instance nằm trong private subnet từ máy trạm của chúng ta.
-{{% /notice %}}
+Trong kiến trúc RAG, Amazon Kendra có thể được sử dụng để lập chỉ mục và tìm kiếm trên tập hợp tài liệu mẫu được lưu trữ trong Amazon S3 hoặc các nguồn khác. Người dùng có thể đưa ra một truy vấn hoặc câu hỏi, và Kendra sẽ thực hiện tìm kiếm theo độ tương đồng trên nội dung đã được lập chỉ mục để xác định thông tin liên quan nhất.
 
-Chúng ta sẽ cấu hình **Port Forwarding** cho kết nối RDP giữa máy của mình với **Private Windows Instance** nằm trong private subnet mà chúng ta đã tạo cho bài thực hành này.
+Khả năng xử lý ngôn ngữ tự nhiên nâng cao của Kendra cho phép nó hiểu ý định và truy vấn của người dùng, sau đó truy xuất nội dung phù hợp nhất từ các nguồn dữ liệu đã được lập chỉ mục. Điều này giúp người dùng nhanh chóng tìm được thông tin cần thiết mà không cần phải xem qua từng tài liệu một cách thủ công.
 
-![port-fwd](/images/arc-04.png) 
+Bằng cách tích hợp Kendra vào giai đoạn "Retrieve" trong kiến trúc RAG, các tổ chức có thể nâng cao khả năng tìm kiếm và khai phá thông tin, từ đó hỗ trợ tốt hơn cho việc phân tích và tạo ra các phản hồi có giá trị. Việc tích hợp liền mạch giữa Kendra và Amazon S3 giúp đơn giản hóa quá trình lập chỉ mục và quản lý nội dung, khiến Kendra trở thành một công cụ mạnh mẽ trong hệ thống RAG.
 
+## Tải xuống tài liệu mẫu
 
+Tải về một vài tài liệu mẫu để kiểm thử giải pháp này. Tài liệu đầu tiên là biên bản cuộc họp tháng 5 và tháng 9 năm 2024 của Ủy ban Thị trường Mở Liên bang (FOMC). Tài liệu thứ hai là Báo cáo Phát triển Bền vững năm 2023 của Amazon. Tài liệu thứ ba là báo cáo 10-K năm 2023 của Henry Schein, một nhà cung cấp dịch vụ nha khoa. Bạn có thể tải về hoặc sử dụng bất kỳ tài liệu nào để thử nghiệm, hoặc dùng dữ liệu riêng của bạn để kiểm tra.
 
-#### Tạo IAM User có quyền kết nối SSM
+Để sao chép các mẫu prompt và tài liệu mẫu vào S3 bucket, hãy chạy lệnh sau:
 
-1. Truy cập vào [giao diện quản trị dịch vụ IAM](https://console.aws.amazon.com/iamv2/home)
-  + Click **Users** , sau đó click **Add users**.
+Mở trình soạn thảo VSCode, sau đó chạy lệnh trong **TERMINAL**.
 
-![FWD](/images/5.fwd/001-fwd.png)
+````bash
+cd ~/environment/bedrock-serverless-workshop
+mkdir sample-documents
+curl https://www.federalreserve.gov/monetarypolicy/files/monetary20240501a1.pdf --output sample-documents/monetary20240501a1.pdf
+curl https://www.federalreserve.gov/monetarypolicy/files/monetary20240918a1.pdf --output sample-documents/monetary20240918a1.pdf
+curl https://sustainability.aboutamazon.com/content/dam/sustainability-marketing-site/pdfs/reports-docs/2023-amazon-sustainability-report.pdf --output sample-documents/2023-sustainability-report-amazon.pdf
+curl https://investor.henryschein.com/static-files/bcc116aa-a576-4756-a722-90f5e2e22114 --output sample-documents/2023-hs1-10k.pdf
 
-2. Tại trang **Add user**.
-  + Tại mục **User name**, điền **Portfwd**.
-  + Click chọn **Access key - Programmatic access**.
-  + Click **Next: Permissions**.
-  
-![FWD](/images/5.fwd/002-fwd.png)
+````
 
-3. Click **Attach existing policies directly**.
-  + Tại ô tìm kiếm , điền **ssm**.
-  + Click chọn **AmazonSSMFullAccess**.
-  + Click **Next: Tags**, click **Next: Reviews**.
-  + Click **Create user**.
+## Tải lên tài liệu mẫu và prompt templates
+Để sao chép các mẫu prompt và tài liệu mẫu bạn vừa tải về lên S3 bucket, chạy lệnh sau:
+````bash
+cd ~/environment/bedrock-serverless-workshop
+aws s3 cp sample-documents s3://$S3BucketName/sample-documents/ --recursive
+aws s3 cp prompt-engineering s3://$S3BucketName/prompt-engineering/ --recursive
+````
+Sau khi tải lên thành công, mở AWS S3 Console và truy cập bucket. Bạn sẽ thấy giao diện tương tự như sau:
 
-4. Lưu lại thông tin **Access key ID** và **Secret access key** để thực hiện cấu hình AWS CLI.
+![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/5.fwd/task5/003.png?raw=true)
 
-#### Cài đặt và cấu hình AWS CLI và Session Manager Plugin 
-  
-Để thực hiện phần thực hành này, đảm bảo máy trạm của bạn đã cài [AWS CLI]() và [Session Manager Plugin](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-working-with-install-plugin.html)
+## Lập chỉ mục tài liệu mẫu bằng Amazon Kendra
 
-Bạn có thể tham khảo thêm bài thực hành về cài đặt và cấu hình AWS CLI [tại đây](https://000011.awsstudygroup.com/).
+Chỉ mục Amazon Kendra và nguồn dữ liệu từ Amazon S3 đã được tạo sẵn trong quá trình thiết lập ban đầu của workshop này. Trong bước này, bạn sẽ lập chỉ mục toàn bộ tài liệu trong thư mục sample-documents trên S3.
+1. [Mở bảng điều khiển Amazon Kendra](https://console.aws.amazon.com/kendra/)
 
-{{%notice tip%}}
-Với Windows thì khi giải nén thư mục cài đặt **Session Manager Plugin** bạn hãy chạy file **install.bat** với quyền Administrator để thực hiện cài đặt.
-{{%/notice%}}
-
-#### Thực hiện Portforwarding 
-
-1. Chạy command dưới đây trong **Command Prompt** trên máy của bạn để cấu hình **Port Forwarding**.
-
-```
-  aws ssm start-session --target (your ID windows instance) --document-name AWS-StartPortForwardingSession --parameters portNumber="3389",localPortNumber="9999" --region (your region) 
-```
-{{%notice tip%}}
-
-Thông tin **Instance ID** của **Windows Private Instance** có thể tìm được khi bạn xem chi tiết máy chủ EC2 Windows Private Instance.
-
-{{%/notice%}}
-
-  + Câu lệnh ví dụ
-
-```
-C:\Windows\system32>aws ssm start-session --target i-06343d7377486760c --document-name AWS-StartPortForwardingSession --parameters portNumber="3389",localPortNumber="9999" --region ap-southeast-1
-```
-
-{{%notice warning%}}
-
-Nếu câu lệnh của bạn báo lỗi như dưới đây : \
-SessionManagerPlugin is not found. Please refer to SessionManager Documentation here: http://docs.aws.amazon.com/console/systems-manager/session-manager-plugin-not-found\
-Chứng tỏ bạn chưa cài Session Manager Plugin thành công. Bạn có thể cần khởi chạy lại **Command Prompt** sau khi cài **Session Manager Plugin**.
-
-{{%/notice%}}
-
-2. Kết nối tới **Private Windows Instance** bạn đã tạo bằng công cụ **Remote Desktop** trên máy trạm của bạn.
-  + Tại mục Computer: điền **localhost:9999**.
+2. Ở góc trên bên trái giao diện Kendra, chọn biểu tượng menu ☰, sau đó trong bảng điều hướng chọn Indexes.
+![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/5.fwd/task5/001.png?raw=true)
 
 
-![FWD](/images/5.fwd/003-fwd.png)
+
+![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/5.fwd/task5/002.png?raw=true)
+
+3. Nhấp vào tên của chỉ mục (index) để mở bảng điều hướng bên trái.
+
+4. Để bắt đầu lập chỉ mục toàn bộ tài liệu từ thư mục sample-documents, chọn S3DocsDataSource, sau đó chọn Sync now. Quá trình lập chỉ mục có thể mất vài phút. Vui lòng chờ cho đến khi hoàn tất.
 
 
-3. Quay trở lại giao diện quản trị của dịch vụ System Manager - Session Manager.
-  + Click tab **Session history**.
-  + Chúng ta sẽ thấy các session logs với tên Document là **AWS-StartPortForwardingSession**.
+![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/5.fwd/task5/004.png?raw=true)
+5. Để gửi truy vấn đến chỉ mục Amazon Kendra với một vài câu hỏi mẫu, trong bảng điều hướng bên trái, chọn Search indexed content, sau đó nhập câu hỏi.
 
+Ví dụ câu hỏi:
+````bash
+What is federal funds rate as of May 2024??
+````
+![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/5.fwd/task5/005.png?raw=true)
 
-![FWD](/images/5.fwd/004-fwd.png)
-
-
-Chúc mừng bạn đã hoàn tất bài thực hành hướng dẫn cách sử dụng Session Manager để kết nối cũng như lưu trữ các session logs trong S3 bucket. Hãy nhớ thực hiện bước dọn dẹp tài nguyên để tránh sinh chi phí ngoài ý muốn nhé.
+--- 
+### Xin chúc mừng
+Bạn đã hoàn thành nhiệm vụ và có thể chuyển sang bước tiếp theo.

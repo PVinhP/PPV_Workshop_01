@@ -1,93 +1,63 @@
 ---
-title : "Port Forwarding"
-date :  2025-06-17
-weight : 5 
+title : "Trò chuyện RAG với Bedrock Knowledge Bases"
+date : 2025-07-17
+weight : 9
 chapter : false
-pre : " <b> 5. </b> "
+pre : " <b> 9. </b> "
 ---
 
-{{% notice info %}}
-**Port Forwarding** là mốt cách thức hữu ích để chuyển hướng lưu lượng mạng từ 1 địa chỉ IP - Port này sang 1 địa chỉ IP - Port khác. Với **Port Forwarding** chúng ta có thể truy cập một EC2 instance nằm trong private subnet từ máy trạm của chúng ta.
-{{% /notice %}}
+Amazon Bedrock Knowledge Bases là một tính năng được quản lý toàn phần, cho phép bạn triển khai quy trình RAG (Retrieval Augmented Generation) dựa trên nguồn dữ liệu riêng của tổ chức. Bedrock Knowledge Bases tự động hóa toàn bộ quy trình RAG — từ việc nạp dữ liệu, truy xuất thông tin, đến bổ sung vào prompt — mà không cần tích hợp thủ công hoặc tự quản lý luồng dữ liệu. Điều này giúp bạn cung cấp cho các mô hình nền tảng (Foundation Models - FMs) và tác nhân (Agents) thông tin cập nhật và riêng biệt, từ đó tạo ra phản hồi chính xác và phù hợp hơn.
 
-Chúng ta sẽ cấu hình **Port Forwarding** cho kết nối RDP giữa máy của mình với **Private Windows Instance** nằm trong private subnet mà chúng ta đã tạo cho bài thực hành này.
+Amazon Bedrock Knowledge Bases dựa vào hai thành phần chính để thực hiện việc truy xuất thông tin hiệu quả: **embeddings** và **vector stores**. Hai thành phần này hoạt động cùng nhau để chuyển đổi dữ liệu văn bản thành định dạng có thể tìm kiếm nhanh chóng dựa trên sự tương đồng về ngữ nghĩa.
 
-![port-fwd](/images/arc-04.png) 
+**Embeddings** là biểu diễn số của văn bản nhằm nắm bắt ý nghĩa ngữ nghĩa. Trong Amazon Bedrock, các mô hình embedding như **Amazon Titan Embeddings** hoặc **Cohere Embed** sẽ chuyển văn bản từ tài liệu của bạn thành các vector đặc (dense vectors). Quá trình này cho phép hệ thống so sánh và truy xuất nội dung có ý nghĩa tương tự một cách hiệu quả, tạo nền tảng cho khả năng “hiểu” dữ liệu của Knowledge Base.
 
+**Vector stores** là cơ sở dữ liệu chuyên biệt được thiết kế để lập chỉ mục và truy vấn các embedding vector một cách hiệu quả. Amazon Bedrock hỗ trợ các tuỳ chọn như **Amazon OpenSearch Serverless được quản lý bởi Amazon** hoặc giải pháp tùy chỉnh như **Amazon Aurora PostgreSQL với tiện ích mở rộng pgvector**. Các vector store này cho phép thực hiện truy vấn theo ngữ nghĩa nhanh chóng, giúp hệ thống nhận diện và truy xuất thông tin phù hợp nhất khi xử lý truy vấn — từ đó nâng cao hiệu quả của quy trình RAG.
 
+## Chức năng và Lợi ích
 
-#### Tạo IAM User có quyền kết nối SSM
+**Triển khai RAG liền mạch**: Amazon Bedrock Knowledge Bases tự động hóa toàn bộ quy trình RAG — từ nạp dữ liệu, truy xuất thông tin, đến bổ sung vào prompt — mà không cần tích hợp thủ công hoặc tự quản lý luồng dữ liệu. Điều này cho phép bạn cung cấp cho mô hình nền tảng (FMs) và các tác nhân (Agents) thông tin cập nhật và độc quyền để tạo ra phản hồi chính xác hơn.
 
-1. Truy cập vào [giao diện quản trị dịch vụ IAM](https://console.aws.amazon.com/iamv2/home)
-  + Click **Users** , sau đó click **Add users**.
+**Kết nối dữ liệu an toàn**: Dịch vụ sẽ tự động truy xuất tài liệu từ các nguồn dữ liệu mà bạn chỉ định, bao gồm Amazon S3, Web Crawler, Salesforce, và SharePoint. Sau đó, nội dung sẽ được xử lý, chia nhỏ thành các khối văn bản, chuyển thành embeddings, và lưu trữ trong vector database.
 
-![FWD](/images/5.fwd/001-fwd.png)
+**Tuỳ chỉnh linh hoạt**: Bạn có thể tinh chỉnh cả quá trình nạp dữ liệu và truy xuất để cải thiện độ chính xác cho từng trường hợp sử dụng cụ thể. Các tùy chọn phân tích nâng cao giúp hiểu dữ liệu phi cấu trúc phức tạp, và bạn có thể chọn nhiều chiến lược chia nhỏ nội dung (chunking) hoặc tự viết mã chia nhỏ theo nhu cầu.
 
-2. Tại trang **Add user**.
-  + Tại mục **User name**, điền **Portfwd**.
-  + Click chọn **Access key - Programmatic access**.
-  + Click **Next: Permissions**.
-  
-![FWD](/images/5.fwd/002-fwd.png)
+## Kiến trúc của Knowledge Bases
 
-3. Click **Attach existing policies directly**.
-  + Tại ô tìm kiếm , điền **ssm**.
-  + Click chọn **AmazonSSMFullAccess**.
-  + Click **Next: Tags**, click **Next: Reviews**.
-  + Click **Create user**.
+Trong hai tác vụ tiếp theo, bạn sẽ xây dựng một chatbot sử dụng Amazon Bedrock Knowledge Bases. Kiến trúc tổng thể của giải pháp được minh hoạ bên dưới:  
+![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/anh/000-architecture.png?raw=true)
 
-4. Lưu lại thông tin **Access key ID** và **Secret access key** để thực hiện cấu hình AWS CLI.
+## Các thành phần của Knowledge Base và Vector Search
 
-#### Cài đặt và cấu hình AWS CLI và Session Manager Plugin 
-  
-Để thực hiện phần thực hành này, đảm bảo máy trạm của bạn đã cài [AWS CLI]() và [Session Manager Plugin](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-working-with-install-plugin.html)
+1. **Knowledge Bases**: Kho lưu trữ trung tâm chứa thông tin có cấu trúc  
+2. **Amazon S3**: Nơi lưu trữ tài liệu (pdf, csv, txt, v.v.)  
+3. **Amazon OpenSearch**: Vector database và công cụ tìm kiếm cho truy vấn tương đồng hiệu quả  
+4. **Amazon Bedrock**: Cung cấp các mô hình embedding như Amazon Titan Embeddings
 
-Bạn có thể tham khảo thêm bài thực hành về cài đặt và cấu hình AWS CLI [tại đây](https://000011.awsstudygroup.com/).
+---
 
-{{%notice tip%}}
-Với Windows thì khi giải nén thư mục cài đặt **Session Manager Plugin** bạn hãy chạy file **install.bat** với quyền Administrator để thực hiện cài đặt.
-{{%/notice%}}
+## Quy trình làm việc của Knowledge Base và Vector Search
 
-#### Thực hiện Portforwarding 
+1. Tài liệu được lưu trữ trong Amazon S3  
+2. Văn bản được trích xuất và xử lý từ các tài liệu  
+3. Mô hình Titan Embeddings của Amazon Bedrock tạo ra vector đại diện cho văn bản  
+4. Các vector được lưu vào Amazon OpenSearch và đóng vai trò là vector database  
+5. Knowledge Bases thu nhận và cấu trúc thông tin, tích hợp các vector đã tạo  
+6. Các hàm AWS Lambda (RAG/KB/LLM Functions) tương tác với Knowledge Bases và vector search  
+7. RAG (Retrieval Augmented Generation) sử dụng tìm kiếm tương đồng vector để truy xuất thông tin liên quan
 
-1. Chạy command dưới đây trong **Command Prompt** trên máy của bạn để cấu hình **Port Forwarding**.
+## 🔍 Các tính năng chính của tích hợp Knowledge Base và Vector Search
 
-```
-  aws ssm start-session --target (your ID windows instance) --document-name AWS-StartPortForwardingSession --parameters portNumber="3389",localPortNumber="9999" --region (your region) 
-```
-{{%notice tip%}}
+- Tìm kiếm theo ngữ nghĩa sử dụng vector biểu diễn văn bản  
+- Tìm kiếm tương đồng hiệu quả thông qua chức năng vector database của Amazon OpenSearch  
+- Tích hợp Amazon Titan Embeddings để vector hóa văn bản chất lượng cao  
+- Cải thiện ngữ cảnh và độ chính xác trong phản hồi chatbot thông qua truy xuất dựa trên vector  
+- Nâng cao mức độ liên quan trong quá trình truy xuất thông tin phục vụ cho RAG  
+- Có khả năng xử lý và tìm kiếm khối lượng lớn dữ liệu văn bản phi cấu trúc  
+- Kết hợp mượt mà giữa tìm kiếm theo từ khóa truyền thống và tìm kiếm theo ngữ nghĩa dựa trên vector
 
-Thông tin **Instance ID** của **Windows Private Instance** có thể tìm được khi bạn xem chi tiết máy chủ EC2 Windows Private Instance.
+---
 
-{{%/notice%}}
-
-  + Câu lệnh ví dụ
-
-```
-C:\Windows\system32>aws ssm start-session --target i-06343d7377486760c --document-name AWS-StartPortForwardingSession --parameters portNumber="3389",localPortNumber="9999" --region ap-southeast-1
-```
-
-{{%notice warning%}}
-
-Nếu câu lệnh của bạn báo lỗi như dưới đây : \
-SessionManagerPlugin is not found. Please refer to SessionManager Documentation here: http://docs.aws.amazon.com/console/systems-manager/session-manager-plugin-not-found\
-Chứng tỏ bạn chưa cài Session Manager Plugin thành công. Bạn có thể cần khởi chạy lại **Command Prompt** sau khi cài **Session Manager Plugin**.
-
-{{%/notice%}}
-
-2. Kết nối tới **Private Windows Instance** bạn đã tạo bằng công cụ **Remote Desktop** trên máy trạm của bạn.
-  + Tại mục Computer: điền **localhost:9999**.
-
-
-![FWD](/images/5.fwd/003-fwd.png)
-
-
-3. Quay trở lại giao diện quản trị của dịch vụ System Manager - Session Manager.
-  + Click tab **Session history**.
-  + Chúng ta sẽ thấy các session logs với tên Document là **AWS-StartPortForwardingSession**.
-
-
-![FWD](/images/5.fwd/004-fwd.png)
-
-
-Chúc mừng bạn đã hoàn tất bài thực hành hướng dẫn cách sử dụng Session Manager để kết nối cũng như lưu trữ các session logs trong S3 bucket. Hãy nhớ thực hiện bước dọn dẹp tài nguyên để tránh sinh chi phí ngoài ý muốn nhé.
+Thiết lập này cho phép chatbot thực hiện các truy vấn ngữ nghĩa nâng cao trên nền tảng kiến thức doanh nghiệp.  
+Bằng cách sử dụng Amazon Titan Embeddings để tạo vector đại diện cho văn bản và lưu trữ chúng trong Amazon OpenSearch như một vector database, hệ thống có thể tìm ra thông tin liên quan về mặt ngữ cảnh ngay cả khi không có từ khóa khớp chính xác.  
+Điều này giúp chatbot hiểu và phản hồi truy vấn người dùng với thông tin phù hợp hơn từ kho tri thức của doanh nghiệp.

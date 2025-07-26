@@ -1,93 +1,187 @@
 ---
-title : "Port Forwarding"
-date :  2025-06-17
+title : "Trò chuyện tổng quát với nhiều mô hình LLM"
+date : 2025-07-17
 weight : 5 
 chapter : false
 pre : " <b> 5. </b> "
 ---
 
 {{% notice info %}}
-**Port Forwarding** là mốt cách thức hữu ích để chuyển hướng lưu lượng mạng từ 1 địa chỉ IP - Port này sang 1 địa chỉ IP - Port khác. Với **Port Forwarding** chúng ta có thể truy cập một EC2 instance nằm trong private subnet từ máy trạm của chúng ta.
+**Port Forwarding** (chuyển tiếp cổng) là một cách hữu ích để chuyển hướng lưu lượng mạng từ một địa chỉ IP - Cổng này sang một địa chỉ IP - Cổng khác. Với **Port Forwarding**, chúng ta có thể truy cập một EC2 instance nằm trong private subnet từ máy làm việc cá nhân (workstation).
 {{% /notice %}}
 
-Chúng ta sẽ cấu hình **Port Forwarding** cho kết nối RDP giữa máy của mình với **Private Windows Instance** nằm trong private subnet mà chúng ta đã tạo cho bài thực hành này.
+Bạn đã triển khai thành công ứng dụng chatbot sử dụng Amazon Bedrock với kiến trúc serverless, trong đó backend sử dụng AWS SAM và frontend sử dụng AWS Amplify. Giao diện frontend đóng vai trò là giao diện người dùng cơ bản để kiểm thử giải pháp với các câu hỏi và tham số prompt khác nhau. Trong phần này, bạn sẽ cập nhật và triển khai một hàm Lambda hỗ trợ trò chuyện tổng quát với nhiều mô hình ngôn ngữ lớn (LLM).
 
-![port-fwd](/images/arc-04.png) 
+1. Mở trình soạn thảo VSCode (như đã hướng dẫn trong Nhiệm vụ 1).  
+2. Trong dự án `bedrock-serverless-workshop`, mở file `/lambdas/llmFunctions/llmfunction.py`, sao chép đoạn mã dưới đây và cập nhật nội dung của hàm. Hàm này chứa logic hỗ trợ các mô hình Claude3 (Haiku, Sonnet, v.v.), Mistral và Llama.
 
-
-
-#### Tạo IAM User có quyền kết nối SSM
-
-1. Truy cập vào [giao diện quản trị dịch vụ IAM](https://console.aws.amazon.com/iamv2/home)
-  + Click **Users** , sau đó click **Add users**.
-
-![FWD](/images/5.fwd/001-fwd.png)
-
-2. Tại trang **Add user**.
-  + Tại mục **User name**, điền **Portfwd**.
-  + Click chọn **Access key - Programmatic access**.
-  + Click **Next: Permissions**.
-  
-![FWD](/images/5.fwd/002-fwd.png)
-
-3. Click **Attach existing policies directly**.
-  + Tại ô tìm kiếm , điền **ssm**.
-  + Click chọn **AmazonSSMFullAccess**.
-  + Click **Next: Tags**, click **Next: Reviews**.
-  + Click **Create user**.
-
-4. Lưu lại thông tin **Access key ID** và **Secret access key** để thực hiện cấu hình AWS CLI.
-
-#### Cài đặt và cấu hình AWS CLI và Session Manager Plugin 
-  
-Để thực hiện phần thực hành này, đảm bảo máy trạm của bạn đã cài [AWS CLI]() và [Session Manager Plugin](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-working-with-install-plugin.html)
-
-Bạn có thể tham khảo thêm bài thực hành về cài đặt và cấu hình AWS CLI [tại đây](https://000011.awsstudygroup.com/).
-
-{{%notice tip%}}
-Với Windows thì khi giải nén thư mục cài đặt **Session Manager Plugin** bạn hãy chạy file **install.bat** với quyền Administrator để thực hiện cài đặt.
-{{%/notice%}}
-
-#### Thực hiện Portforwarding 
-
-1. Chạy command dưới đây trong **Command Prompt** trên máy của bạn để cấu hình **Port Forwarding**.
-
-```
-  aws ssm start-session --target (your ID windows instance) --document-name AWS-StartPortForwardingSession --parameters portNumber="3389",localPortNumber="9999" --region (your region) 
-```
-{{%notice tip%}}
-
-Thông tin **Instance ID** của **Windows Private Instance** có thể tìm được khi bạn xem chi tiết máy chủ EC2 Windows Private Instance.
-
-{{%/notice%}}
-
-  + Câu lệnh ví dụ
-
-```
-C:\Windows\system32>aws ssm start-session --target i-06343d7377486760c --document-name AWS-StartPortForwardingSession --parameters portNumber="3389",localPortNumber="9999" --region ap-southeast-1
-```
-
-{{%notice warning%}}
-
-Nếu câu lệnh của bạn báo lỗi như dưới đây : \
-SessionManagerPlugin is not found. Please refer to SessionManager Documentation here: http://docs.aws.amazon.com/console/systems-manager/session-manager-plugin-not-found\
-Chứng tỏ bạn chưa cài Session Manager Plugin thành công. Bạn có thể cần khởi chạy lại **Command Prompt** sau khi cài **Session Manager Plugin**.
-
-{{%/notice%}}
-
-2. Kết nối tới **Private Windows Instance** bạn đã tạo bằng công cụ **Remote Desktop** trên máy trạm của bạn.
-  + Tại mục Computer: điền **localhost:9999**.
+````bash
+import boto3
+import json
+import traceback
 
 
-![FWD](/images/5.fwd/003-fwd.png)
+region = boto3.session.Session().region_name
+
+def lambda_handler(event, context):
+    boto3_version = boto3.__version__
+    print(f"Boto3 version: {boto3_version}")
+    
+    print(f"Event is: {event}")
+    event_body = json.loads(event["body"])
+    prompt = event_body["query"]
+    temperature = event_body["temperature"]
+    max_tokens = event_body["max_tokens"]
+    model_id = event_body["model_id"]
+    
+    response = ''
+    status_code = 200
+    
+    try:
+        if model_id == 'mistral.mistral-7b-instruct-v0:2':
+            response = invoke_mistral_7b(model_id, prompt, temperature, max_tokens)
+        elif model_id == 'meta.llama3-1-8b-instruct-v1:0':
+            response = invoke_llama(model_id, prompt, temperature, max_tokens)
+        else:
+            response = invoke_claude(model_id, prompt, temperature, max_tokens)
+            
+        return {
+            'statusCode': status_code,
+            'headers': {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+                'Access-Control-Allow-Methods': 'OPTIONS,POST'
+            },
+            'body': json.dumps({'answer': response})
+        }
+            
+    except Exception as e:
+        print(f"An unexpected error occurred: {str(e)}")
+        stack_trace = traceback.format_exc()
+        print(stack_trace)
+        return {
+            'statusCode': status_code,
+            'headers': {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+                'Access-Control-Allow-Methods': 'OPTIONS,POST'
+            },
+            'body': json.dumps({'error': str(e)})
+        }
 
 
-3. Quay trở lại giao diện quản trị của dịch vụ System Manager - Session Manager.
-  + Click tab **Session history**.
-  + Chúng ta sẽ thấy các session logs với tên Document là **AWS-StartPortForwardingSession**.
+def invoke_claude(model_id, prompt, temperature, max_tokens):
+    try:
 
+        instruction = f"Human: {prompt} nAssistant:"
+        bedrock_runtime_client = boto3.client(service_name="bedrock-runtime", region_name=region)
+        body= {
+                "anthropic_version": "bedrock-2023-05-31",
+                "max_tokens": max_tokens,
+                "messages": [
+                    {
+                        "role": "user",
+                        "content": [{"type": "text", "text": prompt}],
+                    }
+                ],
+        }
 
-![FWD](/images/5.fwd/004-fwd.png)
+        response = bedrock_runtime_client.invoke_model(
+            modelId=model_id, body=json.dumps(body)
+        )
 
+        response_body = json.loads(response["body"].read())
+        outputs = response_body.get("content")
+        completions = [output["text"] for output in outputs]
+        print(f"completions: {completions[0]}")
 
-Chúc mừng bạn đã hoàn tất bài thực hành hướng dẫn cách sử dụng Session Manager để kết nối cũng như lưu trữ các session logs trong S3 bucket. Hãy nhớ thực hiện bước dọn dẹp tài nguyên để tránh sinh chi phí ngoài ý muốn nhé.
+        return completions[0]
+
+    except Exception as e:
+        raise
+        
+def invoke_mistral_7b(model_id, prompt, temperature, max_tokens):
+    try:
+        instruction = f"<s>[INST] {prompt} [/INST]"
+        bedrock_runtime_client = boto3.client(service_name="bedrock-runtime", region_name=region)
+
+        body = {
+            "prompt": instruction,
+            "max_tokens": max_tokens,
+            "temperature": temperature,
+        }
+
+        response = bedrock_runtime_client.invoke_model(
+            modelId=model_id, body=json.dumps(body)
+        )
+        response_body = json.loads(response["body"].read())
+        outputs = response_body.get("outputs")
+        print(f"response: {outputs}")
+
+        completions = [output["text"] for output in outputs]
+        return completions[0]
+    except Exception as e:
+        raise
+        
+def invoke_llama(model_id, prompt, temperature, max_tokens):
+    print(f"Invoking llam model {model_id}" )
+    print(f"max_tokens {max_tokens}" )
+    try:
+        instruction = f"[INST]You are a very intelligent bot with exceptional critical thinking, help me answering below question.[/INST]"
+        total_prompt = f"{instruction}\n{prompt}" 
+        
+        print(f"Prompt template {total_prompt}" )
+
+        bedrock_runtime_client = boto3.client(service_name="bedrock-runtime", region_name=region)
+        
+        body = {
+            "prompt": total_prompt,
+            "max_gen_len": max_tokens,
+            "temperature": temperature,
+            "top_p": 0.9
+        }
+
+        response = bedrock_runtime_client.invoke_model(
+            modelId=model_id, body=json.dumps(body)
+        )
+        response_body = json.loads(response["body"].read())
+        print(f"response: {response_body}")
+        return response_body ['generation']
+    except Exception as e:
+        raise
+
+````
+
+3. Từ trình soạn thảo VSCode, chạy lệnh sau để build và triển khai mã Lambda đã được cập nhật:
+
+````bash
+cd ~/environment/bedrock-serverless-workshop
+sam build && sam deploy
+````
+Bạn có thể kiểm tra lại hàm Lambda đã cập nhật thông qua [Bảng điều khiển AWS Lambda](https://console.aws.amazon.com/lambda/).
+
+Trong nhiệm vụ này, bạn sẽ có cơ hội làm việc với các mô hình LLM sau, mỗi mô hình mang lại các tính năng và điểm mạnh riêng biệt:
+
+- **anthropic.claude-3-haiku** – Claude 3 Haiku là mô hình nhanh nhất và nhỏ gọn nhất của Anthropic, mang lại khả năng phản hồi gần như tức thì. Đây là lựa chọn lý tưởng để xây dựng trải nghiệm AI mượt mà, mô phỏng tương tác như con người.
+- **anthropic.claude-3-5-sonnet** – Claude 3.5 Sonnet là mô hình tiên tiến và thông minh nhất của Anthropic, thể hiện năng lực vượt trội trong nhiều loại tác vụ và đánh giá khác nhau.
+- **anthropic.claude-3-opus** – Opus là một mô hình cực kỳ thông minh với hiệu suất đáng tin cậy cho các tác vụ phức tạp. Nó có thể xử lý các prompt mở và tình huống chưa từng thấy với độ lưu loát và hiểu biết giống con người. Sử dụng Opus để tự động hóa, thúc đẩy nghiên cứu và phát triển trong nhiều ngành nghề và trường hợp sử dụng.
+- **mistral.mistral-7b-instruct** – Mistral là một mô hình ngôn ngữ lớn rất hiệu quả, được tối ưu hóa cho các tác vụ ngôn ngữ khối lượng lớn với độ trễ thấp. Các trường hợp sử dụng phổ biến của Mistral gồm: tóm tắt văn bản, cấu trúc hóa nội dung, trả lời câu hỏi, và hoàn thành mã nguồn.
+- **meta.llama3-1-8b-instruct** – Llama 3.1 8B phù hợp với môi trường giới hạn tài nguyên tính toán. Mô hình này đặc biệt mạnh ở các tác vụ như tóm tắt văn bản, phân loại văn bản, phân tích cảm xúc, và dịch ngôn ngữ yêu cầu suy luận độ trễ thấp.
+
+---
+
+## Kiểm thử qua giao diện người dùng (UI)
+
+1. Quay lại trình duyệt và mở trang web chatbot. Nếu bạn chưa đăng nhập, hãy sử dụng thông tin đăng nhập đã lấy trước đó để đăng nhập. Giao diện trang web sẽ hiển thị như sau:
+
+![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/5.fwd/001.png?raw=true)
+
+2. Nhập bất kỳ câu hỏi nào vào ô Query và nhấn nút **Ask Question**. Bạn cũng có thể thử một số câu hỏi mẫu từ khung bên phải. Dưới đây là ví dụ một câu hỏi và phản hồi từ Claude 3 Haiku. Bạn có thể thử với các mô hình LLM khác và so sánh kết quả.
+````bash
+List top 10 cities of VietNam by population?
+````
+---
+
+### Hoàn thành nhiệm vụ
+
+Bạn đã sẵn sàng để tiếp tục sang nhiệm vụ tiếp theo.

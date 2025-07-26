@@ -1,93 +1,65 @@
 ---
-title : "Port Forwarding"
-date :  2025-06-17
-weight : 5 
+title : "Tạo và Kiểm thử Knowledge Base"
+date : 2025-07-17
+weight : 9
 chapter : false
-pre : " <b> 5. </b> "
+pre : " <b> 9.1 </b> "
 ---
 
-{{% notice info %}}
-**Port Forwarding** là mốt cách thức hữu ích để chuyển hướng lưu lượng mạng từ 1 địa chỉ IP - Port này sang 1 địa chỉ IP - Port khác. Với **Port Forwarding** chúng ta có thể truy cập một EC2 instance nằm trong private subnet từ máy trạm của chúng ta.
-{{% /notice %}}
+Việc tạo Amazon Bedrock Knowledge Base giúp tích hợp dữ liệu độc quyền vào ứng dụng AI bằng cách sử dụng kỹ thuật RAG (Retrieval Augmented Generation). Quá trình này chuyển đổi văn bản từ các nguồn dữ liệu thành các vector embedding bằng các mô hình như Amazon Titan Embeddings, sau đó lưu trữ trong cơ sở dữ liệu vector như OpenSearch Serverless. Khi hoàn tất, Knowledge Base có thể được truy vấn để lấy thông tin liên quan, từ đó bổ sung thêm ngữ cảnh cho các prompt gửi đến mô hình nền.
 
-Chúng ta sẽ cấu hình **Port Forwarding** cho kết nối RDP giữa máy của mình với **Private Windows Instance** nằm trong private subnet mà chúng ta đã tạo cho bài thực hành này.
+## Tạo Knowledge Base
 
-![port-fwd](/images/arc-04.png) 
+1. Mở [Amazon Bedrock console](https://console.aws.amazon.com/bedrock).
+2. Ở góc trên bên trái, chọn biểu tượng menu ☰. Trong thanh điều hướng, chọn **Knowledge Bases**.  
+   ![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/8.KB/001.png?raw=true)
+3. Chọn **Create knowledge base**, sau đó chọn **Knowledge base with vector store**  
+   ![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/8.KB/002.png?raw=true)
+4. Giữ nguyên tên mặc định.  
+   ![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/8.KB/003.png?raw=true)
+5. Ở phần **IAM permissions**, chọn **Use an existing role**.
+6. Trong danh sách, chọn role `xxxx-BedrockExecutionRoleForKBs-xxxx`.  
+   ![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/8.KB/004.png?raw=true)
+7. Chọn **Amazon S3** làm nguồn dữ liệu.
+8. Chọn **Next**.
+9. Chọn **Browse S3**.
+10. Chọn bucket `xxxx-s3bucket-xxxx` và thư mục **sample-documents**.  
+    ![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/8.KB/007.png?raw=true)
+11. Giữ nguyên cấu hình chia đoạn văn bản mặc định.  
+12. Chọn **Next**.  
+13. Trong phần **Embeddings model**, chọn **Titan Text Embeddings v2**.  
+14. Trong phần **Vector database**, chọn **Quick create...**  
+    ![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/8.KB/008.png?raw=true)  
+    ![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/8.KB/009.png?raw=true)
+15. Ở phần **Vector store**, chọn **Amazon OpenSearch Serverless**  
+    ![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/8.KB/010.png?raw=true)
+16. Chọn **Create knowledge base**.  
+17. Quá trình này có thể mất vài phút để hoàn tất.  
+    ![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/8.KB/011.png?raw=true)
 
+## Đồng bộ nguồn dữ liệu với Knowledge Base
 
+1. Trong phần **Data source**, chọn nguồn dữ liệu của bạn (*knowledge-base-quick-...*).  
+2. Chọn nút **Sync**.  
+   ![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/8.KB/014.png?raw=true)
+3. Sau vài giây, Knowledge Base sẽ sẵn sàng để kiểm thử.
 
-#### Tạo IAM User có quyền kết nối SSM
+## Kiểm thử Knowledge Base
 
-1. Truy cập vào [giao diện quản trị dịch vụ IAM](https://console.aws.amazon.com/iamv2/home)
-  + Click **Users** , sau đó click **Add users**.
+1. Chọn Knowledge Base của bạn, sau đó chọn nút **Test knowledge base**.  
+   ![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/8.KB/015.png?raw=true)
+2. Ở khung bên phải, chọn **Select model**.
+3. Trong cửa sổ **Select model**, chọn **Claude 3 Haiku**, rồi chọn **Apply**.  
+   _(Lưu ý: Bạn cũng có thể thử nghiệm với các mô hình khác nếu chúng đã được kích hoạt.)_  
+   ![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/8.KB/016.png?raw=true)
+4. Nhập câu hỏi sau vào ô _Enter your message here_:
 
-![FWD](/images/5.fwd/001-fwd.png)
+    ```text
+    What are Amazon sustainability goals by year 2040?
+    ```
 
-2. Tại trang **Add user**.
-  + Tại mục **User name**, điền **Portfwd**.
-  + Click chọn **Access key - Programmatic access**.
-  + Click **Next: Permissions**.
-  
-![FWD](/images/5.fwd/002-fwd.png)
+5. Chọn **Run**.
+6. Bạn sẽ thấy phản hồi như hình dưới.  
+   ![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/8.KB/017.png?raw=true)
 
-3. Click **Attach existing policies directly**.
-  + Tại ô tìm kiếm , điền **ssm**.
-  + Click chọn **AmazonSSMFullAccess**.
-  + Click **Next: Tags**, click **Next: Reviews**.
-  + Click **Create user**.
-
-4. Lưu lại thông tin **Access key ID** và **Secret access key** để thực hiện cấu hình AWS CLI.
-
-#### Cài đặt và cấu hình AWS CLI và Session Manager Plugin 
-  
-Để thực hiện phần thực hành này, đảm bảo máy trạm của bạn đã cài [AWS CLI]() và [Session Manager Plugin](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-working-with-install-plugin.html)
-
-Bạn có thể tham khảo thêm bài thực hành về cài đặt và cấu hình AWS CLI [tại đây](https://000011.awsstudygroup.com/).
-
-{{%notice tip%}}
-Với Windows thì khi giải nén thư mục cài đặt **Session Manager Plugin** bạn hãy chạy file **install.bat** với quyền Administrator để thực hiện cài đặt.
-{{%/notice%}}
-
-#### Thực hiện Portforwarding 
-
-1. Chạy command dưới đây trong **Command Prompt** trên máy của bạn để cấu hình **Port Forwarding**.
-
-```
-  aws ssm start-session --target (your ID windows instance) --document-name AWS-StartPortForwardingSession --parameters portNumber="3389",localPortNumber="9999" --region (your region) 
-```
-{{%notice tip%}}
-
-Thông tin **Instance ID** của **Windows Private Instance** có thể tìm được khi bạn xem chi tiết máy chủ EC2 Windows Private Instance.
-
-{{%/notice%}}
-
-  + Câu lệnh ví dụ
-
-```
-C:\Windows\system32>aws ssm start-session --target i-06343d7377486760c --document-name AWS-StartPortForwardingSession --parameters portNumber="3389",localPortNumber="9999" --region ap-southeast-1
-```
-
-{{%notice warning%}}
-
-Nếu câu lệnh của bạn báo lỗi như dưới đây : \
-SessionManagerPlugin is not found. Please refer to SessionManager Documentation here: http://docs.aws.amazon.com/console/systems-manager/session-manager-plugin-not-found\
-Chứng tỏ bạn chưa cài Session Manager Plugin thành công. Bạn có thể cần khởi chạy lại **Command Prompt** sau khi cài **Session Manager Plugin**.
-
-{{%/notice%}}
-
-2. Kết nối tới **Private Windows Instance** bạn đã tạo bằng công cụ **Remote Desktop** trên máy trạm của bạn.
-  + Tại mục Computer: điền **localhost:9999**.
-
-
-![FWD](/images/5.fwd/003-fwd.png)
-
-
-3. Quay trở lại giao diện quản trị của dịch vụ System Manager - Session Manager.
-  + Click tab **Session history**.
-  + Chúng ta sẽ thấy các session logs với tên Document là **AWS-StartPortForwardingSession**.
-
-
-![FWD](/images/5.fwd/004-fwd.png)
-
-
-Chúc mừng bạn đã hoàn tất bài thực hành hướng dẫn cách sử dụng Session Manager để kết nối cũng như lưu trữ các session logs trong S3 bucket. Hãy nhớ thực hiện bước dọn dẹp tài nguyên để tránh sinh chi phí ngoài ý muốn nhé.
+Bạn hãy khám phá khả năng của Knowledge Base bằng cách đặt nhiều câu hỏi khác nhau. Một tính năng đáng chú ý là khả năng ghi nhớ ngữ cảnh trong suốt cuộc hội thoại. Điều này cho phép bạn hỏi tiếp nối từ câu trả lời trước đó, giúp truy vấn sâu hơn và khai thác thông tin chi tiết hơn từ dữ liệu của bạn.
