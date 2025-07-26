@@ -12,21 +12,21 @@
     <title>Clean up resources :: AWS System Manager</title>
 
     
-    <link href="/css/nucleus.css?1753517654" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1753517654" rel="stylesheet">
-    <link href="/css/hybrid.css?1753517654" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1753517654" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1753517654" rel="stylesheet">
-    <link href="/css/auto-complete.css?1753517654" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1753517654" rel="stylesheet">
-    <link href="/css/theme.css?1753517654" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1753517654" rel="stylesheet">
+    <link href="/css/nucleus.css?1753531426" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1753531426" rel="stylesheet">
+    <link href="/css/hybrid.css?1753531426" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1753531426" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1753531426" rel="stylesheet">
+    <link href="/css/auto-complete.css?1753531426" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1753531426" rel="stylesheet">
+    <link href="/css/theme.css?1753531426" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1753531426" rel="stylesheet">
     
-    <link href="/css/theme-workshop.css?1753517654" rel="stylesheet">
+    <link href="/css/theme-workshop.css?1753531426" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1753517654"></script>
+    <script src="/js/jquery-3.3.1.min.js?1753531426"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1753517654"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1753517654"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1753531426"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1753531426"></script>
 <script type="text/javascript">
     
         var baseurl = "\/\/localhost:1313\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1753517654"></script>
+<script type="text/javascript" src="/js/search.js?1753531426"></script>
 
     
   </div>
@@ -620,16 +620,9 @@
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#method-1-use-aws-cli-to-delete-resources">Method 1: Use AWS CLI to delete resources</a>
+    <li>
       <ul>
         <li><a href="#remove-the-aws-sam-application-and-startup-cloudformation-stack">Remove the AWS SAM application and startup CloudFormation stack</a></li>
-      </ul>
-    </li>
-    <li><a href="#method-2-manually-delete-resources-from-the-aws-console">Method 2: Manually delete resources from the AWS Console</a>
-      <ul>
-        <li><a href="#delete-opensearch-collection">Delete OpenSearch Collection</a></li>
-        <li><a href="#delete-cloudformation-stack">Delete CloudFormation Stack</a></li>
-        <li><a href="#delete-a-knowledge-base">Delete a Knowledge Base</a></li>
       </ul>
     </li>
   </ul>
@@ -658,9 +651,9 @@
 
 
 	<p>After you&rsquo;ve completed the workshop, to stop incurring costs, you should remove the resources that you created in your AWS account.</p>
-<h2 id="method-1-use-aws-cli-to-delete-resources">Method 1: Use AWS CLI to delete resources</h2>
+<p>Use AWS CLI to delete resources</p>
 <h3 id="remove-the-aws-sam-application-and-startup-cloudformation-stack">Remove the AWS SAM application and startup CloudFormation stack</h3>
-<p>Navigate to the AWS VScode terminal, and then run the following commands:</p>
+<p>Navigate to the AWS Cloud9 terminal, and then run the following commands:</p>
 <ol>
 <li>To delete SAM stack, run the following command.</li>
 </ol>
@@ -670,33 +663,7 @@
 <li>To delete startup stack, run the following command.</li>
 </ol>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>aws cloudformation delete-stack --stack-name $CFNStackName
-</span></span></code></pre></div><h2 id="method-2-manually-delete-resources-from-the-aws-console">Method 2: Manually delete resources from the AWS Console</h2>
-<h3 id="delete-opensearch-collection">Delete OpenSearch Collection</h3>
-<ol>
-<li>
-<p>Go to Amazon OpenSearch Service in the AWS Console.</p>
-</li>
-<li>
-<p>Click Collections under Serverless in the sidebar.</p>
-</li>
-<li>
-<p>Select the collection → click Delete → confirm.</p>
-</li>
-</ol>
-<h3 id="delete-cloudformation-stack">Delete CloudFormation Stack</h3>
-<ol>
-<li>
-<p>Go to AWS CloudFormation in the AWS Console.</p>
-</li>
-<li>
-<p>Find the stack named <strong>chatbot-startup-stack</strong>.</p>
-</li>
-<li>
-<p>Select it → click Delete → confirm.</p>
-</li>
-</ol>
-<h3 id="delete-a-knowledge-base">Delete a Knowledge Base</h3>
-
+</span></span></code></pre></div>
 
 
 
@@ -985,19 +952,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1753517654"></script>
-    <script src="/js/perfect-scrollbar.min.js?1753517654"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1753517654"></script>
-    <script src="/js/jquery.sticky.js?1753517654"></script>
-    <script src="/js/featherlight.min.js?1753517654"></script>
-    <script src="/js/highlight.pack.js?1753517654"></script>
+    <script src="/js/clipboard.min.js?1753531426"></script>
+    <script src="/js/perfect-scrollbar.min.js?1753531426"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1753531426"></script>
+    <script src="/js/jquery.sticky.js?1753531426"></script>
+    <script src="/js/featherlight.min.js?1753531426"></script>
+    <script src="/js/highlight.pack.js?1753531426"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1753517654"></script>
-    <script src="/js/learn.js?1753517654"></script>
-    <script src="/js/hugo-learn.js?1753517654"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1753531426"></script>
+    <script src="/js/learn.js?1753531426"></script>
+    <script src="/js/hugo-learn.js?1753531426"></script>
 
-    <link href="/mermaid/mermaid.css?1753517654" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1753517654"></script>
+    <link href="/mermaid/mermaid.css?1753531426" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1753531426"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

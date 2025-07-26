@@ -18,9 +18,13 @@ You will create the following architecture for this workshop:
  
 
 ### Content
- 1. [Introduction ](1-introduce/)
- 2. [Preparation](2-prerequiste/)
- 3. [Connect to EC2 instance](3-accessibilitytoinstances/)
- 4. [Manage session logs](4-Walkthroughbedrock/)
- 5. [Port Forwarding](5-Portfwd/)
- 6. [Clean up resources](6-cleanup/)
+1. [Introduction](1-Introduce/)
+2. [Preparation](2-Prerequiste/)
+3. [Deploy Amazon Bedrock Serverless Application](3-Accessibilitytoinstances/)
+4. [Walkthrough Amazon Bedrock Console](4-Walkthroughbedrock/)
+5. [General Chat with Multiple LLMs](5-MultipleLLMs/)
+6. [Index the Source Data by Using Amazon Kendra](6-UsingAmazonKendra/)
+7. [RAG Chat with Multiple LLMs](7-RAG/)
+8. [Prompt Engineering](8-PromptEngineering/)
+9. [RAG Chat with Bedrock Knowledge Bases](9-KnowledgeBases/)
+10. [Clean up Resources](10-cleanup/)
