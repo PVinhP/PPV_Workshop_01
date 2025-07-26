@@ -12,21 +12,21 @@
     <title>Walkthrough Amazon Bedrock Console :: AWS System Manager</title>
 
     
-    <link href="/css/nucleus.css?1753493308" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1753493308" rel="stylesheet">
-    <link href="/css/hybrid.css?1753493308" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1753493308" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1753493308" rel="stylesheet">
-    <link href="/css/auto-complete.css?1753493308" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1753493308" rel="stylesheet">
-    <link href="/css/theme.css?1753493308" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1753493308" rel="stylesheet">
+    <link href="/css/nucleus.css?1753494430" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1753494430" rel="stylesheet">
+    <link href="/css/hybrid.css?1753494430" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1753494430" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1753494430" rel="stylesheet">
+    <link href="/css/auto-complete.css?1753494430" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1753494430" rel="stylesheet">
+    <link href="/css/theme.css?1753494430" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1753494430" rel="stylesheet">
     
-    <link href="/css/theme-workshop.css?1753493308" rel="stylesheet">
+    <link href="/css/theme-workshop.css?1753494430" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1753493308"></script>
+    <script src="/js/jquery-3.3.1.min.js?1753494430"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1753493308"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1753493308"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1753494430"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1753494430"></script>
 <script type="text/javascript">
     
         var baseurl = "\/\/localhost:1313\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1753493308"></script>
+<script type="text/javascript" src="/js/search.js?1753494430"></script>
 
     
   </div>
@@ -454,6 +454,7 @@
         <li><a href="#ask-a-question">Ask a question</a></li>
       </ul>
     </li>
+    <li><a href="#-congratulations">🎉 Congratulations</a></li>
   </ul>
 </nav>
     </div>
@@ -510,11 +511,11 @@
 <ol>
 <li>
 <p>At the upper-left of the Amazon Bedrock console, choose the menu (hamburger) icon.<br>
-Under <strong>Playgrounds</strong>, choose <strong>Chat</strong>.</p>
+Under <strong>Test</strong>, choose <strong>Chat / Text playground</strong>.</p>
 <p>You can also take this time, on the left menu, to navigate around the different options.</p>
 </li>
 <li>
-<p>On the <strong>Chat playground</strong>, choose <strong><code>Select model</code></strong>.</p>
+<p>On the <strong>Chat / Text playground</strong>, choose <strong><code>Select model</code></strong>.</p>
 </li>
 <li>
 <p>In the <em>Select model</em> popup, choose <strong>Anthropic</strong> and select <strong>Claude 3 Haiku</strong>.</p>
@@ -527,14 +528,24 @@ Under <strong>Playgrounds</strong>, choose <strong>Chat</strong>.</p>
 </li>
 <li>
 <p>In the prompt text box, type question, and then choose <strong><code>Run</code></strong>.</p>
-<p>Sample question – <code>List top 10 cities of USA by population?</code></p>
+<p>Sample question – <code>List top 10 cities of VietNam by population?</code></p>
 </li>
 <li>
 <p>The model returns a response similar to this:</p>
 </li>
 </ol>
-<p><img src="https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/4.Activatemodelaccess/003.png?raw=true" alt="ConnectPrivate"></p>
-<p>You can try randomness by changing parameter like temperature, Top P, Top K, and token length. You can also try with a different questions and experience with different response behavior.</p>
+<p><img src="https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/4.Activatemodelaccess/402.png?raw=true" alt="ConnectPrivate"></p>
+<p><strong>In the Configurations</strong>,
+You can try randomness by changing parameter like temperature, Top P, Top K, and token length. You can also try with a different questions and experience with different response behavior.</p>
+<ul>
+<li>Temperature is a parameter that controls the level of randomness in the output; the higher the value, the more creative the model becomes.</li>
+<li>Top P is the cumulative probability threshold for selecting candidate tokens, helping balance between logic and diversity.</li>
+<li>Top K is the number of highest-probability tokens considered for the next word selection.</li>
+<li>Max token length is the maximum number of tokens the model will generate in a response to control the output length and cost.</li>
+</ul>
+<hr>
+<h2 id="-congratulations">🎉 Congratulations</h2>
+<p>You can now proceed to the next task.</p>
 
 
 
@@ -729,19 +740,19 @@ Under <strong>Playgrounds</strong>, choose <strong>Chat</strong>.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1753493308"></script>
-    <script src="/js/perfect-scrollbar.min.js?1753493308"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1753493308"></script>
-    <script src="/js/jquery.sticky.js?1753493308"></script>
-    <script src="/js/featherlight.min.js?1753493308"></script>
-    <script src="/js/highlight.pack.js?1753493308"></script>
+    <script src="/js/clipboard.min.js?1753494430"></script>
+    <script src="/js/perfect-scrollbar.min.js?1753494430"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1753494430"></script>
+    <script src="/js/jquery.sticky.js?1753494430"></script>
+    <script src="/js/featherlight.min.js?1753494430"></script>
+    <script src="/js/highlight.pack.js?1753494430"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1753493308"></script>
-    <script src="/js/learn.js?1753493308"></script>
-    <script src="/js/hugo-learn.js?1753493308"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1753494430"></script>
+    <script src="/js/learn.js?1753494430"></script>
+    <script src="/js/hugo-learn.js?1753494430"></script>
 
-    <link href="/mermaid/mermaid.css?1753493308" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1753493308"></script>
+    <link href="/mermaid/mermaid.css?1753494430" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1753494430"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

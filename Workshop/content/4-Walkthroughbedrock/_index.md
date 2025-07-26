@@ -36,11 +36,11 @@ In the current version of this workshop environment, the use of the Claude 3 Opu
 ### Ask a question
 
 1. At the upper-left of the Amazon Bedrock console, choose the menu (hamburger) icon.  
-   Under **Playgrounds**, choose **Chat**.
+   Under **Test**, choose **Chat / Text playground**.
 
    You can also take this time, on the left menu, to navigate around the different options.
 
-2. On the **Chat playground**, choose **`Select model`**.
+2. On the **Chat / Text playground**, choose **`Select model`**.
 3. In the *Select model* popup, choose **Anthropic** and select **Claude 3 Haiku**.
 
 
@@ -51,10 +51,20 @@ In the current version of this workshop environment, the use of the Claude 3 Opu
 
 5. In the prompt text box, type question, and then choose **`Run`**.
 
-   Sample question – `List top 10 cities of USA by population?`
+   Sample question – `List top 10 cities of VietNam by population?`
 
 6. The model returns a response similar to this:
 
-![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/4.Activatemodelaccess/003.png?raw=true)
+![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/4.Activatemodelaccess/402.png?raw=true)
 
+**In the Configurations**, 
 You can try randomness by changing parameter like temperature, Top P, Top K, and token length. You can also try with a different questions and experience with different response behavior.
+- Temperature is a parameter that controls the level of randomness in the output; the higher the value, the more creative the model becomes. 
+- Top P is the cumulative probability threshold for selecting candidate tokens, helping balance between logic and diversity. 
+- Top K is the number of highest-probability tokens considered for the next word selection. 
+- Max token length is the maximum number of tokens the model will generate in a response to control the output length and cost.
+
+---
+## 🎉 Congratulations
+
+You can now proceed to the next task.
