@@ -9,24 +9,24 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Các bước chuẩn bị :: AWS System Manager</title>
+    <title>Port Forwarding :: AWS System Manager</title>
 
     
-    <link href="/css/nucleus.css?1753495745" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1753495745" rel="stylesheet">
-    <link href="/css/hybrid.css?1753495745" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1753495745" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1753495745" rel="stylesheet">
-    <link href="/css/auto-complete.css?1753495745" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1753495745" rel="stylesheet">
-    <link href="/css/theme.css?1753495745" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1753495745" rel="stylesheet">
+    <link href="/css/nucleus.css?1753495711" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1753495711" rel="stylesheet">
+    <link href="/css/hybrid.css?1753495711" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1753495711" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1753495711" rel="stylesheet">
+    <link href="/css/auto-complete.css?1753495711" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1753495711" rel="stylesheet">
+    <link href="/css/theme.css?1753495711" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1753495711" rel="stylesheet">
     
-    <link href="/css/theme-workshop.css?1753495745" rel="stylesheet">
+    <link href="/css/theme-workshop.css?1753495711" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1753495745"></script>
+    <script src="/js/jquery-3.3.1.min.js?1753495711"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -36,7 +36,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/vi/2-prerequiste/">
+  <body class="" data-url="/vi/5-multiplellms---copy/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1753495745"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1753495745"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1753495711"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1753495711"></script>
 <script type="text/javascript">
     
         var baseurl = "\/\/localhost:1313\/\/vi";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1753495745"></script>
+<script type="text/javascript" src="/js/search.js?1753495711"></script>
 
     
   </div>
@@ -110,7 +110,7 @@
     
     <li data-nav-id="/vi/2-prerequiste/" title="Các bước chuẩn bị" class="dd-item 
         
-        active
+        
         
         ">
       <a href="/vi/2-prerequiste/">
@@ -254,12 +254,12 @@
  
   
     
-    <li data-nav-id="/vi/5-multiplellms/" title="Port Forwarding" class="dd-item 
+    <li data-nav-id="/vi/5-multiplellms---copy/" title="Port Forwarding" class="dd-item 
         
-        
+        active
         
         ">
-      <a href="/vi/5-multiplellms/">
+      <a href="/vi/5-multiplellms---copy/">
            <b> 5. </b> Port Forwarding
           
             <i class="fas fa-check read-icon"></i>
@@ -280,12 +280,12 @@
  
   
     
-    <li data-nav-id="/vi/6-usingamazonkendra/" title="Port Forwarding" class="dd-item 
+    <li data-nav-id="/vi/5-multiplellms/" title="Port Forwarding" class="dd-item 
         
         
         
         ">
-      <a href="/vi/6-usingamazonkendra/">
+      <a href="/vi/5-multiplellms/">
            <b> 5. </b> Port Forwarding
           
             <i class="fas fa-check read-icon"></i>
@@ -359,7 +359,7 @@
                   
                     
                     
-                      <option id="en" value="//localhost:1313/2-prerequiste/">English</option>
+                      <option id="en" value="//localhost:1313/5-multiplellms---copy/">English</option>
                     
                   
               
@@ -373,7 +373,7 @@
                   
                     
                     
-                      <option id="vi" value="//localhost:1313/vi/2-prerequiste/" selected>Tiếng Việt</option>
+                      <option id="vi" value="//localhost:1313/vi/5-multiplellms---copy/" selected>Tiếng Việt</option>
                     
                   
               
@@ -461,7 +461,7 @@
             
           
           
-            <a href='/vi/'>Session Management</a> > Các bước chuẩn bị
+            <a href='/vi/'>Session Management</a> > Port Forwarding
           
         
           
@@ -476,7 +476,7 @@
   <ul>
     <li>
       <ul>
-        <li><a href="#nôi-dung">Nội dung</a></li>
+        <li></li>
       </ul>
     </li>
   </ul>
@@ -496,7 +496,7 @@
           
             <h1>
               
-              Các bước chuẩn bị
+              Port Forwarding
             </h1>
           
 
@@ -505,20 +505,82 @@
 
 
 	
-<div class="notices info" ><p>Bạn cần tạo sẵn 1 Linux instance thuộc public subnet và 1 Window instance thuộc private subnet để thực hiện bài thực hành này.</p>
+<div class="notices info" ><p><strong>Port Forwarding</strong> là mốt cách thức hữu ích để chuyển hướng lưu lượng mạng từ 1 địa chỉ IP - Port này sang 1 địa chỉ IP - Port khác. Với <strong>Port Forwarding</strong> chúng ta có thể truy cập một EC2 instance nằm trong private subnet từ máy trạm của chúng ta.</p>
 </div>
 
-<p>Để tìm hiểu cách tạo các EC2 instance và VPC với public/private subnet các bạn có thể tham khảo bài lab :</p>
+<p>Chúng ta sẽ cấu hình <strong>Port Forwarding</strong> cho kết nối RDP giữa máy của mình với <strong>Private Windows Instance</strong> nằm trong private subnet mà chúng ta đã tạo cho bài thực hành này.</p>
+<p><img src="/images/arc-04.png" alt="port-fwd"></p>
+<h4 id="tạo-iam-user-có-quyền-kết-nối-ssm">Tạo IAM User có quyền kết nối SSM</h4>
+<ol>
+<li>Truy cập vào <a href="https://console.aws.amazon.com/iamv2/home">giao diện quản trị dịch vụ IAM</a></li>
+</ol>
 <ul>
-<li><a href="https://000004.awsstudygroup.com/vi/">Giới thiệu về Amazon EC2</a></li>
-<li><a href="https://000003.awsstudygroup.com/vi/">Làm việc với Amazon VPC</a></li>
+<li>Click <strong>Users</strong> , sau đó click <strong>Add users</strong>.</li>
 </ul>
-<p>Để sử dụng System Manager để quản lý window instance nói riêng và các instance nói chung của chúng ta trên AWS, ta cần phải cung cấp quyền cho các instance của chúng ta có thể làm việc với System Manager.Trong phần chuẩn bị này, chúng ta cũng sẽ tiến hành tạo IAM Role để cấp quyền cho các instance có thể làm việc với System Manager.</p>
-<h3 id="nôi-dung">Nội dung</h3>
+<p><img src="/images/5.fwd/001-fwd.png" alt="FWD"></p>
+<ol start="2">
+<li>Tại trang <strong>Add user</strong>.</li>
+</ol>
 <ul>
-<li><a href="2.1-createec2/">Chuẩn bị VPC và EC2 Instance</a></li>
-<li><a href="2.2-createiamrole/">Tạo IAM Role</a></li>
+<li>Tại mục <strong>User name</strong>, điền <strong>Portfwd</strong>.</li>
+<li>Click chọn <strong>Access key - Programmatic access</strong>.</li>
+<li>Click <strong>Next: Permissions</strong>.</li>
 </ul>
+<p><img src="/images/5.fwd/002-fwd.png" alt="FWD"></p>
+<ol start="3">
+<li>Click <strong>Attach existing policies directly</strong>.</li>
+</ol>
+<ul>
+<li>Tại ô tìm kiếm , điền <strong>ssm</strong>.</li>
+<li>Click chọn <strong>AmazonSSMFullAccess</strong>.</li>
+<li>Click <strong>Next: Tags</strong>, click <strong>Next: Reviews</strong>.</li>
+<li>Click <strong>Create user</strong>.</li>
+</ul>
+<ol start="4">
+<li>Lưu lại thông tin <strong>Access key ID</strong> và <strong>Secret access key</strong> để thực hiện cấu hình AWS CLI.</li>
+</ol>
+<h4 id="cài-đặt-và-cấu-hình-aws-cli-và-session-manager-plugin">Cài đặt và cấu hình AWS CLI và Session Manager Plugin</h4>
+<p>Để thực hiện phần thực hành này, đảm bảo máy trạm của bạn đã cài <a href="">AWS CLI</a> và <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-working-with-install-plugin.html">Session Manager Plugin</a></p>
+<p>Bạn có thể tham khảo thêm bài thực hành về cài đặt và cấu hình AWS CLI <a href="https://000011.awsstudygroup.com/">tại đây</a>.</p>
+
+<div class="notices tip" ><p>Với Windows thì khi giải nén thư mục cài đặt <strong>Session Manager Plugin</strong> bạn hãy chạy file <strong>install.bat</strong> với quyền Administrator để thực hiện cài đặt.</p>
+</div>
+
+<h4 id="thực-hiện-portforwarding">Thực hiện Portforwarding</h4>
+<ol>
+<li>Chạy command dưới đây trong <strong>Command Prompt</strong> trên máy của bạn để cấu hình <strong>Port Forwarding</strong>.</li>
+</ol>
+<pre tabindex="0"><code>  aws ssm start-session --target (your ID windows instance) --document-name AWS-StartPortForwardingSession --parameters portNumber=&#34;3389&#34;,localPortNumber=&#34;9999&#34; --region (your region) 
+</code></pre>
+<div class="notices tip" ><p>Thông tin <strong>Instance ID</strong> của <strong>Windows Private Instance</strong> có thể tìm được khi bạn xem chi tiết máy chủ EC2 Windows Private Instance.</p>
+</div>
+
+<ul>
+<li>Câu lệnh ví dụ</li>
+</ul>
+<pre tabindex="0"><code>C:\Windows\system32&gt;aws ssm start-session --target i-06343d7377486760c --document-name AWS-StartPortForwardingSession --parameters portNumber=&#34;3389&#34;,localPortNumber=&#34;9999&#34; --region ap-southeast-1
+</code></pre>
+<div class="notices warning" ><p>Nếu câu lệnh của bạn báo lỗi như dưới đây : <br>
+SessionManagerPlugin is not found. Please refer to SessionManager Documentation here: <a href="http://docs.aws.amazon.com/console/systems-manager/session-manager-plugin-not-found">http://docs.aws.amazon.com/console/systems-manager/session-manager-plugin-not-found</a><br>
+Chứng tỏ bạn chưa cài Session Manager Plugin thành công. Bạn có thể cần khởi chạy lại <strong>Command Prompt</strong> sau khi cài <strong>Session Manager Plugin</strong>.</p>
+</div>
+
+<ol start="2">
+<li>Kết nối tới <strong>Private Windows Instance</strong> bạn đã tạo bằng công cụ <strong>Remote Desktop</strong> trên máy trạm của bạn.</li>
+</ol>
+<ul>
+<li>Tại mục Computer: điền <strong>localhost:9999</strong>.</li>
+</ul>
+<p><img src="/images/5.fwd/003-fwd.png" alt="FWD"></p>
+<ol start="3">
+<li>Quay trở lại giao diện quản trị của dịch vụ System Manager - Session Manager.</li>
+</ol>
+<ul>
+<li>Click tab <strong>Session history</strong>.</li>
+<li>Chúng ta sẽ thấy các session logs với tên Document là <strong>AWS-StartPortForwardingSession</strong>.</li>
+</ul>
+<p><img src="/images/5.fwd/004-fwd.png" alt="FWD"></p>
+<p>Chúc mừng bạn đã hoàn tất bài thực hành hướng dẫn cách sử dụng Session Manager để kết nối cũng như lưu trữ các session logs trong S3 bucket. Hãy nhớ thực hiện bước dọn dẹp tài nguyên để tránh sinh chi phí ngoài ý muốn nhé.</p>
 
 
 
@@ -578,7 +640,6 @@
             
                 
                     
-                    
                 
                 
 
@@ -593,9 +654,6 @@
             
             
                 
-                    
-                        
-                        
                     
                 
                 
@@ -664,6 +722,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -679,6 +738,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -716,10 +778,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/vi/1-introduce/" title="Giới thiệu"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/vi/4-walkthroughbedrock/" title="Quản lý session logs"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/vi/2-prerequiste/2.1-launchastack/" title="Chuẩn bị VPC và EC2" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/vi/5-multiplellms/" title="Port Forwarding" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -729,19 +791,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1753495745"></script>
-    <script src="/js/perfect-scrollbar.min.js?1753495745"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1753495745"></script>
-    <script src="/js/jquery.sticky.js?1753495745"></script>
-    <script src="/js/featherlight.min.js?1753495745"></script>
-    <script src="/js/highlight.pack.js?1753495745"></script>
+    <script src="/js/clipboard.min.js?1753495711"></script>
+    <script src="/js/perfect-scrollbar.min.js?1753495711"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1753495711"></script>
+    <script src="/js/jquery.sticky.js?1753495711"></script>
+    <script src="/js/featherlight.min.js?1753495711"></script>
+    <script src="/js/highlight.pack.js?1753495711"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1753495745"></script>
-    <script src="/js/learn.js?1753495745"></script>
-    <script src="/js/hugo-learn.js?1753495745"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1753495711"></script>
+    <script src="/js/learn.js?1753495711"></script>
+    <script src="/js/hugo-learn.js?1753495711"></script>
 
-    <link href="/mermaid/mermaid.css?1753495745" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1753495745"></script>
+    <link href="/mermaid/mermaid.css?1753495711" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1753495711"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
