@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
+<<<<<<< HEAD
     <title>Index the Source Data by Using Amazon Kendra on AWS System Manager</title>
     <link>//localhost:1313/6-usingamazonkendra/</link>
     <description>Recent content in Index the Source Data by Using Amazon Kendra on AWS System Manager</description>
+=======
+    <title>General Chat with Multiple LLMs on AWS System Manager</title>
+    <link>//localhost:1313/6-usingamazonkendra/</link>
+    <description>Recent content in General Chat with Multiple LLMs on AWS System Manager</description>
+>>>>>>> 270a061107ba5c4d3f7e64ef11c7528b749fcc31
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate></lastBuildDate>
