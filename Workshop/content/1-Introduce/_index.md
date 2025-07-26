@@ -5,6 +5,7 @@ weight : 1
 chapter : false
 pre : " <b> 1. </b> "
 ---
+# Create a Serverless Chatbohugo sert Using Amazon Bedrock, Amazon Kendra, and Your Own Data
 ### Overall
 In this workshop, you will embark on a comprehensive journey to create a serverless chatbot using cutting-edge generative AI technologies. You'll leverage Amazon Bedrock, Amazon Kendra, and your own data to build an intelligent conversational interface that can retrieve and generate contextually relevant responses. The workshop will guide you through configuring multiple services including AWS Lambda, API Gateway, and AWS Amplify, and you'll work with various large language models like Claude 3, Mistral, and Llama. By the end of the workshop, you'll have a fully functional chatbot that can interact with enterprise knowledge bases using Retrieval-Augmented Generation (RAG) techniques. This workshop addresses real-world use cases where organizations need intelligent, data-driven conversational interfaces.
 
