@@ -12,21 +12,21 @@
     <title>Create and Test Knowledge Base :: AWS System Manager</title>
 
     
-    <link href="/css/nucleus.css?1753513766" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1753513766" rel="stylesheet">
-    <link href="/css/hybrid.css?1753513766" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1753513766" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1753513766" rel="stylesheet">
-    <link href="/css/auto-complete.css?1753513766" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1753513766" rel="stylesheet">
-    <link href="/css/theme.css?1753513766" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1753513766" rel="stylesheet">
+    <link href="/css/nucleus.css?1753517607" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1753517607" rel="stylesheet">
+    <link href="/css/hybrid.css?1753517607" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1753517607" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1753517607" rel="stylesheet">
+    <link href="/css/auto-complete.css?1753517607" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1753517607" rel="stylesheet">
+    <link href="/css/theme.css?1753517607" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1753517607" rel="stylesheet">
     
-    <link href="/css/theme-workshop.css?1753513766" rel="stylesheet">
+    <link href="/css/theme-workshop.css?1753517607" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1753513766"></script>
+    <script src="/js/jquery-3.3.1.min.js?1753517607"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1753513766"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1753513766"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1753517607"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1753517607"></script>
 <script type="text/javascript">
     
         var baseurl = "\/\/localhost:1313\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1753513766"></script>
+<script type="text/javascript" src="/js/search.js?1753517607"></script>
 
     
   </div>
@@ -627,6 +627,8 @@
 <nav id="TableOfContents">
   <ul>
     <li><a href="#create-knowledge-base">Create Knowledge Base</a></li>
+    <li><a href="#sync-data-source-with-knowledge-base">Sync data source with Knowledge base</a></li>
+    <li><a href="#test-knowledge-base">Test Knowledge base</a></li>
   </ul>
 </nav>
     </div>
@@ -656,17 +658,68 @@
 <h2 id="create-knowledge-base">Create Knowledge Base</h2>
 <ol>
 <li>Open <a href="https://console.aws.amazon.com/bedrock">Amazon Bedrock console</a>.</li>
-<li>At the upper-left of the Amazon Bedrock console, choose the menu ☰ icon. In the navigation pane, choose <strong>Knowledge Bases</strong>.</li>
-<li>Choose <strong>Create knowledge base</strong>.</li>
-<li>Keep the default name.</li>
+<li>At the upper-left of the Amazon Bedrock console, choose the menu ☰ icon. In the navigation pane, choose <strong>Knowledge Bases</strong>.
+<img src="https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/8.KB/001.png?raw=true" alt="ConnectPrivate"></li>
+<li>Choose <strong>Create knowledge base</strong>, select <strong>Knowledge base with vector store</strong>
+<img src="https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/8.KB/002.png?raw=true" alt="ConnectPrivate"></li>
+<li>Keep the default name.
+<img src="https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/8.KB/003.png?raw=true" alt="ConnectPrivate"></li>
 <li>In <strong>IAM permissions</strong>, choose <strong>Use an existing role</strong>.</li>
-<li>From the dropdown, select <code>xxxx-BedrockExecutionRoleForKBs-xxxx</code> role.</li>
+<li>From the dropdown, select <code>xxxx-BedrockExecutionRoleForKBs-xxxx</code> role.
+<img src="https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/8.KB/004.png?raw=true" alt="ConnectPrivate"></li>
 <li>Select <strong>Amazon S3</strong> for the data source.</li>
 <li>Choose <strong>Next</strong>.</li>
 <li>Choose <strong>Browse S3</strong>.</li>
 <li>Choose <code>xxxx-s3bucket-xxxx</code> and <strong>sample-documents</strong> folder.</li>
 </ol>
-<p><img src="https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/anh/000-architecture.png?raw=true" alt="ConnectPrivate"></p>
+<p><img src="https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/8.KB/007.png?raw=true" alt="ConnectPrivate">
+11. Keep the default chunking configuration.<br>
+12. Choose <strong>Next</strong>.<br>
+13. For <strong>Embeddings model</strong>, choose <strong>Titan Text Embeddings v2</strong>.<br>
+14. For <strong>Vector database</strong>, choose <strong>Quick create&hellip;</strong><br>
+<img src="https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/8.KB/008.png?raw=true" alt="ConnectPrivate">
+<img src="https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/8.KB/009.png?raw=true" alt="ConnectPrivate">
+15. For <strong>Vector store</strong>, choose <strong>Amazon OpenSearch Serverless</strong><br>
+<img src="https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/8.KB/010.png?raw=true" alt="ConnectPrivate">
+16. Choose <strong>Create knowledge base</strong>.<br>
+17. This may take few minutes to complete.
+<img src="https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/8.KB/011.png?raw=true" alt="ConnectPrivate"></p>
+<h2 id="sync-data-source-with-knowledge-base">Sync data source with Knowledge base</h2>
+<ol>
+<li>Under <strong>Data source</strong>, choose your knowledge source (<em>knowledge-base-quick-&hellip;</em>).</li>
+<li>Choose <strong>Sync</strong> button.<br>
+<img src="https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/8.KB/014.png?raw=true" alt="ConnectPrivate"></li>
+<li>After few seconds, the knowledge base is ready to test.</li>
+</ol>
+<h2 id="test-knowledge-base">Test Knowledge base</h2>
+<ol>
+<li>Select your Knowledge base and choose Test knowledge base button.</li>
+</ol>
+<p><img src="https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/8.KB/015.png?raw=true" alt="ConnectPrivate"></p>
+<ol start="2">
+<li>
+<p>In the right side pane, choose <strong>Select model</strong>.</p>
+</li>
+<li>
+<p>In the <strong>Select model</strong> window, choose <strong>Claude 3 Haiku</strong> and choose <strong>Apply</strong>.<br>
+<em>(Note, you may test with other models also as long as you have enabled those models.)</em></p>
+</li>
+</ol>
+<p><img src="https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/8.KB/016.png?raw=true" alt="ConnectPrivate"></p>
+<ol start="4">
+<li>
+<p>Type the below question in the <em>Enter your message here</em> window.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>What are Amazon sustainability goals by year 2040?
+</span></span></code></pre></div></li>
+<li>
+<p>Choose <strong>Run</strong>.</p>
+</li>
+<li>
+<p>You see a response shown below.</p>
+</li>
+</ol>
+<p><img src="https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/8.KB/017.png?raw=true" alt="ConnectPrivate">
+Explore the capabilities of your knowledge base by posing diverse questions. A notable feature is its ability to maintain context throughout the conversation. This allows for progressive inquiry, where each question can build upon previous responses, enabling more in-depth and nuanced interactions. Take advantage of this contextual awareness to delve deeper into topics and extract more comprehensive insights from your data.</p>
 
 
 
@@ -960,19 +1013,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1753513766"></script>
-    <script src="/js/perfect-scrollbar.min.js?1753513766"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1753513766"></script>
-    <script src="/js/jquery.sticky.js?1753513766"></script>
-    <script src="/js/featherlight.min.js?1753513766"></script>
-    <script src="/js/highlight.pack.js?1753513766"></script>
+    <script src="/js/clipboard.min.js?1753517607"></script>
+    <script src="/js/perfect-scrollbar.min.js?1753517607"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1753517607"></script>
+    <script src="/js/jquery.sticky.js?1753517607"></script>
+    <script src="/js/featherlight.min.js?1753517607"></script>
+    <script src="/js/highlight.pack.js?1753517607"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1753513766"></script>
-    <script src="/js/learn.js?1753513766"></script>
-    <script src="/js/hugo-learn.js?1753513766"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1753517607"></script>
+    <script src="/js/learn.js?1753517607"></script>
+    <script src="/js/hugo-learn.js?1753517607"></script>
 
-    <link href="/mermaid/mermaid.css?1753513766" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1753513766"></script>
+    <link href="/mermaid/mermaid.css?1753517607" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1753517607"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

@@ -10,6 +10,14 @@ In this workshop, you will embark on a comprehensive journey to create a serverl
 
 You'll learn how to solve challenges such as enterprise knowledge discovery, customer support automation, and information retrieval across complex document repositories. The solution you'll build can be applied in numerous business scenarios, including technical support systems, HR knowledge management, compliance document querying, and research information synthesis. By mastering these techniques, you'll be equipped to create AI-powered solutions that can transform how businesses interact with their data, providing faster, more accurate, and context-aware responses to complex queries.
 
+Throughout this workshop, you have gained the following knowledge and skills:
+
+- How to construct generative AI solutions by utilizing Amazon Bedrock and a serverless architecture.
+- How to use AWS SAM to create and deploy generative AI solutions.
+- How to harness the capabilities of Large Language Models through the Retrieval-Augmented Generation (RAG) architecture.
+- The importance of effective data management in the context of generative AI, which includes sourcing, storing, and preprocessing data to enhance the performance and relevance of AI-generated responses.
+- The role of Prompt Engineering in achieving better outcomes.
+
 You will create the following architecture for this workshop:
 
 ![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/anh/000-architecture.png?raw=true)

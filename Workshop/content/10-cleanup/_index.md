@@ -6,78 +6,34 @@ chapter : false
 pre : " <b> 10. </b> "
 ---
 
-We will take the following steps to delete the resources we created in this exercise.
+After you've completed the workshop, to stop incurring costs, you should remove the resources that you created in your AWS account.
 
-#### Delete EC2 instance
+## Method 1: Use AWS CLI to delete resources
 
-1. Go to [EC2 service management console](https://console.aws.amazon.com/ec2/v2/home)
-   + Click **Instances**.
-   + Select both **Public Linux Instance** and **Private Windows Instance** instances.
-   + Click **Instance state**.
-   + Click **Terminate instance**, then click **Terminate** to confirm.
+### Remove the AWS SAM application and startup CloudFormation stack
 
-2. Go to [IAM service management console](https://console.aws.amazon.com/iamv2/home#/home)
-   + Click **Roles**.
-   + In the search box, enter **SSM**.
-   + Click to select **SSM-Role**.
-   + Click **Delete**, then enter the role name **SSM-Role** and click **Delete** to delete the role.
+Navigate to the AWS Cloud9 terminal, and then run the following commands:
 
-![Clean](/images/6.clean/001-clean.png)
+ 1. To delete SAM stack, run the following command.
+```bash
+cd ~/environment/bedrock-serverless-workshop
+sam delete
+```
+2. To delete startup stack, run the following command.
+```bash
+aws cloudformation delete-stack --stack-name $CFNStackName
+```
+## Method 2: Manually delete resources from the AWS Console
+### Delete OpenSearch Collection
+1. Go to Amazon OpenSearch Service in the AWS Console.
 
-3. Click **Users**.
-   + Click on user **Portfwd**.
-   + Click **Delete**, then enter the user name **Portfwd** and click **Delete** to delete the user.
+2. Click Collections under Serverless in the sidebar.
 
-#### Delete S3 bucket
+3. Select the collection → click Delete → confirm.
+### Delete CloudFormation Stack
+1. Go to AWS CloudFormation in the AWS Console.
 
-1. Access [System Manager - Session Manager service management console](https://console.aws.amazon.com/systems-manager/session-manager).
-   + Click the **Preferences** tab.
-   + Click **Edit**.
-   + Scroll down.
-   + In the section **S3 logging**.
-   + Uncheck **Enable** to disable logging.
-   + Scroll down.
-   + Click **Save**.
+2. Find the stack named **chatbot-startup-stack**.
 
-2. Go to [S3 service management console](https://s3.console.aws.amazon.com/s3/home)
-   + Click on the S3 bucket we created for this lab. (Example: lab-fcj-bucket-0001 )
-   + Click **Empty**.
-   + Enter **permanently delete**, then click **Empty** to proceed to delete the object in the bucket.
-   + Click **Exit**.
-
-3. After deleting all objects in the bucket, click **Delete**
-
-![Clean](/images/6.clean/002-clean.png)
-
-4. Enter the name of the S3 bucket, then click **Delete bucket** to proceed with deleting the S3 bucket.
-
-![Clean](/images/6.clean/003-clean.png)
-
-#### Delete VPC Endpoints
-
-1. Go to [VPC service management console](https://console.aws.amazon.com/vpc/home)
-   + Click **Endpoints**.
-   + Select the 4 endpoints we created for the lab including **SSM**, **SSMMESSAGES**, **EC2MESSAGES**, **S3GW**.
-   + Click **Actions**.
-   + Click **Delete VPC endpoints**.
-
-![Clean](/images/6.clean/004-clean.png)
-
-2. In the confirm box, enter **delete**.
-   + Click **Delete** to proceed with deleting endpoints.
-
-3. Click the refresh icon, check that all endpoints have been deleted before proceeding to the next step.
-
-![Clean](/images/6.clean/005-clean.png)
-
-#### Delete VPC
-
-1. Go to [VPC service management console](https://console.aws.amazon.com/vpc/home)
-   + Click **Your VPCs**.
-   + Click on **Lab VPC**.
-   + Click **Actions**.
-   + Click **Delete VPC**.
-
-2. In the confirm box, enter **delete** to confirm, click **Delete** to delete **Lab VPC** and related resources.
-
-![Clean](/images/6.clean/006-clean.png)
+3. Select it → click Delete → confirm.
+### Delete a Knowledge Base

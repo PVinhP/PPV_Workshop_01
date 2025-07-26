@@ -6,52 +6,135 @@ chapter : false
 pre : " <b> 9.2 </b> "
 ---
 
-Amazon Bedrock Knowledge Bases is a fully managed capability that enables you to implement Retrieval Augmented Generation (RAG) workflows using your organization's proprietary data sources. Amazon Bedrock Knowledge Bases automates the entire RAG workflow, from data ingestion to retrieval and prompt augmentation, without requiring custom integrations or data flow management. This allows you to equip foundation models (FMs) and agents with up-to-date and proprietary information to deliver more relevant and accurate responses.
-
-Amazon Bedrock Knowledge Bases rely on two key components to enable efficient retrieval of relevant information: embeddings and vector stores. These elements work together to transform text data into a format that can be quickly searched and retrieved based on semantic similarity.
-
-Embeddings are numerical representations of text that capture semantic meaning. In Amazon Bedrock, embedding models like Amazon Titan Embeddings or Cohere Embed convert text from your documents into dense vectors. This process allows for efficient comparison and retrieval of semantically similar content, forming the foundation of the knowledge base's understanding of your data.
-
-Vector stores are specialized databases designed to index and query these vector embeddings efficiently. Amazon Bedrock offers options like Amazon-managed OpenSearch Serverless or custom solutions such as Amazon Aurora PostgreSQL with pgvector. These stores enable rapid similarity searches, allowing the system to quickly identify and retrieve the most relevant information when responding to queries, thus enhancing the performance of Retrieval Augmented Generation (RAG) workflows.
-## Functionality and Benefits
-Seamless RAG Implementation: Amazon Bedrock Knowledge Bases automates the entire RAG workflow, from data ingestion to retrieval and prompt augmentation, without requiring custom integrations or data flow management. This allows you to equip foundation models (FMs) and agents with up-to-date and proprietary information to deliver more relevant and accurate responses.
-
-Secure Data Connection: The service automatically fetches documents from your specified data sources, including Amazon S3, Web Crawler, Salesforce, and SharePoint. It then processes the content by dividing it into text blocks, converting them into embeddings, and storing them in a vector database.
-
-Customization Options: You can fine-tune both retrieval and ingestion processes to improve accuracy across different use cases. Advanced parsing options are available for understanding complex unstructured data, and you can choose from various chunking strategies or even write custom chunking code.
-## Knowledge Bases Architecture
-In the next two tasks, you will build a chatbot using Amazon Bedrock Knowledge Bases. The architecture of the solution is illustrated below:
-![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/anh/000-architecture.png?raw=true)
-## Knowledge Base and Vector Search Components
-
-1. **Knowledge Bases**: Central repository for structured information  
-2. **Amazon S3**: Storage for documents (pdf, csv, txt, etc.)  
-3. **Amazon OpenSearch**: Vector database and search engine for efficient similarity search  
-4. **Amazon Bedrock**: Provides access to embedding models, including Amazon Titan Embeddings  
+In this task, you will integrate the Amazon Bedrock Knowledge Base with an AWS Lambda function, utilizing the existing API Gateway setup.  
+The focus will be on setting up a Lambda function that interacts with the Knowledge Base and connects to the pre-established API endpoint.  
+This integration will enable the existing UI to communicate with the Knowledge Base through the serverless architecture, allowing for efficient querying and retrieval information with RAG.  
+By leveraging the pre-configured API Gateway and implementing the Lambda function, and complete the backend infrastructure, enabling users to access the power of the Knowledge Base through the familiar web interface, while maintaining the scalability and flexibility of the cloud-native solution.
 
 ---
 
-## Knowledge Base and Vector Search Workflow
+## ⚙️ Setting up AWS Lambda Function
 
-1. Documents are stored in Amazon S3  
-2. Text is extracted and processed from documents  
-3. Amazon Bedrock's Titan Embeddings model generates vector representations of text  
-4. Vectors are stored in Amazon OpenSearch, functioning as a vector database  
-5. Knowledge Bases ingest and structure information, incorporating vector representations  
-6. AWS Lambda functions (RAG/KB/LLM Functions) interact with Knowledge Bases and vector search  
-7. RAG (Retrieval Augmented Generation) leverages vector similarity search for relevant information retrieval
-## 🔍 Key Features of Knowledge Base and Vector Search Integration
+The Lambda function was previously deployed as part of the SAM deployment in Task 2.  
+In this task, you will update the function's code and an environment variable containing the Knowledge Base ID.  
+These changes will enable the Lambda function to interact effectively with the Knowledge Base.
 
-- Semantic search capabilities using vector representations of text  
-- Efficient similarity search through Amazon OpenSearch's vector database functionality  
-- Integration of Amazon Titan Embeddings for high-quality text vectorization  
-- Enhanced context and accuracy in chatbot responses using vector-based retrieval  
-- Improved relevance in information retrieval for RAG operations  
-- Ability to handle and search through large volumes of unstructured text data  
-- Seamless combination of traditional keyword search and vector-based semantic search  
+> ℹ️ **Note**  
+> Before proceeding, ensure the knowledge base creation is complete.  
+> This step requires the knowledge base ID, which will be used as a Lambda environment variable.  
+> Verify the status of the knowledge base you created in the previous task, and only continue once it's fully operational.
 
 ---
 
-This setup allows the chatbot to perform advanced semantic searches on enterprise knowledge.  
-By using Amazon Titan Embeddings to create vector representations of text and storing these in Amazon OpenSearch as a vector database, the system can find contextually similar information even when exact keyword matches are not present.  
-This significantly enhances the chatbot's ability to understand and respond to user queries with relevant information from the enterprise's knowledge base.
+1. Open the **VSCode** editor.  
+2. From the **`bedrock-serverless-workshop`** project, open  
+   **`/lambdas/llmFunctions/kbfunction.py`**, copy the below code and update the function code.  
+   This function carries the logic to call knowledge base.
+![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/8.KB/018.png?raw=true)
+
+````bash
+import os
+import json
+import boto3
+
+import traceback
+
+
+region = boto3.session.Session().region_name
+KB_ID = os.environ["KB_ID"]
+
+
+def lambda_handler(event, context):
+    boto3_version = boto3.__version__
+    print(f"Boto3 version: {boto3_version}")
+    
+    print(f"Event is: {event}")
+    event_body = json.loads(event["body"])
+    prompt = event_body["query"]
+    model_id = event_body["model_id"]
+    
+    response = ''
+    status_code = 200
+    
+    try:
+        model_arn = 'arn:aws:bedrock:'+region+'::foundation-model/'+model_id
+        print(f"Model arn: {model_arn}")
+        
+        response = retrieveAndGenerate(prompt, model_arn)["output"]["text"]
+        return {
+            'statusCode': status_code,
+            'headers': {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+                'Access-Control-Allow-Methods': 'OPTIONS,POST'
+            },
+            'body': json.dumps({'answer': response})
+        }
+            
+    except Exception as e:
+        print(f"An unexpected error occurred: {str(e)}")
+        stack_trace = traceback.format_exc()
+        print(stack_trace)
+        return {
+            'statusCode': status_code,
+            'headers': {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+                'Access-Control-Allow-Methods': 'OPTIONS,POST'
+            },
+            'body': json.dumps({'error': str(e)})
+        }
+
+def retrieveAndGenerate(prompt, model_arn):
+    bedrock_agent_runtime = boto3.client(
+            service_name = "bedrock-agent-runtime")
+    return bedrock_agent_runtime.retrieve_and_generate(
+        input={
+            'text': prompt
+        },
+        retrieveAndGenerateConfiguration={
+            'type': 'KNOWLEDGE_BASE',
+            'knowledgeBaseConfiguration': {
+                'knowledgeBaseId': KB_ID,
+                'modelArn': model_arn
+                }
+            }
+    )
+````
+1. Run the following commands to retrieve the Knowledge Base ID and update the Lambda function's environment variable:
+````bash
+export KB_ID=$(aws bedrock-agent list-knowledge-bases | jq -r '.knowledgeBaseSummaries[0].knowledgeBaseId')
+echo "Knowledge Base ID: $KB_ID"
+sed -Ei "s|copy_kb_id|${KB_ID}|g" ./template.yaml
+````
+2. Open VSCode terminal, run the following command to build and deploy with new updated lambda code.
+
+````bash
+cd ~/environment/bedrock-serverless-workshop
+sam build && sam deploy
+````
+
+The Lambda function has been successfully integrated with your Amazon Bedrock Knowledge Base.  
+This integration enables the Lambda function to interact directly with the Knowledge Base, allowing it to retrieve and process information from your proprietary data.
+
+---
+
+## 🧪 Test Knowledge Base using UI
+
+1. Return to the browser and open the chatbot webpage.  
+   If you are not signed in, use the credentials that you retrieved earlier to sign in.
+
+2. Choose **RAG with Knowledge Bases** option from the menu.
+
+3. Ask a question — you can use a sample question from the right side panel.  
+   Here is a sample question and the response from **Claude 3.5 Sonnet**.  
+   You can try with other LLMs and compare the results.
+
+```text
+What are Amazon sustainability goals by year 2040?
+```
+
+![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/8.KB/019.png?raw=true)
+
+![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/8.KB/020.png?raw=true)
+This task has guided you through the process of creating and integrating an Amazon Bedrock Knowledge Base with AWS Lambda and API Gateway. You've successfully set up serverless architecture that leverages your organization's proprietary data to enhance AI-driven applications. By connecting your Knowledge Base to Lambda and utilizing the existing API Gateway, you've created a robust backend capable of processing queries, retrieving relevant information, and generating context-aware responses. This integration opens up numerous possibilities for developing intelligent applications, from advanced chatbots to sophisticated search interfaces, all while maintaining data security and scalability.

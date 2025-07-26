@@ -12,21 +12,21 @@
     <title>Clean up resources :: AWS System Manager</title>
 
     
-    <link href="/css/nucleus.css?1753513766" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1753513766" rel="stylesheet">
-    <link href="/css/hybrid.css?1753513766" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1753513766" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1753513766" rel="stylesheet">
-    <link href="/css/auto-complete.css?1753513766" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1753513766" rel="stylesheet">
-    <link href="/css/theme.css?1753513766" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1753513766" rel="stylesheet">
+    <link href="/css/nucleus.css?1753517607" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1753517607" rel="stylesheet">
+    <link href="/css/hybrid.css?1753517607" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1753517607" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1753517607" rel="stylesheet">
+    <link href="/css/auto-complete.css?1753517607" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1753517607" rel="stylesheet">
+    <link href="/css/theme.css?1753517607" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1753517607" rel="stylesheet">
     
-    <link href="/css/theme-workshop.css?1753513766" rel="stylesheet">
+    <link href="/css/theme-workshop.css?1753517607" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1753513766"></script>
+    <script src="/js/jquery-3.3.1.min.js?1753517607"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1753513766"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1753513766"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1753517607"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1753517607"></script>
 <script type="text/javascript">
     
         var baseurl = "\/\/localhost:1313\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1753513766"></script>
+<script type="text/javascript" src="/js/search.js?1753517607"></script>
 
     
   </div>
@@ -620,9 +620,16 @@
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
-    <li>
+    <li><a href="#method-1-use-aws-cli-to-delete-resources">Method 1: Use AWS CLI to delete resources</a>
       <ul>
-        <li></li>
+        <li><a href="#remove-the-aws-sam-application-and-startup-cloudformation-stack">Remove the AWS SAM application and startup CloudFormation stack</a></li>
+      </ul>
+    </li>
+    <li><a href="#method-2-manually-delete-resources-from-the-aws-console">Method 2: Manually delete resources from the AWS Console</a>
+      <ul>
+        <li><a href="#delete-opensearch-collection">Delete OpenSearch Collection</a></li>
+        <li><a href="#delete-cloudformation-stack">Delete CloudFormation Stack</a></li>
+        <li><a href="#delete-a-knowledge-base">Delete a Knowledge Base</a></li>
       </ul>
     </li>
   </ul>
@@ -650,109 +657,45 @@
 
 
 
-	<p>We will take the following steps to delete the resources we created in this exercise.</p>
-<h4 id="delete-ec2-instance">Delete EC2 instance</h4>
+	<p>After you&rsquo;ve completed the workshop, to stop incurring costs, you should remove the resources that you created in your AWS account.</p>
+<h2 id="method-1-use-aws-cli-to-delete-resources">Method 1: Use AWS CLI to delete resources</h2>
+<h3 id="remove-the-aws-sam-application-and-startup-cloudformation-stack">Remove the AWS SAM application and startup CloudFormation stack</h3>
+<p>Navigate to the AWS Cloud9 terminal, and then run the following commands:</p>
+<ol>
+<li>To delete SAM stack, run the following command.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd ~/environment/bedrock-serverless-workshop
+</span></span><span style="display:flex;"><span>sam delete
+</span></span></code></pre></div><ol start="2">
+<li>To delete startup stack, run the following command.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>aws cloudformation delete-stack --stack-name $CFNStackName
+</span></span></code></pre></div><h2 id="method-2-manually-delete-resources-from-the-aws-console">Method 2: Manually delete resources from the AWS Console</h2>
+<h3 id="delete-opensearch-collection">Delete OpenSearch Collection</h3>
 <ol>
 <li>
-<p>Go to <a href="https://console.aws.amazon.com/ec2/v2/home">EC2 service management console</a></p>
-<ul>
-<li>Click <strong>Instances</strong>.</li>
-<li>Select both <strong>Public Linux Instance</strong> and <strong>Private Windows Instance</strong> instances.</li>
-<li>Click <strong>Instance state</strong>.</li>
-<li>Click <strong>Terminate instance</strong>, then click <strong>Terminate</strong> to confirm.</li>
-</ul>
+<p>Go to Amazon OpenSearch Service in the AWS Console.</p>
 </li>
 <li>
-<p>Go to <a href="https://console.aws.amazon.com/iamv2/home#/home">IAM service management console</a></p>
-<ul>
-<li>Click <strong>Roles</strong>.</li>
-<li>In the search box, enter <strong>SSM</strong>.</li>
-<li>Click to select <strong>SSM-Role</strong>.</li>
-<li>Click <strong>Delete</strong>, then enter the role name <strong>SSM-Role</strong> and click <strong>Delete</strong> to delete the role.</li>
-</ul>
+<p>Click Collections under Serverless in the sidebar.</p>
+</li>
+<li>
+<p>Select the collection → click Delete → confirm.</p>
 </li>
 </ol>
-<p><img src="/images/6.clean/001-clean.png" alt="Clean"></p>
-<ol start="3">
-<li>Click <strong>Users</strong>.
-<ul>
-<li>Click on user <strong>Portfwd</strong>.</li>
-<li>Click <strong>Delete</strong>, then enter the user name <strong>Portfwd</strong> and click <strong>Delete</strong> to delete the user.</li>
-</ul>
-</li>
-</ol>
-<h4 id="delete-s3-bucket">Delete S3 bucket</h4>
+<h3 id="delete-cloudformation-stack">Delete CloudFormation Stack</h3>
 <ol>
 <li>
-<p>Access <a href="https://console.aws.amazon.com/systems-manager/session-manager">System Manager - Session Manager service management console</a>.</p>
-<ul>
-<li>Click the <strong>Preferences</strong> tab.</li>
-<li>Click <strong>Edit</strong>.</li>
-<li>Scroll down.</li>
-<li>In the section <strong>S3 logging</strong>.</li>
-<li>Uncheck <strong>Enable</strong> to disable logging.</li>
-<li>Scroll down.</li>
-<li>Click <strong>Save</strong>.</li>
-</ul>
+<p>Go to AWS CloudFormation in the AWS Console.</p>
 </li>
 <li>
-<p>Go to <a href="https://s3.console.aws.amazon.com/s3/home">S3 service management console</a></p>
-<ul>
-<li>Click on the S3 bucket we created for this lab. (Example: lab-fcj-bucket-0001 )</li>
-<li>Click <strong>Empty</strong>.</li>
-<li>Enter <strong>permanently delete</strong>, then click <strong>Empty</strong> to proceed to delete the object in the bucket.</li>
-<li>Click <strong>Exit</strong>.</li>
-</ul>
+<p>Find the stack named <strong>chatbot-startup-stack</strong>.</p>
 </li>
 <li>
-<p>After deleting all objects in the bucket, click <strong>Delete</strong></p>
+<p>Select it → click Delete → confirm.</p>
 </li>
 </ol>
-<p><img src="/images/6.clean/002-clean.png" alt="Clean"></p>
-<ol start="4">
-<li>Enter the name of the S3 bucket, then click <strong>Delete bucket</strong> to proceed with deleting the S3 bucket.</li>
-</ol>
-<p><img src="/images/6.clean/003-clean.png" alt="Clean"></p>
-<h4 id="delete-vpc-endpoints">Delete VPC Endpoints</h4>
-<ol>
-<li>Go to <a href="https://console.aws.amazon.com/vpc/home">VPC service management console</a>
-<ul>
-<li>Click <strong>Endpoints</strong>.</li>
-<li>Select the 4 endpoints we created for the lab including <strong>SSM</strong>, <strong>SSMMESSAGES</strong>, <strong>EC2MESSAGES</strong>, <strong>S3GW</strong>.</li>
-<li>Click <strong>Actions</strong>.</li>
-<li>Click <strong>Delete VPC endpoints</strong>.</li>
-</ul>
-</li>
-</ol>
-<p><img src="/images/6.clean/004-clean.png" alt="Clean"></p>
-<ol start="2">
-<li>
-<p>In the confirm box, enter <strong>delete</strong>.</p>
-<ul>
-<li>Click <strong>Delete</strong> to proceed with deleting endpoints.</li>
-</ul>
-</li>
-<li>
-<p>Click the refresh icon, check that all endpoints have been deleted before proceeding to the next step.</p>
-</li>
-</ol>
-<p><img src="/images/6.clean/005-clean.png" alt="Clean"></p>
-<h4 id="delete-vpc">Delete VPC</h4>
-<ol>
-<li>
-<p>Go to <a href="https://console.aws.amazon.com/vpc/home">VPC service management console</a></p>
-<ul>
-<li>Click <strong>Your VPCs</strong>.</li>
-<li>Click on <strong>Lab VPC</strong>.</li>
-<li>Click <strong>Actions</strong>.</li>
-<li>Click <strong>Delete VPC</strong>.</li>
-</ul>
-</li>
-<li>
-<p>In the confirm box, enter <strong>delete</strong> to confirm, click <strong>Delete</strong> to delete <strong>Lab VPC</strong> and related resources.</p>
-</li>
-</ol>
-<p><img src="/images/6.clean/006-clean.png" alt="Clean"></p>
+<h3 id="delete-a-knowledge-base">Delete a Knowledge Base</h3>
 
 
 
@@ -1042,19 +985,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1753513766"></script>
-    <script src="/js/perfect-scrollbar.min.js?1753513766"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1753513766"></script>
-    <script src="/js/jquery.sticky.js?1753513766"></script>
-    <script src="/js/featherlight.min.js?1753513766"></script>
-    <script src="/js/highlight.pack.js?1753513766"></script>
+    <script src="/js/clipboard.min.js?1753517607"></script>
+    <script src="/js/perfect-scrollbar.min.js?1753517607"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1753517607"></script>
+    <script src="/js/jquery.sticky.js?1753517607"></script>
+    <script src="/js/featherlight.min.js?1753517607"></script>
+    <script src="/js/highlight.pack.js?1753517607"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1753513766"></script>
-    <script src="/js/learn.js?1753513766"></script>
-    <script src="/js/hugo-learn.js?1753513766"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1753517607"></script>
+    <script src="/js/learn.js?1753517607"></script>
+    <script src="/js/hugo-learn.js?1753517607"></script>
 
-    <link href="/mermaid/mermaid.css?1753513766" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1753513766"></script>
+    <link href="/mermaid/mermaid.css?1753517607" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1753517607"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
