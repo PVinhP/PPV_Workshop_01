@@ -1,3 +1,6 @@
+baseURL = "https://PVinhP.github.io/PPV_Workshop_01/" 
+languageCode = "en-us" 
+publishDir = "docs"
 # Change the default theme to be use when building the site with Hugo
 theme = "hugo-theme-learn"
 

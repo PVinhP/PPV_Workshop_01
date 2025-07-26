@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="vi" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.147.8">
+    <meta name="description" content="">
+<meta name="author" content="journeyoftheaverageguy@gmail.com">
+
+    <link rel="icon" href="/PPV_Workshop_01/images/favicon.png" type="image/png">
+
+    <title>Giới thiệu :: AWS System Manager</title>
+
+    
+    <link href="/PPV_Workshop_01/css/nucleus.css?1753540103" rel="stylesheet">
+    <link href="/PPV_Workshop_01/css/fontawesome-all.min.css?1753540103" rel="stylesheet">
+    <link href="/PPV_Workshop_01/css/hybrid.css?1753540103" rel="stylesheet">
+    <link href="/PPV_Workshop_01/css/featherlight.min.css?1753540103" rel="stylesheet">
+    <link href="/PPV_Workshop_01/css/perfect-scrollbar.min.css?1753540103" rel="stylesheet">
+    <link href="/PPV_Workshop_01/css/auto-complete.css?1753540103" rel="stylesheet">
+    <link href="/PPV_Workshop_01/css/atom-one-dark-reasonable.css?1753540103" rel="stylesheet">
+    <link href="/PPV_Workshop_01/css/theme.css?1753540103" rel="stylesheet">
+    <link href="/PPV_Workshop_01/css/hugo-theme.css?1753540103" rel="stylesheet">
+    
+    <link href="/PPV_Workshop_01/css/theme-workshop.css?1753540103" rel="stylesheet">
+    
+    
+
+    <script src="/PPV_Workshop_01/js/jquery-3.3.1.min.js?1753540103"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="/PPV_Workshop_01/vi/1-introduce/">
+    <nav id="sidebar" class="showVisitedLinks">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <a id="logo" href="/">
+
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" width="30%"><defs><style>.cls-1{fill:#fff;}.cls-2{fill:#f90;fill-rule:evenodd;}</style></defs><title>AWS-Logo_White-Color</title><path class="cls-1" d="M14.09,10.85a4.7,4.7,0,0,0,.19,1.48,7.73,7.73,0,0,0,.54,1.19.77.77,0,0,1,.12.38.64.64,0,0,1-.32.49l-1,.7a.83.83,0,0,1-.44.15.69.69,0,0,1-.49-.23,3.8,3.8,0,0,1-.6-.77q-.25-.42-.51-1a6.14,6.14,0,0,1-4.89,2.3,4.54,4.54,0,0,1-3.32-1.19,4.27,4.27,0,0,1-1.22-3.2A4.28,4.28,0,0,1,3.61,7.75,6.06,6.06,0,0,1,7.69,6.46a12.47,12.47,0,0,1,1.76.13q.92.13,1.91.36V5.73a3.65,3.65,0,0,0-.79-2.66A3.81,3.81,0,0,0,7.86,2.3a7.71,7.71,0,0,0-1.79.22,12.78,12.78,0,0,0-1.79.57,4.55,4.55,0,0,1-.58.22l-.26,0q-.35,0-.35-.52V2a1.09,1.09,0,0,1,.12-.58,1.2,1.2,0,0,1,.47-.35A10.88,10.88,0,0,1,5.77.32,10.19,10.19,0,0,1,8.36,0a6,6,0,0,1,4.35,1.35,5.49,5.49,0,0,1,1.38,4.09ZM7.34,13.38a5.36,5.36,0,0,0,1.72-.31A3.63,3.63,0,0,0,10.63,12,2.62,2.62,0,0,0,11.19,11a5.63,5.63,0,0,0,.16-1.44v-.7a14.35,14.35,0,0,0-1.53-.28,12.37,12.37,0,0,0-1.56-.1,3.84,3.84,0,0,0-2.47.67A2.34,2.34,0,0,0,5,11a2.35,2.35,0,0,0,.61,1.76A2.4,2.4,0,0,0,7.34,13.38Zm13.35,1.8a1,1,0,0,1-.64-.16,1.3,1.3,0,0,1-.35-.65L15.81,1.51a3,3,0,0,1-.15-.67.36.36,0,0,1,.41-.41H17.7a1,1,0,0,1,.65.16,1.4,1.4,0,0,1,.33.65l2.79,11,2.59-11A1.17,1.17,0,0,1,24.39.6a1.1,1.1,0,0,1,.67-.16H26.4a1.1,1.1,0,0,1,.67.16,1.17,1.17,0,0,1,.32.65L30,12.39,32.88,1.25A1.39,1.39,0,0,1,33.22.6a1,1,0,0,1,.65-.16h1.54a.36.36,0,0,1,.41.41,1.36,1.36,0,0,1,0,.26,3.64,3.64,0,0,1-.12.41l-4,12.86a1.3,1.3,0,0,1-.35.65,1,1,0,0,1-.64.16H29.25a1,1,0,0,1-.67-.17,1.26,1.26,0,0,1-.32-.67L25.67,3.64,23.11,14.34a1.26,1.26,0,0,1-.32.67,1,1,0,0,1-.67.17Zm21.36.44a11.28,11.28,0,0,1-2.56-.29,7.44,7.44,0,0,1-1.92-.67,1,1,0,0,1-.61-.93v-.84q0-.52.38-.52a.9.9,0,0,1,.31.06l.42.17a8.77,8.77,0,0,0,1.83.58,9.78,9.78,0,0,0,2,.2,4.48,4.48,0,0,0,2.43-.55,1.76,1.76,0,0,0,.86-1.57,1.61,1.61,0,0,0-.45-1.16A4.29,4.29,0,0,0,43,9.22l-2.41-.76A5.15,5.15,0,0,1,38,6.78a3.94,3.94,0,0,1-.83-2.41,3.7,3.7,0,0,1,.45-1.85,4.47,4.47,0,0,1,1.19-1.37A5.27,5.27,0,0,1,40.51.29,7.4,7.4,0,0,1,42.6,0a8.87,8.87,0,0,1,1.12.07q.57.07,1.08.19t.95.26a4.27,4.27,0,0,1,.7.29,1.59,1.59,0,0,1,.49.41.94.94,0,0,1,.15.55v.79q0,.52-.38.52a1.76,1.76,0,0,1-.64-.2,7.74,7.74,0,0,0-3.2-.64,4.37,4.37,0,0,0-2.21.47,1.6,1.6,0,0,0-.79,1.48,1.58,1.58,0,0,0,.49,1.18,4.94,4.94,0,0,0,1.83.92L44.55,7a5.08,5.08,0,0,1,2.57,1.6A3.76,3.76,0,0,1,47.9,11a4.21,4.21,0,0,1-.44,1.93,4.4,4.4,0,0,1-1.21,1.47,5.43,5.43,0,0,1-1.85.93A8.25,8.25,0,0,1,42.05,15.62Z"></path><path class="cls-2" d="M45.19,23.81C39.72,27.85,31.78,30,25,30A36.64,36.64,0,0,1,.22,20.57c-.51-.46-.06-1.09.56-.74A49.78,49.78,0,0,0,25.53,26.4,49.23,49.23,0,0,0,44.4,22.53C45.32,22.14,46.1,23.14,45.19,23.81Z"></path><path class="cls-2" d="M47.47,21.21c-.7-.9-4.63-.42-6.39-.21-.53.06-.62-.4-.14-.74,3.13-2.2,8.27-1.57,8.86-.83s-.16,5.89-3.09,8.35c-.45.38-.88.18-.68-.32C46.69,25.8,48.17,22.11,47.47,21.21Z"></path></svg>
+
+</a>
+
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="/PPV_Workshop_01/js/lunr.min.js?1753540103"></script>
+<script type="text/javascript" src="/PPV_Workshop_01/js/auto-complete.js?1753540103"></script>
+<script type="text/javascript">
+    
+        var baseurl = "https:\/\/PVinhP.github.io\/PPV_Workshop_01\/\/vi";
+    
+</script>
+<script type="text/javascript" src="/PPV_Workshop_01/js/search.js?1753540103"></script>
+
+    
+  </div>
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/PPV_Workshop_01/vi/1-introduce/" title="Giới thiệu" class="dd-item 
+        
+        active
+        
+        ">
+      <a href="/PPV_Workshop_01/vi/1-introduce/">
+           <b> 1. </b> Giới thiệu
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/PPV_Workshop_01/vi/2-prerequiste/" title="Chuẩn bị " class="dd-item 
+        
+        
+        
+        ">
+      <a href="/PPV_Workshop_01/vi/2-prerequiste/">
+           <b> 2. </b> Chuẩn bị 
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/PPV_Workshop_01/vi/2-prerequiste/2.1-launchastack/" title="Khởi chạy CloudFormation stack" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/PPV_Workshop_01/vi/2-prerequiste/2.1-launchastack/">
+           <b> 2.1 </b> Khởi chạy CloudFormation stack
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/PPV_Workshop_01/vi/2-prerequiste/2.2-launchvscode/" title="Khởi chạy VSCode trên AWS và Thiết lập Môi trường" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/PPV_Workshop_01/vi/2-prerequiste/2.2-launchvscode/">
+           <b> 2.2 </b> Khởi chạy VSCode trên AWS và Thiết lập Môi trường
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/PPV_Workshop_01/vi/3-accessibilitytoinstances/" title="Triển khai Ứng dụng Serverless Amazon Bedrock" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/PPV_Workshop_01/vi/3-accessibilitytoinstances/">
+           <b> 3. </b> Triển khai Ứng dụng Serverless Amazon Bedrock
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/PPV_Workshop_01/vi/4-walkthroughbedrock/" title="Hướng dẫn sử dụng Amazon Bedrock Console" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/PPV_Workshop_01/vi/4-walkthroughbedrock/">
+           <b> 4. </b> Hướng dẫn sử dụng Amazon Bedrock Console
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/PPV_Workshop_01/vi/5-multiplellms/" title="Trò chuyện tổng quát với nhiều mô hình LLM" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/PPV_Workshop_01/vi/5-multiplellms/">
+           <b> 5. </b> Trò chuyện tổng quát với nhiều mô hình LLM
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/PPV_Workshop_01/vi/6-usingamazonkendra/" title="Lập chỉ mục dữ liệu nguồn bằng Amazon Kendra" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/PPV_Workshop_01/vi/6-usingamazonkendra/">
+           <b> 6. </b> Lập chỉ mục dữ liệu nguồn bằng Amazon Kendra
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/PPV_Workshop_01/vi/7-rag/" title="Trò chuyện RAG với nhiều mô hình LLM" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/PPV_Workshop_01/vi/7-rag/">
+           <b> 7. </b> Trò chuyện RAG với nhiều mô hình LLM
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/PPV_Workshop_01/vi/8-promptengineering/" title="Kỹ thuật thiết kế Prompt" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/PPV_Workshop_01/vi/8-promptengineering/">
+           <b> 8. </b> Kỹ thuật thiết kế Prompt
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/PPV_Workshop_01/vi/9-knowledgebases/" title="Trò chuyện RAG với Bedrock Knowledge Bases" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/PPV_Workshop_01/vi/9-knowledgebases/">
+           <b> 9. </b> Trò chuyện RAG với Bedrock Knowledge Bases
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/PPV_Workshop_01/vi/9-knowledgebases/9.1-createknowledgebase/" title="Tạo và Kiểm thử Knowledge Base" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/PPV_Workshop_01/vi/9-knowledgebases/9.1-createknowledgebase/">
+           <b> 9.1 </b> Tạo và Kiểm thử Knowledge Base
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/PPV_Workshop_01/vi/9-knowledgebases/9.2-integrateknowledgebase/" title="Tích hợp Knowledge Base với Lambda Function" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/PPV_Workshop_01/vi/9-knowledgebases/9.2-integrateknowledgebase/">
+           <b> 9.2 </b> Tích hợp Knowledge Base với Lambda Function
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/PPV_Workshop_01/vi/10-cleanup/" title="Dọn dẹp tài nguyên" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/PPV_Workshop_01/vi/10-cleanup/">
+           <b> 10. </b> Dọn dẹp tài nguyên
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+         
+    </ul>
+
+    
+    
+      <section id="shortcuts">
+        <h3>More</h3>
+        <ul>
+          
+              <li> 
+                  <a class="padding" href="https://www.facebook.com/groups/awsstudygroupfcj/"><i class='fab fa-facebook'></i> AWS Study Group</a>
+              </li>
+          
+        </ul>
+      </section>
+    
+
+    
+    <section id="prefooter">
+      <hr/>
+      <ul>
+      
+        <li>
+          <a class="padding">
+            <i class="fas fa-language fa-fw"></i>
+          <div class="select-style">
+            <select id="select-language" onchange="location = this.value;">
+          
+          
+          
+              
+              
+                  
+                    
+                    
+                      <option id="en" value="https://PVinhP.github.io/PPV_Workshop_01/1-introduce/">English</option>
+                    
+                  
+              
+                  
+              
+          
+              
+              
+                  
+              
+                  
+                    
+                    
+                      <option id="vi" value="https://PVinhP.github.io/PPV_Workshop_01/vi/1-introduce/" selected>Tiếng Việt</option>
+                    
+                  
+              
+          
+        </select>
+        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+          width="255px" height="255px" viewBox="0 0 255 255" style="enable-background:new 0 0 255 255;" xml:space="preserve">
+          <g>
+            <g id="arrow-drop-down">
+              <polygon points="0,63.75 127.5,191.25 255,63.75 		" />
+            </g>
+          </g>
+        </svg>
+        </div>
+        </a>
+        </li>
+      
+      
+      
+        <li><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> Clear History</a></li>
+      
+      </ul>
+    </section>
+    
+    <section id="footer">
+      <left>
+    
+     <b> Workshop</b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7920860&style=0038&nbdigits=9&type=page&initCount=0" title="Migrate" Alt="web counter"   border="0" /></a>  <br>
+     <b> <a href="https://cloudjourney.awsstudygroup.com/">Cloud Journey</a></b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7830807&style=0038&nbdigits=9&type=page&initCount=0" title="Total CLoud Journey" Alt="web counter"   border="0"   />
+     
+</left>
+<left>
+    <br>
+    <br>
+        <b> Last Updated </b> <br>
+        <i><font color=orange>26-07-2025</font></i>
+    </left>
+    <left>
+        <br>
+        <br>
+            <b> Team </b> <br>
+           
+            <i> <a href="https://www.facebook.com/pham.phu.vinh.220432/?locale=vi_VN"  style="color:orange">Phạm Phú Vinh  </a> <br>
+
+               
+        </i>
+        </left>
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    </section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            <a href='/PPV_Workshop_01/vi/'>Tạo Chatbot Serverless Sử Dụng Amazon Bedrock, Amazon Kendra và Dữ Liệu Của Riêng Bạn</a> > Giới thiệu
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#tổng-quan">Tổng quan</a></li>
+        <li><a href="#-các-thành-phần">🧩 Các Thành phần</a></li>
+        <li><a href="#-quy-trình-làm-việc">🔄 Quy trình Làm việc</a></li>
+        <li><a href="#-tính-năng-chính">✨ Tính năng Chính</a></li>
+        <li><a href="#amazon-kendra">Amazon Kendra</a></li>
+        <li><a href="#amazon-bedrock">Amazon Bedrock</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              Giới thiệu
+            </h1>
+          
+
+        
+
+
+
+	<h3 id="tổng-quan">Tổng quan</h3>
+<p>Trong workshop này, bạn sẽ bắt đầu một hành trình toàn diện để tạo ra một chatbot serverless sử dụng các công nghệ AI tổng hợp tiên tiến. Bạn sẽ tận dụng Amazon Bedrock, Amazon Kendra và dữ liệu của riêng mình để xây dựng một giao diện đối thoại thông minh có thể truy xuất và tạo ra các phản hồi phù hợp theo ngữ cảnh. Workshop sẽ hướng dẫn bạn cấu hình nhiều dịch vụ bao gồm AWS Lambda, API Gateway và AWS Amplify, đồng thời bạn sẽ làm việc với các mô hình ngôn ngữ lớn khác nhau như Claude 3, Mistral và Llama. Khi kết thúc workshop, bạn sẽ có một chatbot hoàn chỉnh có thể tương tác với cơ sở tri thức doanh nghiệp sử dụng các kỹ thuật Retrieval-Augmented Generation (RAG). Workshop này giải quyết các trường hợp sử dụng thực tế nơi các tổ chức cần giao diện đối thoại thông minh, dựa trên dữ liệu.</p>
+<p>Bạn sẽ học cách giải quyết các thách thức như khám phá tri thức doanh nghiệp, tự động hóa hỗ trợ khách hàng và truy xuất thông tin qua các kho tài liệu phức tạp. Giải pháp bạn sẽ xây dựng có thể được áp dụng trong nhiều tình huống kinh doanh, bao gồm hệ thống hỗ trợ kỹ thuật, quản lý tri thức nhân sự, truy vấn tài liệu tuân thủ và tổng hợp thông tin nghiên cứu. Bằng cách thành thạo các kỹ thuật này, bạn sẽ được trang bị để tạo ra các giải pháp được hỗ trợ bởi AI có thể biến đổi cách thức các doanh nghiệp tương tác với dữ liệu của họ, cung cấp các phản hồi nhanh hơn, chính xác hơn và nhận thức ngữ cảnh đối với các truy vấn phức tạp.</p>
+<p>Trong suốt workshop này, bạn sẽ có được kiến thức và kỹ năng sau:</p>
+<ul>
+<li>Cách xây dựng các giải pháp AI tổng hợp bằng cách sử dụng Amazon Bedrock và kiến trúc serverless.</li>
+<li>Cách sử dụng AWS SAM để tạo và triển khai các giải pháp AI tổng hợp.</li>
+<li>Cách khai thác khả năng của các Mô hình Ngôn ngữ Lớn thông qua kiến trúc Retrieval-Augmented Generation (RAG).</li>
+<li>Tầm quan trọng của quản lý dữ liệu hiệu quả trong bối cảnh AI tổng hợp, bao gồm việc tìm nguồn, lưu trữ và tiền xử lý dữ liệu để nâng cao hiệu suất và tính liên quan của các phản hồi được tạo bởi AI.</li>
+<li>Vai trò của Kỹ thuật Prompt Engineering trong việc đạt được kết quả tốt hơn.</li>
+</ul>
+<p>Bạn sẽ tạo ra kiến trúc sau đây cho workshop này:</p>
+<p><img src="https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/anh/000-architecture.png?raw=true" alt="ConnectPrivate"></p>
+<h3 id="-các-thành-phần">🧩 Các Thành phần</h3>
+<ul>
+<li><strong>Users</strong>: Người dùng cuối của chatbot</li>
+<li><strong>Web UI</strong>: Giao diện người dùng cho việc tương tác với chatbot</li>
+<li><strong>AWS Amplify (React, Vue.js)</strong>: Quản lý front-end và xác thực, đặc biệt sử dụng React hoặc Vue.js</li>
+<li><strong>Amazon API Gateway</strong>: Xử lý các yêu cầu API</li>
+<li><strong>AWS Lambda (RAG/KB/LLM Functions)</strong>: Thực thi các hàm serverless cho Retrieval-Augmented Generation, các thao tác Knowledge Base và tương tác LLM</li>
+<li><strong>Amazon Bedrock</strong>: Cung cấp quyền truy cập vào các mô hình và dịch vụ AI</li>
+<li><strong>Large Language Models (Claude 3, Mistral, Llama etc.)</strong>: Các mô hình AI hỗ trợ phản hồi</li>
+<li><strong>Knowledge Bases</strong>: Lưu trữ thông tin có cấu trúc</li>
+<li><strong>Amazon S3</strong>: Lưu trữ đối tượng cho tài liệu và dữ liệu</li>
+<li><strong>Documents (PDF, CSV, TXT etc.)</strong>: Các loại tệp khác nhau để thu thập</li>
+<li><strong>Amazon Kendra</strong>: Dịch vụ tìm kiếm thông minh</li>
+<li><strong>Amazon OpenSearch</strong>: Cơ sở dữ liệu vector và công cụ tìm kiếm cho tìm kiếm tương đồng hiệu quả</li>
+<li><strong>Amazon Cognito</strong>: Xác thực và ủy quyền người dùng</li>
+</ul>
+<hr>
+<h3 id="-quy-trình-làm-việc">🔄 Quy trình Làm việc</h3>
+<ol>
+<li>Người dùng tương tác với Web UI</li>
+<li>Các yêu cầu được định tuyến qua API Gateway đến các hàm Lambda</li>
+<li>Các hàm Lambda sử dụng Bedrock để truy cập LLM, thao tác RAG và tương tác Knowledge Base</li>
+<li>Tri thức được truy xuất từ Knowledge Bases, S3, Kendra hoặc OpenSearch</li>
+<li>Hệ thống tích hợp các loại tài liệu khác nhau để nâng cao cơ sở tri thức</li>
+</ol>
+<hr>
+<h3 id="-tính-năng-chính">✨ Tính năng Chính</h3>
+<ul>
+<li>Kiến trúc serverless có thể mở rộng</li>
+<li>Tận dụng các mô hình LLM khác nhau bao gồm Claude 3, Mistral và Llama</li>
+<li>Tích hợp tri thức doanh nghiệp thông qua Kendra và các cơ sở tri thức tùy chỉnh</li>
+<li>Xác thực bảo mật với Cognito</li>
+<li>Khả năng thu thập tài liệu và tìm kiếm linh hoạt</li>
+<li>Front-end được xây dựng với các framework hiện đại (React hoặc Vue.js) sử dụng AWS Amplify</li>
+</ul>
+<hr>
+<p>Kiến trúc này cho phép tạo ra một <strong>giải pháp chatbot được hỗ trợ bởi AI tổng hợp</strong> có thể mở rộng theo nhu cầu trong khi cung cấp <strong>các phản hồi thông minh</strong> dựa trên cả <strong>tri thức của LLM và tri thức đặc thù doanh nghiệp</strong>. Việc sử dụng <strong>React hoặc Vue.js với AWS Amplify</strong> đảm bảo một giao diện người dùng phản hồi nhanh và hiệu quả.</p>
+<h3 id="amazon-kendra">Amazon Kendra</h3>
+<p><img src="https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/Kendra.png?raw=true" alt="ConnectPrivate"></p>
+<p><strong>Amazon Kendra</strong> là một dịch vụ truy xuất thông tin được quản lý và tìm kiếm thông minh sử dụng xử lý ngôn ngữ tự nhiên và mô hình deep learning tiên tiến. Khác với tìm kiếm dựa trên từ khóa truyền thống, Amazon Kendra sử dụng độ tương đồng ngữ nghĩa và ngữ cảnh—cùng với khả năng xếp hạng—để quyết định xem một đoạn văn bản hoặc tài liệu có liên quan đến truy vấn truy xuất hay không.</p>
+<p>Nguồn: <a href="https://docs.aws.amazon.com/kendra/latest/dg/what-is-kendra.html">Amazon Kendra – What is Kendra?</a><br>
+<em>Nguồn này cung cấp giải thích chi tiết hơn về cách Amazon Kendra hoạt động.</em></p>
+<h3 id="amazon-bedrock">Amazon Bedrock</h3>
+<p><img src="https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/Bedrock.png?raw=true" alt="ConnectPrivate">
+<strong>Amazon Bedrock</strong> là một dịch vụ được quản lý hoàn toàn giúp các mô hình nền tảng (FMs) hiệu suất cao từ các công ty AI hàng đầu và Amazon có sẵn để bạn sử dụng thông qua một API thống nhất. Bạn có thể chọn từ một loạt các mô hình nền tảng để tìm mô hình phù hợp nhất cho trường hợp sử dụng của mình. Amazon Bedrock cũng cung cấp một bộ khả năng rộng để xây dựng các ứng dụng AI tổng hợp với tính bảo mật, quyền riêng tư và AI có trách nhiệm. Sử dụng Amazon Bedrock, bạn có thể dễ dàng thử nghiệm và đánh giá các mô hình nền tảng hàng đầu cho các trường hợp sử dụng của mình, tùy chỉnh riêng tư chúng với dữ liệu của bạn sử dụng các kỹ thuật như fine-tuning và Retrieval Augmented Generation (RAG), và xây dựng các agent thực hiện các nhiệm vụ sử dụng các hệ thống doanh nghiệp và nguồn dữ liệu của bạn.</p>
+<p>Với trải nghiệm serverless của Amazon Bedrock, bạn có thể bắt đầu nhanh chóng, tùy chỉnh riêng tư các mô hình nền tảng với dữ liệu của riêng mình, và dễ dàng cũng như bảo mật tích hợp và triển khai chúng vào các ứng dụng của bạn sử dụng các công cụ AWS mà không cần quản lý bất kỳ cơ sở hạ tầng nào.</p>
+<p>Nguồn: <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html">Amazon Bedrock – What is Amazon Bedrock?</a><br>
+<em>Nguồn này cung cấp giải thích chi tiết hơn về cách Amazon Bedrock hoạt động.</em></p>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="/PPV_Workshop_01/vi/" title="Tạo Chatbot Serverless Sử Dụng Amazon Bedrock, Amazon Kendra và Dữ Liệu Của Riêng Bạn"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="/PPV_Workshop_01/vi/2-prerequiste/" title="Chuẩn bị " style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="/PPV_Workshop_01/js/clipboard.min.js?1753540103"></script>
+    <script src="/PPV_Workshop_01/js/perfect-scrollbar.min.js?1753540103"></script>
+    <script src="/PPV_Workshop_01/js/perfect-scrollbar.jquery.min.js?1753540103"></script>
+    <script src="/PPV_Workshop_01/js/jquery.sticky.js?1753540103"></script>
+    <script src="/PPV_Workshop_01/js/featherlight.min.js?1753540103"></script>
+    <script src="/PPV_Workshop_01/js/highlight.pack.js?1753540103"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/PPV_Workshop_01/js/modernizr.custom-3.6.0.js?1753540103"></script>
+    <script src="/PPV_Workshop_01/js/learn.js?1753540103"></script>
+    <script src="/PPV_Workshop_01/js/hugo-learn.js?1753540103"></script>
+
+    <link href="/PPV_Workshop_01/mermaid/mermaid.css?1753540103" rel="stylesheet" />
+    <script src="/PPV_Workshop_01/mermaid/mermaid.js?1753540103"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-158079754-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  </body>
+</html>
