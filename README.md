@@ -9,7 +9,7 @@ Bạn sẽ tạo ra kiến trúc sau đây cho workshop này:
 
 ![ConnectPrivate](https://github.com/PVinhP/PPV_Workshop_01/blob/main/Workshop/static/images/anh/000-architecture.png?raw=true)
 
-
+Link: https://pvinhp.github.io/PPV_Workshop_01/
 
 ### Nội dung
 1. [Giới thiệu](1-Introduce/)
